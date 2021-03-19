@@ -70,9 +70,10 @@ interface _props {
     buttonPath: string;
     imagePath: string;
     basePath: string;
+    lineClass?: string;
 }
 
-export const Section = (props: _props) => {
+export const Section: React.FunctionComponent<_props> = (props) => {
     const classes = useStyles();
     const history = useHistory();
     const location = useLocation();
@@ -127,7 +128,7 @@ export const Section = (props: _props) => {
                                         <img src={props.imagePath} className={classes.image} style={{ marginBottom: "30px", ...imageTransitionStyles[enterState] }} width={`100%`} height={height/4} />
                                     }
                                     <Typography variant="h1" color="textPrimary">{props.title}</Typography>
-                                    <img src="images/line.png" width={500} className={classes.line} />
+                                    <img src="images/line.png" width={500} className={props.lineClass ?? classes.line} />
                                     <Typography variant="h5" color="textSecondary" style={{ lineHeight: "40px", wordBreak: "break-word", whiteSpace: "pre-wrap" }}>
                                         {props.subtitle}
                                     </Typography>
@@ -135,6 +136,7 @@ export const Section = (props: _props) => {
                                     {(props.buttonText != "" && !expanded) &&
                                         <Button onClick={() => history.push(props.buttonPath)} variant="contained" color="primary" size="small">{props.buttonText}</Button>
                                     }
+                                    {props.children}
                                 </div>
                                 {(width > 1200 && props.imagePath != "") &&
                                     <div style={{ minWidth: "500px", transition: `margin ${animationDuration}ms ease-in-out, max-width ${animationDuration}ms ease-in-out`, ...marginTransitionStyles[expandState] }}>

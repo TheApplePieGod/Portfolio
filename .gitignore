@@ -87,7 +87,6 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-dist/**
 !dist/favicon.ico
 package-lock.json
 build

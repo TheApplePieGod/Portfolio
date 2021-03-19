@@ -59,9 +59,9 @@ export const Header = () => {
     return (
         <div className={classes.root}>
             <div className={classes.content}>
-                <Typography variant="h5" color="textPrimary">Portfolio</Typography>
+                <Typography variant="h6" color="textPrimary">Portfolio</Typography>
                 <div style={{ marginRight: "10px" }}>
-                    <IconButton style={{ color: theme.PALETTE_WHITE }}>
+                    <IconButton href="https://github.com/TheApplePieGod" target="_blank" style={{ color: theme.PALETTE_WHITE }}>
                         <img src="images/github.svg" width={Math.max(width/40, 30)} />
                     </IconButton>
                 </div>
