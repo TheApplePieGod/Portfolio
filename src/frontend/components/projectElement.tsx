@@ -22,6 +22,7 @@ interface _props {
     languages: string;
     screenshotPaths: string[];
     link: string;
+    github: string;
     title: string;
     description: string;
 }
@@ -42,13 +43,11 @@ export const ProjectElement: React.FunctionComponent<_props> = (props) => {
             </div>
             <SimpleDialog open={open} title={props.title} onClose={() => setOpen(false)} style={{ color: theme.PALETTE_BLACK }}>
                 <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, lineHeight: "40px", margin: "10px 0 10px 0" }}>
-                    <b>Type:</b> {props.type}
-                    <br />
-                    <b>Languages:</b> {props.languages}
-                    <br />
-                    <b>Screenshots:</b> {props.screenshotPaths.length == 0 ? "N/A" : ""}
-                    <br />
-                    <b>Link:</b> {props.link == "" ? "N/A" : <Link href={props.link} target="_blank" underline="always">{props.link}</Link>}
+                    {props.type != "" && <><b>Type:</b> {props.type} <br /></>}
+                    {props.languages != "" && <><b>Languages:</b> {props.languages} <br /></>}
+                    {props.screenshotPaths.length > 0 && <><b>Screenshots:</b>  <br /></> }
+                    {props.link != "" && <><b>Link:</b> <Link href={props.link} target="_blank" underline="always">{props.link}</Link> <br /></>}
+                    {props.github != "" && <><b>Github:</b> <Link href={props.github} target="_blank" underline="always">{props.github}</Link> <br /></>}
                 </Typography>
                 {props.children}
             </SimpleDialog>
