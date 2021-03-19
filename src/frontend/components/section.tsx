@@ -60,6 +60,14 @@ const useStyles = makeStyles(theme => ({
         width: "min-content",
         maxWidth: "75vw",
         transition: `opacity ${animationDuration}ms ease-in-out`,
+    },
+    scrollArrow: {
+        transition: `opacity ${animationDuration}ms ease-in-out`,
+        position: "absolute",
+        transform: "rotate(-90deg)",
+        top: "calc(100% - 115px)",
+        left: 0,
+        marginLeft: "-8px"
     }
 }));
 
@@ -84,8 +92,8 @@ export const Section: React.FunctionComponent<_props> = (props) => {
     const textTransitionStyles: any = {
         entering: { opacity: 0 },
         entered:  { opacity: 1 },
-        exiting:  { },
-        exited:  { },
+        exiting:  { opacity: 1 },
+        exited:  { opacity: 0 },
     };
 
     const imageTransitionStyles: any = {
@@ -116,13 +124,13 @@ export const Section: React.FunctionComponent<_props> = (props) => {
             appear={true}
         >
             {enterState => (
-                <div className={width <= 1200 ? classes.contentSmall : classes.contentLarge}>
-                    <Transition
-                        timeout={animationDuration}
-                        in={location.pathname.startsWith(props.basePath + '/more')}
-                    >
-                        {expandState => (
-                            <React.Fragment>
+                <Transition
+                    timeout={animationDuration}
+                    in={location.pathname.startsWith(props.basePath + '/more')}
+                >
+                    {expandState => (
+                        <React.Fragment>
+                            <div className={width <= 1200 ? classes.contentSmall : classes.contentLarge}>
                                 <div className={classes.textContent} style={{ ...textTransitionStyles[enterState] }}>
                                     {(width <= 1200 && props.imagePath != "") &&
                                         <img src={props.imagePath} className={classes.image} style={{ marginBottom: "30px", ...imageTransitionStyles[enterState] }} width={`100%`} height={height/4} />
@@ -143,10 +151,14 @@ export const Section: React.FunctionComponent<_props> = (props) => {
                                         <img src={props.imagePath} className={classes.image} width={`100%`} height={expanded ? height : height/1.5} style={{ ...imageTransitionStyles[enterState], ...moreTransitionStyles[expandState] }} />
                                     </div>
                                 }
-                            </React.Fragment>
-                        )}
-                    </Transition>
-                </div>
+                            </div>
+                            <div className={classes.scrollArrow} style={{ ...textTransitionStyles[expandState] }}>
+                                <Typography variant="h4" color="textPrimary">Scroll</Typography>
+                                <Typography variant="h4" color="textPrimary">{"<====="}</Typography>
+                            </div>
+                        </React.Fragment>
+                    )}
+                </Transition>
             )}
         </Transition>
     );
