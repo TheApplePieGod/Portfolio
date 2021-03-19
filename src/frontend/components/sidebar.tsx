@@ -61,7 +61,7 @@ export const Sidebar = () => {
 
     const circleTransitionStyles: any = {
         entering: { opacity: 1 },
-        entered:  { opacity: 0, maxWidth: 0 },
+        entered:  { opacity: 0, maxWidth: width <= 1200 ? "" : 0 },
         exiting:  { opacity: 0 },
         exited:  { opacity: 1 },
     };
