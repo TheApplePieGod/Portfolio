@@ -1,6 +1,5 @@
 import { Button, Paper, TextField, Typography, Select, MenuItem } from '@material-ui/core';
 import React from 'react';
-import * as theme from '../theme';
 import { makeStyles } from "@material-ui/core";
 import { useWindowDimensions } from './useWindowDimensions';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -9,14 +8,29 @@ import { Transition } from 'react-transition-group';
 const animationDuration = 200;
 
 const useStyles = makeStyles(theme => ({
-    content: {
-        position: "fixed",
+    contentLarge: {
+        position: "absolute",
         top: "50%",
         transform: "translateY(-50%)",
         left: "20%",
         display: "flex",
         alignItems: "center",
+        //justifyContent: "center",
         maxWidth: "100%",
+        height: "100%",
+        overflowX: "hidden"
+    },
+    contentSmall: {
+        position: "absolute",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+        left: "50%",
+        display: "flex",
+        alignItems: "center",
+        //justifyContent: "center",
+        maxWidth: "100%",
+        height: "100%",
+        overflowX: "hidden"
     },
     line: {
         position: "relative",
@@ -101,7 +115,7 @@ export const Section = (props: _props) => {
             appear={true}
         >
             {enterState => (
-                <div className={classes.content}>
+                <div className={width <= 1200 ? classes.contentSmall : classes.contentLarge}>
                     <Transition
                         timeout={animationDuration}
                         in={location.pathname.startsWith(props.basePath + '/more')}
@@ -110,7 +124,7 @@ export const Section = (props: _props) => {
                             <React.Fragment>
                                 <div className={classes.textContent} style={{ ...textTransitionStyles[enterState] }}>
                                     {(width <= 1200 && props.imagePath != "") &&
-                                        <img src={props.imagePath} className={classes.image} style={{ marginBottom: "30px", ...imageTransitionStyles[enterState] }} width={`100%`} height={height/2.5} />
+                                        <img src={props.imagePath} className={classes.image} style={{ marginBottom: "30px", ...imageTransitionStyles[enterState] }} width={`100%`} height={height/4} />
                                     }
                                     <Typography variant="h1" color="textPrimary">{props.title}</Typography>
                                     <img src="images/line.png" width={500} className={classes.line} />

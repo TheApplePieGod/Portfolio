@@ -1,6 +1,5 @@
 import { Button, Paper, TextField, Typography, Select, MenuItem } from '@material-ui/core';
 import React from 'react';
-import * as theme from '../theme';
 import { makeStyles } from "@material-ui/core";
 import { useWindowDimensions } from './useWindowDimensions';
 

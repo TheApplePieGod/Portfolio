@@ -29,20 +29,20 @@ export const createApplicationTheme = memoizeOne(() => {
 		typography: {
 			fontFamily: FONT_FAMILY,
 		},
-		// overrides: {
-		// 	MuiPaper: {
-		// 		root: {
-		// 			backgroundColor: PALETTE_GREY
-		// 		}
-		// 	},
-		// 	MuiCssBaseline: {
-		// 		"@global": {
-		// 			body: {
-		// 				backgroundColor: PALETTE_BLACK
-		// 			},
-		// 		},
-		// 	},
-		// }
+		overrides: {
+			MuiPaper: {
+				root: {
+					backgroundColor: PALETTE_WHITE
+				}
+			},
+			// MuiCssBaseline: {
+			// 	"@global": {
+			// 		body: {
+			// 			backgroundColor: PALETTE_BLACK
+			// 		},
+			// 	},
+			// },
+		}
 	});
 
 	theme = responsiveFontSizes(theme);
