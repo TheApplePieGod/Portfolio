@@ -4,7 +4,7 @@ import { Section } from "./section";
 import { useWindowDimensions } from './useWindowDimensions';
 import * as theme from '../theme';
 import { Typography, makeStyles, IconButton } from "@material-ui/core";
-import MailIcon from '@material-ui/icons/Mail';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 const useStyles = makeStyles(_theme => ({
     line: {
@@ -48,7 +48,7 @@ export const Contact = () => {
             >
                 <div style={{ /*display: "flex", justifyContent: "center", alignItems: "center"*/ }}>
                     <IconButton href="mailto:evant.002@gmail.com" style={{ padding: 0 }}>
-                        <MailIcon style={{ fontSize: "40px"}} />
+                        <MailOutlineIcon style={{ fontSize: "40px"}} />
                     </IconButton>
                 </div>
             </Section>

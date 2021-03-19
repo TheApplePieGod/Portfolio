@@ -68,10 +68,10 @@ export const About = () => {
                     <Typography variant="h3" style={{ color: theme.PALETTE_BLACK, marginTop: "65px" }}>Introduction</Typography>
                     <CircleLine circleCount={10} />
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "50px", flexDirection: condense ? "column" : "row" }}>
-                        <img src="images/monkey.jpg" width={width/3} />
+                        <img src="images/user.png" width={width/3} />
                         <br />
                         <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, maxWidth: "50%", marginLeft: condense ? 0 : "75px", lineHeight: "40px" }}>
-                            I was born in the state of Illinois in 2003, and I have spent most of my life traversing the world of computer science.
+                            Born in the United States in 2003, I have spent most of my life traversing the world of computer science. I started programming at a very young age, and I have dabbled in some of the many different worlds of computer science. Game development, computer graphics, web design, and web development are a few of them that I have experience in.  
                         </Typography>
                     </div>
                     <div className={classes.starSection}>
@@ -97,7 +97,7 @@ export const About = () => {
                             <div style={{ margin: "auto", width: condense ? "80%" : "35%" }}>
                                 <CategoryIcon style={{ color: theme.PALETTE_WHITE, width: "15vw", height: "15vw" }} />
                                 <Typography variant="body1" color="textSecondary" style={{ lineHeight: "40px" }}>
-                                    Designing systems and models is always a daunting task when presented, but I love doing it and have done it countless times. Graphical design is not my strong suit, but I am learning.
+                                    Designing systems and models is always a daunting task when presented, but I love doing it and have done it countless times. Graphical design is not my strong suit, but I am learning
                                 </Typography>
                             </div>
                         </div>
