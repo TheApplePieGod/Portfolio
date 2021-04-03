@@ -24,7 +24,7 @@ const useStyles = makeStyles({
         paddingBottom: "100px"
     },
     starSection: {
-        height: "200px",
+        height: "150px",
         margin: "50px 0 75px 0",
         clipPath: "polygon(0 50px, 100% 0, 100% calc(100% - 50px), 0 100%)",
         backgroundImage: "url(images/background-nomoon.jpg)",
@@ -57,15 +57,30 @@ export const Projects = () => {
                 <div className={classes.content} style={{ top: "100%" }}>
                     <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row" }}>
                         <ProjectElement
+                            fullWidth
                             width={width}
                             circleCount={10}
                             type="Web app"
-                            languages="ReactJS, CSS, C#, SQL"
+                            languages="ReactJS, Typescript, CSS, C#, SQL, Azure"
                             screenshotPaths={[]}
                             link=""
                             github=""
-                            title="N/A"
-                            description="N/A"
+                            title="Echelon Dashboard"
+                            description="I was accepted for a professional internship with Echelon Consulting, where I focused on the full life cycle of application development for the cloud. One other intern and I built an application from the ground up, which tightly integrates with Echelon's commercial time and expense system. It allows Echelon's leadership team to view various aspects of their business in near-real time, including company utilization, individual utilization, individual project health, and client sales distribution. The application is in active use and continues to evolve."
+                        />
+                    </div>
+                    <div className={classes.starSection}></div>
+                    <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row" }}>
+                        <ProjectElement
+                            width={width}
+                            circleCount={7}
+                            type="Web app"
+                            languages="ReactJS, Typescript"
+                            screenshotPaths={[]}
+                            link="https://bchess.site/"
+                            github="https://github.com/TheApplePieGod/Bandersnatch"
+                            title="Bandersnatch"
+                            description="A chess playing engine built from scratch, powered by the browser for anyone to use and experiment with"
                         />
                         <br />
                         <br />
@@ -73,7 +88,7 @@ export const Projects = () => {
                             width={width}
                             circleCount={6}
                             type="Web app"
-                            languages="ReactJS, CSS, C#, SQL"
+                            languages="ReactJS, Typescript, CSS, C#, SQL"
                             screenshotPaths={[]}
                             link="https://codecorner.azurewebsites.net/"
                             github=""
@@ -137,6 +152,20 @@ export const Projects = () => {
                         />
                         <br />
                         <br />
+                    </div>
+                    <div className={classes.starSection}></div>
+                    <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row" }}>
+                        <ProjectElement
+                            width={width}
+                            circleCount={6}
+                            type="Web app"
+                            languages="ReactJS, CSS, Typescript, C#, SQL"
+                            screenshotPaths={[]}
+                            link="https://ideacloud.site/"
+                            github=""
+                            title="Idea Cloud"
+                            description="A lightweight application to quickly store and look back at ideas that you find important. This is also the first app which I manually setup all of the hosting on a DigitalOcean droplet"
+                        />
                     </div>
                 </div>
             }

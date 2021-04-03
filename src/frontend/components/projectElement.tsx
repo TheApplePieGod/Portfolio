@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 
 interface _props {
     width: number;
+    fullWidth?: boolean;
     circleCount: number;
     type: string;
     languages: string;
@@ -35,7 +36,7 @@ export const ProjectElement: React.FunctionComponent<_props> = (props) => {
 
     return (
         <React.Fragment>
-            <div className={classes.content} style={{ width: condense ? "80%" : "35%", margin: "0 3% 0 3%" }}>
+            <div className={classes.content} style={{ width: (condense || props.fullWidth) ? "80%" : "35%", margin: "0 3% 0 3%" }}>
                 <Typography variant="h4" style={{ color: theme.PALETTE_BLACK }}>{props.title}</Typography>
                 <CircleLine circleCount={props.circleCount} />
                 <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, lineHeight: "40px", margin: "10px 0 10px 0" }}>{props.description}</Typography>
@@ -44,7 +45,7 @@ export const ProjectElement: React.FunctionComponent<_props> = (props) => {
             <SimpleDialog open={open} title={props.title} onClose={() => setOpen(false)} style={{ color: theme.PALETTE_BLACK }}>
                 <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, lineHeight: "40px", margin: "10px 0 10px 0" }}>
                     {props.type != "" && <><b>Type:</b> {props.type} <br /></>}
-                    {props.languages != "" && <><b>Languages:</b> {props.languages} <br /></>}
+                    {props.languages != "" && <><b>Focuses:</b> {props.languages} <br /></>}
                     {props.screenshotPaths.length > 0 && <><b>Screenshots:</b>  <br /></> }
                     {props.link != "" && <><b>Link:</b> <Link href={props.link} target="_blank" underline="always">{props.link}</Link> <br /></>}
                     {props.github != "" && <><b>Github:</b> <Link href={props.github} target="_blank" underline="always">{props.github}</Link> <br /></>}
