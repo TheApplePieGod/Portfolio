@@ -116,26 +116,26 @@ export const Projects = () => {
                         <ProjectElement
                             width={width}
                             circleCount={5}
-                            type="Desktop app"
+                            type="Library"
                             languages="C++"
                             screenshotPaths={[]}
                             link=""
                             github="https://github.com/TheApplePieGod/Diamond"
                             title="Diamond"
-                            description="My first attempt at a Vulkan-based engine. It is designed to be used for 2D applications, which I hoped to use in future projects and games"
+                            description="An open source, cross-platform, Vulkan based 2D rendering engine, which I hope to use in future projects and games"
                         />
                         <br />
                         <br />
                         <ProjectElement
                             width={width}
-                            circleCount={9}
+                            circleCount={11}
                             type="Desktop app"
                             languages="C++"
                             screenshotPaths={[]}
                             link=""
-                            github="https://github.com/TheApplePieGod/DepthsOfPower"
-                            title="Depths of Power"
-                            description="My second attempt at a 2D game; powered by diamond. I had a vision for a automation focused 2D exploration game, but I have not made a ton of progress"
+                            github="https://github.com/TheApplePieGod/ParticleSimulations"
+                            title="Particle Simulations"
+                            description="A collection of various 2D particle simulations powered by the Diamond engine."
                         />
                         <br />
                         <br />
@@ -148,7 +148,7 @@ export const Projects = () => {
                             link=""
                             github="https://github.com/TheApplePieGod/DropBot"
                             title="DropBot"
-                            description="A stock monitoring bot inspired by the crash of the graphics card market in late 2020"
+                            description="A stock monitoring bot inspired by the boom of the graphics card market in late 2020"
                         />
                         <br />
                         <br />
@@ -165,6 +165,19 @@ export const Projects = () => {
                             github=""
                             title="Idea Cloud"
                             description="A lightweight application to quickly store and look back at ideas that you find important. This is also the first app which I manually setup all of the hosting on a DigitalOcean droplet"
+                        />
+                        <br />
+                        <br />
+                        <ProjectElement
+                            width={width}
+                            circleCount={9}
+                            type="Desktop app"
+                            languages="C++"
+                            screenshotPaths={[]}
+                            link=""
+                            github="https://github.com/TheApplePieGod/DepthsOfPower"
+                            title="Depths of Power"
+                            description="A 2D game powered by Diamond. I had a vision for a automation focused 2D exploration game, but I have not made a ton of progress"
                         />
                     </div>
                 </div>
