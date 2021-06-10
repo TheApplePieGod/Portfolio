@@ -103,7 +103,7 @@ export const Projects = () => {
                             type="Desktop app"
                             languages="C++"
                             screenshotPaths={[]}
-                            link="https://www.youtube.com/watch?v=ChWMxhsLzy8"
+                            link="https://youtu.be/ChWMxhsLzy8"
                             github="https://github.com/TheApplePieGod/Spade"
                             title="Spade"
                             description="My second attempt at a 3D graphics engine. Built from scratch using DX11, I attempted to create a realistic planet which can be viewed from both space and on the surface in real time"
@@ -132,7 +132,7 @@ export const Projects = () => {
                             type="Desktop app"
                             languages="C++"
                             screenshotPaths={[]}
-                            link=""
+                            link="https://youtu.be/XhlcFXmRxI8"
                             github="https://github.com/TheApplePieGod/ParticleSimulations"
                             title="Particle Simulations"
                             description="A collection of various 2D particle simulations powered by the Diamond engine."
@@ -174,10 +174,10 @@ export const Projects = () => {
                             type="Desktop app"
                             languages="C++"
                             screenshotPaths={[]}
-                            link=""
+                            link="https://youtu.be/a-77SkG5YqQ"
                             github="https://github.com/TheApplePieGod/DepthsOfPower"
                             title="Depths of Power"
-                            description="A 2D game powered by Diamond. I had a vision for a automation focused 2D exploration game, but I have not made a ton of progress"
+                            description="A 2D game powered by Diamond. I have a vision for a automation focused 2D exploration game, and I have a basic prototype complete so far."
                         />
                     </div>
                 </div>
