@@ -1,3 +1,3 @@
 Portfolio
 
-[Check out the site](https://evanthompson.site/projects)
+[Check out the site](https://evanthompson.site/)

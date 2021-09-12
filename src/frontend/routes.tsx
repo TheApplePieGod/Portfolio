@@ -11,6 +11,14 @@ import { About } from "./components/about";
 import { Projects } from "./components/projects";
 
 export const Routes = () => {
+    React.useEffect(() => {
+       const preloadImages = ["images/about.jpg", "images/projects.jpg", "images/contact.jpg"];
+       preloadImages.forEach((src) => {
+           const img = new Image();
+           img.src = src;
+       }) 
+    }, []);
+
     return (
         <MuiThemeProvider theme={createApplicationTheme()}>
             <PageWrapper>
