@@ -44,7 +44,7 @@ export const PageWrapper: React.FunctionComponent<_props> = (props) => {
                     <div style={{
                         position: "absolute",
                         zIndex: -20,
-                        width: "100%",
+                        width: "100vw",
                         height: "100%",
                         backgroundImage: "url(images/background-nomoon.jpg)",
                         backgroundPosition: 'center',

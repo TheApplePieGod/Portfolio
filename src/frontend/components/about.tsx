@@ -18,21 +18,30 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        top: "100%"
     },
     starSection: {
         minHeight: "800px",
         marginTop: "75px",
         clipPath: "polygon(0 50px, 100% 0, 100% calc(100% - 50px), 0 100%)",
         backgroundImage: "url(images/background-nomoon.jpg)",
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
         width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+
+        // no parallax
+        // backgroundPosition: 'center',
+        // backgroundSize: 'cover',
+        // backgroundRepeat: 'no-repeat',
+
+        // parallax
+        backgroundAttachment: "fixed",
+        backgroundPosition: "left",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100vw 100vh",
     },
     interestRow: {
         display: "flex",
@@ -42,6 +51,13 @@ const useStyles = makeStyles({
         padding: "0 3% 0 3%",
         paddingTop: "50px",
         marginBottom: "50px"
+    },
+    skillSection: {
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: "1rem"
     }
 });
 
@@ -64,7 +80,7 @@ export const About = () => {
                 basePath="/about"
             />
             {location.pathname.includes("/more") &&
-                <div className={classes.content} style={{ top: "100%" }}>
+                <div className={classes.content}>
                     <Typography variant="h3" style={{ color: theme.PALETTE_BLACK, marginTop: "65px" }}>Introduction</Typography>
                     <CircleLine circleCount={10} />
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "50px", flexDirection: condense ? "column" : "row" }}>
@@ -106,28 +122,25 @@ export const About = () => {
                     <CircleLine circleCount={5} />
                     <Typography variant="h5" style={{ color: theme.PALETTE_LIGHT_BLACK }}>Confidence</Typography>
                     <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", margin: "50px 0 100px 0", flexDirection: "column" }}>
-                        <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={90} skillName="ReactJS" iconPath="images/react.png" padRight={!condense} />
-                            <br />
-                            <SkillBar width={width} percentage={90} skillName="HTML/CSS" iconPath="images/csshtml.svg" />
+                        <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
+                            <SkillBar width={width} percentage={90} yearCount={5} skillName="ReactJS" iconPath="images/react.png" padRight={!condense} />
+                            <div style={{ height: "1rem" }} />
+                            <SkillBar width={width} percentage={90} yearCount={1} skillName="HTML/CSS" iconPath="images/csshtml.svg" />
                         </div>
-                        <br />
-                        <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={90} skillName="JS/Typescript" iconPath="images/typescript.png" padRight={!condense} />
-                            <br />
-                            <SkillBar width={width} percentage={90} skillName="C/C++" iconPath="images/cpp.svg" />
+                        <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
+                            <SkillBar width={width} percentage={90} yearCount={1} skillName="JS/TS" iconPath="images/typescript.png" padRight={!condense} />
+                            <div style={{ height: "1rem" }} />
+                            <SkillBar width={width} percentage={90} yearCount={1} skillName="C++" iconPath="images/cpp.svg" />
                         </div>
-                        <br />
-                        <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={80} skillName="C#/DotNet" iconPath="images/cs.svg" padRight={!condense} />
-                            <br />
-                            <SkillBar width={width} percentage={80} skillName="SQL" iconPath="images/sql.png" />
+                        <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
+                            <SkillBar width={width} percentage={80} yearCount={1} skillName="C#/DotNet" iconPath="images/cs.svg" padRight={!condense} />
+                            <div style={{ height: "1rem" }} />
+                            <SkillBar width={width} percentage={80} yearCount={1} skillName="SQL" iconPath="images/sql.png" />
                         </div>
-                        <br />
-                        <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={70} skillName="Python" iconPath="images/python.png" padRight={!condense} />
-                            <br />
-                            <SkillBar width={width} percentage={50} skillName="Azure" iconPath="images/azure.png" />
+                        <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
+                            <SkillBar width={width} percentage={70} yearCount={1} skillName="Python" iconPath="images/python.png" padRight={!condense} />
+                            <div style={{ height: "1rem" }} />
+                            <SkillBar width={width} percentage={50} yearCount={1} skillName="Azure" iconPath="images/azure.png" />
                         </div>
                     </div>
                 </div>
