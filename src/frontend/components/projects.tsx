@@ -21,26 +21,26 @@ const useStyles = makeStyles({
         alignItems: "center",
         justifyContent: "center",
         paddingTop: "65px",
-        paddingBottom: "100px"
+        paddingBottom: "100px",
+        top: "100%",
     },
     starSection: {
         height: "150px",
         margin: "50px 0 75px 0",
         clipPath: "polygon(0 50px, 100% 0, 100% calc(100% - 50px), 0 100%)",
         backgroundImage: "url(images/background-nomoon.jpg)",
-        width: "100vw",
-
-        // no parallax
-        // backgroundPosition: 'center',
-        // backgroundSize: 'cover',
-        // backgroundRepeat: 'no-repeat',
-
-        // parallax
+        width: "100%",
+    },
+    parallax: {
         backgroundAttachment: "fixed",
         backgroundPosition: "left",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "100vw 100vh",
-    }
+    },
+    noParallax: {
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+    },
 });
 
 export const Projects = () => {
@@ -62,7 +62,7 @@ export const Projects = () => {
                 basePath="/projects"
             />
             {location.pathname.includes("/more") &&
-                <div className={classes.content} style={{ top: "100%" }}>
+                <div className={classes.content}>
                     <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row" }}>
                         <ProjectElement
                             fullWidth
@@ -78,7 +78,7 @@ export const Projects = () => {
                             description="I was accepted for a professional internship with Echelon Consulting, where I focused on the full life cycle of application development for the cloud. One other intern and I built an application from the ground up, which tightly integrates with Echelon's commercial time and expense system. It allows Echelon's leadership team to view various aspects of their business in near-real time, including company utilization, individual utilization, individual project health, and client sales distribution. The application is in active use and continues to evolve."
                         />
                     </div>
-                    <div className={classes.starSection}></div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}></div>
                     <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
@@ -117,7 +117,7 @@ export const Projects = () => {
                             description="My second attempt at a 3D graphics engine. Built from scratch using DX11, I attempted to create a realistic planet which can be viewed from both space and on the surface in real time"
                         />
                     </div>
-                    <div className={classes.starSection}></div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}></div>
                     <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
@@ -156,7 +156,7 @@ export const Projects = () => {
                             description="A stock monitoring bot inspired by the boom of the graphics card market in late 2020"
                         />
                     </div>
-                    <div className={classes.starSection}></div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}></div>
                     <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}

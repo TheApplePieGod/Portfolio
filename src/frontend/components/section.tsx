@@ -66,6 +66,9 @@ const useStyles = makeStyles(theme => ({
         maxWidth: "75vw",
         transition: `opacity ${loadAnimationDuration}ms ease-in-out`,
     },
+    button: {
+        transition: `opacity ${expandAnimationDuration}ms ease-in-out, color ${expandAnimationDuration}ms ease-in-out`,
+    },
     scrollArrow: {
         transition: `opacity ${expandAnimationDuration}ms ease-in-out`,
         position: "absolute",
@@ -93,12 +96,20 @@ export const Section: React.FunctionComponent<_props> = (props) => {
     const { height, width } = useWindowDimensions();
 
     const expanded = (location.pathname.match(/\//g) || []).length > 1;
+    const condense = width <= 1400;
 
     const textTransitionStyles: any = {
         entering: { opacity: 0 },
         entered:  { opacity: 1 },
         exiting:  { opacity: 1 },
         exited:  { opacity: 0 },
+    };
+
+    const buttonTransitionStyles: any = {
+        entering: { opacity: 1 },
+        entered:  { opacity: 0 },
+        exiting:  { opacity: 0 },
+        exited:  { opacity: 1 },
     };
 
     const imageTransitionStyles: any = {
@@ -116,10 +127,10 @@ export const Section: React.FunctionComponent<_props> = (props) => {
     };
 
     const marginTransitionStyles: any = {
-        entering: { margin: "0 8% 0 -4%", maxWidth: "1000px" },
-        entered:  { margin: "0 0 0 -4%", maxWidth: "100vw" },
-        exiting:  { margin: "0 0 0 -4%", maxWidth: "100vw" },
-        exited:  { margin: "0 8% 0 -4%", maxWidth: "1000px" },
+        entering: { margin: "0 8vw 0 -4vw", maxWidth: "40vw" },
+        entered:  { margin: "0 0 0 -4vw", maxWidth: "100vw" },
+        exiting:  { margin: "0 0 0 -4vw", maxWidth: "100vw" },
+        exited:  { margin: "0 8vw 0 -4vw", maxWidth: "40vw" },
     };
 
     return (
@@ -135,9 +146,9 @@ export const Section: React.FunctionComponent<_props> = (props) => {
                 >
                     {expandState => (
                         <React.Fragment>
-                            <div className={width <= 1200 ? classes.contentSmall : classes.contentLarge}>
-                                <div className={classes.textContent} style={{ ...textTransitionStyles[enterState], height: width <= 1200 ? 600 : 350 }}>
-                                    {(width <= 1200 && props.imagePath != "") &&
+                            <div className={condense ? classes.contentSmall : classes.contentLarge}>
+                                <div className={classes.textContent} style={{ ...textTransitionStyles[enterState], height: condense ? 600 : 350 }}>
+                                    {(condense && props.imagePath != "") &&
                                         <img src={props.imagePath} className={classes.image} style={{ marginBottom: "30px", ...imageTransitionStyles[enterState] }} width={`100%`} height={height/4} />
                                     }
                                     <Typography variant="h1" color="textPrimary">{props.title}</Typography>
@@ -146,12 +157,22 @@ export const Section: React.FunctionComponent<_props> = (props) => {
                                         {props.subtitle}
                                     </Typography>
                                     <br />
-                                    {(props.buttonText != "" && !expanded) &&
-                                        <Button onClick={() => history.push(props.buttonPath)} variant="contained" color="primary" size="small">{props.buttonText}</Button>
+                                    {true &&
+                                        <Button
+                                            style={{ ...buttonTransitionStyles[expandState] }}
+                                            className={classes.button}
+                                            disabled={props.buttonText == "" || expanded}
+                                            onClick={() => history.push(props.buttonPath)}
+                                            variant="contained"
+                                            color="primary"
+                                            size="small"
+                                        >
+                                            {props.buttonText}
+                                        </Button>
                                     }
                                     {props.children}
                                 </div>
-                                {(width > 1200 && props.imagePath != "") &&
+                                {(!condense && props.imagePath != "") &&
                                     <div className={classes.imageContainer} style={{ ...marginTransitionStyles[expandState] }}>
                                         <img src={props.imagePath} className={classes.image} width={`100%`} height={expanded ? height : height/1.5} style={{ ...imageTransitionStyles[enterState], ...moreTransitionStyles[expandState] }} />
                                     </div>

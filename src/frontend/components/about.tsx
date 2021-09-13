@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     content: {
         backgroundColor: theme.PALETTE_WHITE,
         position: "absolute",
-        width: "100%",
+        width: "100vw",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -30,18 +30,17 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-
-        // no parallax
-        // backgroundPosition: 'center',
-        // backgroundSize: 'cover',
-        // backgroundRepeat: 'no-repeat',
-
-        // parallax
+        justifyContent: "center",    
+    },
+    parallax: {
         backgroundAttachment: "fixed",
         backgroundPosition: "left",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "100vw 100vh",
+    },
+    noParallax: {
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
     },
     interestRow: {
         display: "flex",
@@ -90,7 +89,7 @@ export const About = () => {
                             Born in the United States in 2003, I have spent most of my life traversing the world of computer science. I started programming at a very young age, and I have dabbled in some of the many different worlds of computer science. Game development, computer graphics, web design, and web development are a few of them that I have experience in.  
                         </Typography>
                     </div>
-                    <div className={classes.starSection}>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}>
                         <Typography variant="h3" color="textPrimary" style={{ marginTop: condense ? "20%" : "3%" }}>Interests</Typography>
                         <CircleLine circleCount={8} />
                         <div className={classes.interestRow} style={{ flexDirection: condense ? "column" : "row" }}>
