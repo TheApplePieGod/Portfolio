@@ -5,18 +5,19 @@ import { useWindowDimensions } from './useWindowDimensions';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
-const animationDuration = 200;
+const loadAnimationDuration = 200;
+const expandAnimationDuration = 300;
 
 const useStyles = makeStyles(theme => ({
     contentLarge: {
         position: "absolute",
         top: "50%",
         transform: "translateY(-50%)",
-        left: "20%",
+        left: "20vw",
         display: "flex",
         alignItems: "center",
         //justifyContent: "center",
-        maxWidth: "100%",
+        width: "100vw",
         height: "100%",
         overflowX: "hidden"
     },
@@ -54,15 +55,19 @@ const useStyles = makeStyles(theme => ({
         position: "relative",
         zIndex: -3,
         objectFit: "cover",
-        transition: `clip-path ${animationDuration}ms ease-in-out, height ${animationDuration}ms ease-in-out, border-radius ${animationDuration}ms ease-in-out`,
+        transition: `clip-path ${loadAnimationDuration}ms ease-in-out, height ${loadAnimationDuration}ms ease-in-out, border-radius ${loadAnimationDuration}ms ease-in-out`,
+    },
+    imageContainer: {
+        minWidth: "500px",
+        transition: `margin ${expandAnimationDuration}ms ease-in-out, max-width ${expandAnimationDuration}ms ease-in-out`
     },
     textContent: {
         width: "min-content",
         maxWidth: "75vw",
-        transition: `opacity ${animationDuration}ms ease-in-out`,
+        transition: `opacity ${loadAnimationDuration}ms ease-in-out`,
     },
     scrollArrow: {
-        transition: `opacity ${animationDuration}ms ease-in-out`,
+        transition: `opacity ${expandAnimationDuration}ms ease-in-out`,
         position: "absolute",
         transform: "rotate(-90deg)",
         top: "calc(100% - 115px)",
@@ -111,27 +116,27 @@ export const Section: React.FunctionComponent<_props> = (props) => {
     };
 
     const marginTransitionStyles: any = {
-        entering: { margin: "0 8% 0 -5%", maxWidth: "1000px" },
-        entered:  { margin: "0 0 0 -5%", maxWidth: "100%" },
-        exiting:  { margin: "0 0 0 -5%", maxWidth: "100%" },
-        exited:  { margin: "0 8% 0 -5%", maxWidth: "1000px" },
+        entering: { margin: "0 8% 0 -4%", maxWidth: "1000px" },
+        entered:  { margin: "0 0 0 -4%", maxWidth: "100vw" },
+        exiting:  { margin: "0 0 0 -4%", maxWidth: "100vw" },
+        exited:  { margin: "0 8% 0 -4%", maxWidth: "1000px" },
     };
 
     return (
         <Transition
-            timeout={animationDuration}
+            timeout={loadAnimationDuration}
             in={location.pathname.startsWith(props.basePath)}
             appear={true}
         >
             {enterState => (
                 <Transition
-                    timeout={animationDuration}
+                    timeout={expandAnimationDuration}
                     in={location.pathname.startsWith(props.basePath + '/more')}
                 >
                     {expandState => (
                         <React.Fragment>
                             <div className={width <= 1200 ? classes.contentSmall : classes.contentLarge}>
-                                <div className={classes.textContent} style={{ ...textTransitionStyles[enterState] }}>
+                                <div className={classes.textContent} style={{ ...textTransitionStyles[enterState], height: width <= 1200 ? 600 : 350 }}>
                                     {(width <= 1200 && props.imagePath != "") &&
                                         <img src={props.imagePath} className={classes.image} style={{ marginBottom: "30px", ...imageTransitionStyles[enterState] }} width={`100%`} height={height/4} />
                                     }
@@ -147,7 +152,7 @@ export const Section: React.FunctionComponent<_props> = (props) => {
                                     {props.children}
                                 </div>
                                 {(width > 1200 && props.imagePath != "") &&
-                                    <div style={{ minWidth: "500px", transition: `margin ${animationDuration}ms ease-in-out, max-width ${animationDuration}ms ease-in-out`, ...marginTransitionStyles[expandState] }}>
+                                    <div className={classes.imageContainer} style={{ ...marginTransitionStyles[expandState] }}>
                                         <img src={props.imagePath} className={classes.image} width={`100%`} height={expanded ? height : height/1.5} style={{ ...imageTransitionStyles[enterState], ...moreTransitionStyles[expandState] }} />
                                     </div>
                                 }

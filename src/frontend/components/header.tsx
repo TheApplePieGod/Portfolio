@@ -12,7 +12,7 @@ const useStyles = makeStyles({
         position: "fixed",
         zIndex: 50,
         top: 0,
-        width: "100%",
+        width: "100vw",
         opacity: 0.8
     },
     content: {
@@ -31,7 +31,8 @@ const useStyles = makeStyles({
         "&:hover": {
             backgroundColor: theme.PALETTE_BLACK
         },
-        borderRadius: 0
+        borderRadius: 0,
+        width: "150px"
     }
 });
 
@@ -59,22 +60,24 @@ export const Header = () => {
     return (
         <div className={classes.root}>
             <div className={classes.content}>
-                <Typography variant="h6" color="textPrimary">Portfolio</Typography>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <Typography variant="h6" color="textPrimary">Portfolio</Typography>
+                    <Transition
+                        timeout={animationDuration}
+                        in={animationState}
+                        //appear={true}
+                    >
+                        {state => (
+                            <Button className={classes.button} onClick={() => history.goBack()} style={{ ...arrowTransitionStyles[state] }}>{"<===== Go Back"}</Button>
+                        )}
+                    </Transition>
+                </div>
                 <div style={{ marginRight: "10px" }}>
                     <IconButton href="https://github.com/TheApplePieGod" target="_blank" style={{ color: theme.PALETTE_WHITE }}>
                         <img src="images/github.svg" width={Math.max(width/40, 30)} />
                     </IconButton>
                 </div>
             </div>
-            <Transition
-                timeout={animationDuration}
-                in={animationState}
-                //appear={true}
-            >
-                {state => (
-                    <Button className={classes.button} onClick={() => history.goBack()} style={{ ...arrowTransitionStyles[state] }}>{"<============"}</Button>
-                )}
-            </Transition>
         </div>
     );
 }
