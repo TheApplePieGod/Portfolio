@@ -23,7 +23,7 @@ const useStyles = makeStyles({
         position: "fixed",
         zIndex: 50,
         bottom: 0,
-        width: "100%",
+        width: "100vw",
         height: "60px",
         display: "flex",
         justifyContent: "center",

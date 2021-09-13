@@ -4,11 +4,12 @@ import { makeStyles } from "@material-ui/core";
 import { useWindowDimensions } from './useWindowDimensions';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
+import * as theme from '../theme';
 
 const loadAnimationDuration = 200;
 const expandAnimationDuration = 300;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(_theme => ({
     contentLarge: {
         position: "absolute",
         top: "50%",
@@ -25,11 +26,11 @@ const useStyles = makeStyles(theme => ({
         position: "absolute",
         top: "50%",
         transform: "translate(-50%, -50%)",
-        left: "50%",
+        left: "50vw",
         display: "flex",
         alignItems: "center",
         //justifyContent: "center",
-        maxWidth: "100%",
+        maxWidth: "100vw",
         height: "100%",
         overflowX: "hidden"
     },
@@ -38,17 +39,35 @@ const useStyles = makeStyles(theme => ({
         zIndex: -1,
         marginTop: "-20px",
         marginBottom: "20px",
-        [theme.breakpoints.down('xs')]: {
+        [_theme.breakpoints.down('xs')]: {
             clipPath: "inset(0px 225px 0px 0px)"
         },
-        [theme.breakpoints.up('sm')]: {
+        [_theme.breakpoints.up('sm')]: {
             clipPath: "inset(0px 125px 0px 0px)"
         },
-        [theme.breakpoints.up('md')]: {
+        [_theme.breakpoints.up('md')]: {
             clipPath: "inset(0px 75px 0px 0px)"
         },
-        [theme.breakpoints.up('lg')]: {
+        [_theme.breakpoints.up('lg')]: {
             clipPath: "inset(0px 25px 0px 0px)"
+        },
+    },
+    title: {
+        borderBottom: `5px solid ${theme.PALETTE_RED}`,
+        marginBottom: "1rem",
+        width: "max-content",
+        wordWrap: "unset",
+        [_theme.breakpoints.down('xs')]: {
+            lineHeight: "3.5rem"
+        },
+        [_theme.breakpoints.up('sm')]: {
+            lineHeight: "4rem"
+        },
+        [_theme.breakpoints.up('md')]: {
+            lineHeight: "4.5rem"
+        },
+        [_theme.breakpoints.up('lg')]: {
+            lineHeight: "5rem"
         },
     },
     image: {
@@ -62,7 +81,8 @@ const useStyles = makeStyles(theme => ({
         transition: `margin ${expandAnimationDuration}ms ease-in-out, max-width ${expandAnimationDuration}ms ease-in-out`
     },
     textContent: {
-        width: "min-content",
+        width: "500px",
+        minWidth: "500px",
         maxWidth: "75vw",
         transition: `opacity ${loadAnimationDuration}ms ease-in-out`,
     },
@@ -151,8 +171,7 @@ export const Section: React.FunctionComponent<_props> = (props) => {
                                     {(condense && props.imagePath != "") &&
                                         <img src={props.imagePath} className={classes.image} style={{ marginBottom: "30px", ...imageTransitionStyles[enterState] }} width={`100%`} height={height/4} />
                                     }
-                                    <Typography variant="h1" color="textPrimary">{props.title}</Typography>
-                                    <img src="images/line.png" width={500} className={props.lineClass ?? classes.line} />
+                                    <Typography variant="h1" color="textPrimary" className={classes.title}>{props.title}</Typography>
                                     <Typography variant="h5" color="textSecondary" style={{ lineHeight: "40px", wordBreak: "break-word", whiteSpace: "pre-wrap" }}>
                                         {props.subtitle}
                                     </Typography>

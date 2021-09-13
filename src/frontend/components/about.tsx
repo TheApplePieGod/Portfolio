@@ -122,24 +122,24 @@ export const About = () => {
                     <Typography variant="h5" style={{ color: theme.PALETTE_LIGHT_BLACK }}>Confidence</Typography>
                     <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", margin: "50px 0 100px 0", flexDirection: "column" }}>
                         <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={90} yearCount={5} skillName="ReactJS" iconPath="images/react.png" padRight={!condense} />
+                            <SkillBar width={width} percentage={90} yearCount={3} skillName="ReactJS" iconPath="images/react.png" padRight={!condense} /> {/* 2019 */}
                             <div style={{ height: "1rem" }} />
-                            <SkillBar width={width} percentage={90} yearCount={1} skillName="HTML/CSS" iconPath="images/csshtml.svg" />
+                            <SkillBar width={width} percentage={90} yearCount={7} skillName="HTML/CSS" iconPath="images/csshtml.svg" /> {/* 2015 */}
                         </div>
                         <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={90} yearCount={1} skillName="JS/TS" iconPath="images/typescript.png" padRight={!condense} />
+                            <SkillBar width={width} percentage={90} yearCount={6} skillName="JS/TS" iconPath="images/typescript.png" padRight={!condense} /> {/* 2016 */}
                             <div style={{ height: "1rem" }} />
-                            <SkillBar width={width} percentage={90} yearCount={1} skillName="C++" iconPath="images/cpp.svg" />
+                            <SkillBar width={width} percentage={90} yearCount={5} skillName="C++" iconPath="images/cpp.svg" /> {/* 2017 */}
                         </div>
                         <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={80} yearCount={1} skillName="C#/DotNet" iconPath="images/cs.svg" padRight={!condense} />
+                            <SkillBar width={width} percentage={80} yearCount={4} skillName="C#/DotNet" iconPath="images/cs.svg" padRight={!condense} /> {/* 2018 */}
                             <div style={{ height: "1rem" }} />
-                            <SkillBar width={width} percentage={80} yearCount={1} skillName="SQL" iconPath="images/sql.png" />
+                            <SkillBar width={width} percentage={80} yearCount={3} skillName="SQL" iconPath="images/sql.png" /> {/* 2019 */}
                         </div>
                         <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={70} yearCount={1} skillName="Python" iconPath="images/python.png" padRight={!condense} />
+                            <SkillBar width={width} percentage={70} yearCount={2} skillName="Python" iconPath="images/python.png" padRight={!condense} /> {/* 2020 */}
                             <div style={{ height: "1rem" }} />
-                            <SkillBar width={width} percentage={50} yearCount={1} skillName="Azure" iconPath="images/azure.png" />
+                            <SkillBar width={width} percentage={50} yearCount={2} skillName="Azure" iconPath="images/azure.png" /> {/* 2020 */}
                         </div>
                     </div>
                 </div>
