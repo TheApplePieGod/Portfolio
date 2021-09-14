@@ -8,25 +8,27 @@ import { Transition } from 'react-transition-group';
 const animationDuration = 100;
 
 const useStyles = makeStyles({
-    rootColumn: {
+    root: {
         position: "fixed",
         zIndex: 50,
+        justifyContent: "center",
+        display: "flex",
+        listStyleType: "none",
+        marginBlock: "unset",
+        paddingBlock: "unset",
+        paddingInline: "unset"
+    },
+    rootColumn: {
         height: "100%",
         width: "120px",
-        display: "flex",
-        justifyContent: "center",
         flexDirection: "column",
         //alignItems: "center",
         marginLeft: "2%"
     },
     rootRow: {
-        position: "fixed",
-        zIndex: 50,
         bottom: 0,
         width: "100vw",
         height: "60px",
-        display: "flex",
-        justifyContent: "center",
         flexDirection: "row",
         //alignItems: "center",
     },
@@ -94,27 +96,37 @@ export const Sidebar = () => {
         });
     }, [history])
 
-    return (
+    return ( // ul/li jank hopefully to improve SEO
         <Transition
                 timeout={animationDuration}
                 in={animationState}
                 //appear={true}
         >
             {state => (
-                <div className={width <= 1200 ? classes.rootRow : classes.rootColumn} style={{ transition: `opacity ${animationDuration}ms ease-in-out`, ...circleTransitionStyles[state] }}>
-                    <Transition timeout={animationDuration} in={selected == 0}>{selectState => (
-                        <div onClick={() => history.push('/')} className={width <= 1200 ? classes.circleRow : classes.circleColumn} style={{ ...circleSelectedStyles[selectState] }}></div>
-                    )}</Transition>
-                    <Transition timeout={animationDuration} in={selected == 1}>{selectState => (
-                        <div onClick={() => history.push('/about')} className={width <= 1200 ? classes.circleRow : classes.circleColumn} style={{ ...circleSelectedStyles[selectState] }}></div>
-                    )}</Transition>
-                    <Transition timeout={animationDuration} in={selected == 2}>{selectState => (
-                        <div onClick={() => history.push('/projects')} className={width <= 1200 ? classes.circleRow : classes.circleColumn} style={{ ...circleSelectedStyles[selectState] }}></div>
-                    )}</Transition>
-                    <Transition timeout={animationDuration} in={selected == 3}>{selectState => (
-                        <div onClick={() => history.push('/contact')} className={width <= 1200 ? classes.circleRow : classes.circleColumn} style={{ ...circleSelectedStyles[selectState], marginBottom: 0, marginRight: 0 }}></div>
-                    )}</Transition>
-                </div>
+                <nav aria-label="site">
+                    <ul className={`${classes.root} ${width <= 1200 ? classes.rootRow : classes.rootColumn}`} style={{ transition: `opacity ${animationDuration}ms ease-in-out`, ...circleTransitionStyles[state] }}>
+                        <Transition timeout={animationDuration} in={selected == 0}>{selectState => (
+                            <li onClick={() => history.push('/')} className={width <= 1200 ? classes.circleRow : classes.circleColumn} style={{ ...circleSelectedStyles[selectState] }}>
+                                <a href="/" target="_self" style={{ display: "none" }}>Home</a> 
+                            </li>
+                        )}</Transition>
+                        <Transition timeout={animationDuration} in={selected == 1}>{selectState => (
+                            <li onClick={() => history.push('/about')} className={width <= 1200 ? classes.circleRow : classes.circleColumn} style={{ ...circleSelectedStyles[selectState] }}>
+                                <a href="/about" target="_self" style={{ display: "none" }}>About</a> 
+                            </li>
+                        )}</Transition>
+                        <Transition timeout={animationDuration} in={selected == 2}>{selectState => (
+                            <li onClick={() => history.push('/projects')} className={width <= 1200 ? classes.circleRow : classes.circleColumn} style={{ ...circleSelectedStyles[selectState] }}>
+                                <a href="/projects" target="_self" style={{ display: "none" }}>Projects</a> 
+                            </li>
+                        )}</Transition>
+                        <Transition timeout={animationDuration} in={selected == 3}>{selectState => (
+                            <li onClick={() => history.push('/contact')} className={width <= 1200 ? classes.circleRow : classes.circleColumn} style={{ ...circleSelectedStyles[selectState], marginBottom: 0, marginRight: 0 }}>
+                                <a href="/contact" target="_self" style={{ display: "none" }}>Contact</a> 
+                            </li>
+                        )}</Transition>
+                    </ul>
+                </nav>
             )}
         </Transition>
     );

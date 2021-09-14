@@ -74,7 +74,7 @@ const useStyles = makeStyles(_theme => ({
         position: "relative",
         zIndex: -3,
         objectFit: "cover",
-        transition: `clip-path ${loadAnimationDuration}ms ease-in-out, height ${loadAnimationDuration}ms ease-in-out, border-radius ${loadAnimationDuration}ms ease-in-out`,
+        transition: `clip-path ${loadAnimationDuration}ms ease-in-out, height ${expandAnimationDuration}ms ease-in-out, border-radius ${expandAnimationDuration}ms ease-in-out`,
     },
     imageContainer: {
         minWidth: "500px",
@@ -82,7 +82,6 @@ const useStyles = makeStyles(_theme => ({
     },
     textContent: {
         width: "500px",
-        minWidth: "500px",
         maxWidth: "75vw",
         transition: `opacity ${loadAnimationDuration}ms ease-in-out`,
     },
@@ -167,20 +166,20 @@ export const Section: React.FunctionComponent<_props> = (props) => {
                     {expandState => (
                         <React.Fragment>
                             <div className={condense ? classes.contentSmall : classes.contentLarge}>
-                                <div className={classes.textContent} style={{ ...textTransitionStyles[enterState], height: condense ? 600 : 350 }}>
+                                <div className={classes.textContent} style={{ ...textTransitionStyles[enterState], height: condense ? 600 : 350, minWidth: condense ? 0 : 500 }}>
                                     {(condense && props.imagePath != "") &&
-                                        <img src={props.imagePath} className={classes.image} style={{ marginBottom: "30px", ...imageTransitionStyles[enterState] }} width={`100%`} height={height/4} />
+                                        <img src={props.imagePath} alt={props.title} className={classes.image} style={{ marginBottom: "30px", ...imageTransitionStyles[enterState], borderRadius: "50px" }} width={`100%`} height={height/4} />
                                     }
                                     <Typography variant="h1" color="textPrimary" className={classes.title}>{props.title}</Typography>
                                     <Typography variant="h5" color="textSecondary" style={{ lineHeight: "40px", wordBreak: "break-word", whiteSpace: "pre-wrap" }}>
                                         {props.subtitle}
                                     </Typography>
                                     <br />
-                                    {true &&
+                                    {props.buttonText != "" &&
                                         <Button
                                             style={{ ...buttonTransitionStyles[expandState] }}
                                             className={classes.button}
-                                            disabled={props.buttonText == "" || expanded}
+                                            disabled={expanded}
                                             onClick={() => history.push(props.buttonPath)}
                                             variant="contained"
                                             color="primary"
@@ -193,7 +192,7 @@ export const Section: React.FunctionComponent<_props> = (props) => {
                                 </div>
                                 {(!condense && props.imagePath != "") &&
                                     <div className={classes.imageContainer} style={{ ...marginTransitionStyles[expandState] }}>
-                                        <img src={props.imagePath} className={classes.image} width={`100%`} height={expanded ? height : height/1.5} style={{ ...imageTransitionStyles[enterState], ...moreTransitionStyles[expandState] }} />
+                                        <img src={props.imagePath} alt={props.title} className={classes.image} width={`100%`} height={expanded ? height : height/1.5} style={{ ...imageTransitionStyles[enterState], ...moreTransitionStyles[expandState] }} />
                                     </div>
                                 }
                             </div>

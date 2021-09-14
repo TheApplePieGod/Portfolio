@@ -73,8 +73,8 @@ export const Header = () => {
                     </Transition>
                 </div>
                 <div style={{ marginRight: "10px" }}>
-                    <IconButton href="https://github.com/TheApplePieGod" target="_blank" style={{ color: theme.PALETTE_WHITE }}>
-                        <img src="images/github.svg" width={Math.max(width/40, 30)} />
+                    <IconButton aria-label="github" href="https://github.com/TheApplePieGod" target="_blank" style={{ color: theme.PALETTE_WHITE }}>
+                        <img src="images/github.svg" alt="Github Icon" width={Math.max(width/40, 30)} />
                     </IconButton>
                 </div>
             </div>

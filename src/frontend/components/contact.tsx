@@ -5,6 +5,7 @@ import { useWindowDimensions } from './useWindowDimensions';
 import * as theme from '../theme';
 import { Typography, makeStyles, IconButton } from "@material-ui/core";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 const useStyles = makeStyles(_theme => ({
     line: {
@@ -46,9 +47,12 @@ export const Contact = () => {
                 basePath="/contact"
                 lineClass={classes.line}
             >
-                <div style={{ /*display: "flex", justifyContent: "center", alignItems: "center"*/ }}>
-                    <IconButton href="mailto:evant.002@gmail.com" style={{ padding: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <IconButton aria-label="mail" href="mailto:evant.002@gmail.com" style={{ padding: 0 }}>
                         <MailOutlineIcon style={{ fontSize: "40px"}} />
+                    </IconButton>
+                    <IconButton aria-label="twitter" href="https://twitter.com/TheApplePieGod" target="_blank" style={{ padding: 0 }}>
+                        <TwitterIcon style={{ fontSize: "40px"}} />
                     </IconButton>
                 </div>
             </Section>

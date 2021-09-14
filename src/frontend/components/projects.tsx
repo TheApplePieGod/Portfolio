@@ -30,6 +30,7 @@ const useStyles = makeStyles({
         clipPath: "polygon(0 50px, 100% 0, 100% calc(100% - 50px), 0 100%)",
         backgroundImage: "url(images/background-nomoon.jpg)",
         width: "100%",
+        backgroundSize: 'cover',
     },
     parallax: {
         backgroundAttachment: "fixed",
@@ -38,7 +39,6 @@ const useStyles = makeStyles({
     },
     noParallax: {
         backgroundPosition: 'center',
-        backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
     },
 });

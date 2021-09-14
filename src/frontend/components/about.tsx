@@ -30,7 +30,8 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",    
+        justifyContent: "center",
+        backgroundSize: 'cover',
     },
     parallax: {
         backgroundAttachment: "fixed",
@@ -39,7 +40,6 @@ const useStyles = makeStyles({
     },
     noParallax: {
         backgroundPosition: 'center',
-        backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
     },
     interestRow: {
@@ -83,9 +83,8 @@ export const About = () => {
                     <Typography variant="h3" style={{ color: theme.PALETTE_BLACK, marginTop: "65px" }}>Introduction</Typography>
                     <CircleLine circleCount={10} />
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "50px", flexDirection: condense ? "column" : "row" }}>
-                        <img src="images/user.png" width={width/3} />
-                        <br />
-                        <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, maxWidth: "50%", marginLeft: condense ? 0 : "75px", lineHeight: "40px" }}>
+                        <img src="images/user.png" width={width/3} alt="Generic User Image" />
+                        <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, maxWidth: condense ? "80%" : "50%", marginLeft: condense ? 0 : "75px", marginTop: "1rem", lineHeight: "40px" }}>
                             Born in the United States in 2003, I have spent most of my life traversing the world of computer science. I started programming at a very young age, and I have dabbled in some of the many different worlds of computer science. Game development, computer graphics, web design, and web development are a few of them that I have experience in.  
                         </Typography>
                     </div>
