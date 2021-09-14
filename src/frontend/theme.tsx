@@ -33,11 +33,21 @@ export const createApplicationTheme = memoizeOne(() => {
 					fontSize: '2.0rem',
 				},
 			},
+			h4: {
+				'@media (min-width:200px)': {
+					fontSize: '1.2rem',
+				},
+			},
 			h5: {
 				'@media (min-width:200px)': {
 					fontSize: '1.0rem',
 				},
-			}
+			},
+			body1: {
+				'@media (min-width:200px)': {
+					fontSize: '0.8rem',
+				},
+			},
 		},
 		overrides: {
 			MuiPaper: {
