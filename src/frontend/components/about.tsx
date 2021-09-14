@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     content: {
         backgroundColor: theme.PALETTE_WHITE,
         position: "absolute",
-        width: "100%",
+        width: "100vw",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -31,17 +31,16 @@ const useStyles = makeStyles({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-
-        // no parallax
-        // backgroundPosition: 'center',
-        // backgroundSize: 'cover',
-        // backgroundRepeat: 'no-repeat',
-
-        // parallax
+        backgroundSize: 'cover',
+    },
+    parallax: {
         backgroundAttachment: "fixed",
         backgroundPosition: "left",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "100vw 100vh",
+    },
+    noParallax: {
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
     },
     interestRow: {
         display: "flex",
@@ -84,13 +83,12 @@ export const About = () => {
                     <Typography variant="h3" style={{ color: theme.PALETTE_BLACK, marginTop: "65px" }}>Introduction</Typography>
                     <CircleLine circleCount={10} />
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "50px", flexDirection: condense ? "column" : "row" }}>
-                        <img src="images/user.png" width={width/3} />
-                        <br />
-                        <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, maxWidth: "50%", marginLeft: condense ? 0 : "75px", lineHeight: "40px" }}>
+                        <img src="images/user.png" width={width/3} alt="Generic User Image" />
+                        <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, maxWidth: condense ? "80%" : "50%", marginLeft: condense ? 0 : "75px", marginTop: "1rem", lineHeight: "40px" }}>
                             Born in the United States in 2003, I have spent most of my life traversing the world of computer science. I started programming at a very young age, and I have dabbled in some of the many different worlds of computer science. Game development, computer graphics, web design, and web development are a few of them that I have experience in.  
                         </Typography>
                     </div>
-                    <div className={classes.starSection}>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}>
                         <Typography variant="h3" color="textPrimary" style={{ marginTop: condense ? "20%" : "3%" }}>Interests</Typography>
                         <CircleLine circleCount={8} />
                         <div className={classes.interestRow} style={{ flexDirection: condense ? "column" : "row" }}>
@@ -123,24 +121,24 @@ export const About = () => {
                     <Typography variant="h5" style={{ color: theme.PALETTE_LIGHT_BLACK }}>Confidence</Typography>
                     <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", margin: "50px 0 100px 0", flexDirection: "column" }}>
                         <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={90} yearCount={5} skillName="ReactJS" iconPath="images/react.png" padRight={!condense} />
+                            <SkillBar width={width} percentage={90} yearCount={3} skillName="ReactJS" iconPath="images/react.png" padRight={!condense} /> {/* 2019 */}
                             <div style={{ height: "1rem" }} />
-                            <SkillBar width={width} percentage={90} yearCount={1} skillName="HTML/CSS" iconPath="images/csshtml.svg" />
+                            <SkillBar width={width} percentage={90} yearCount={7} skillName="HTML/CSS" iconPath="images/csshtml.svg" /> {/* 2015 */}
                         </div>
                         <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={90} yearCount={1} skillName="JS/TS" iconPath="images/typescript.png" padRight={!condense} />
+                            <SkillBar width={width} percentage={90} yearCount={6} skillName="JS/TS" iconPath="images/typescript.png" padRight={!condense} /> {/* 2016 */}
                             <div style={{ height: "1rem" }} />
-                            <SkillBar width={width} percentage={90} yearCount={1} skillName="C++" iconPath="images/cpp.svg" />
+                            <SkillBar width={width} percentage={90} yearCount={5} skillName="C++" iconPath="images/cpp.svg" /> {/* 2017 */}
                         </div>
                         <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={80} yearCount={1} skillName="C#/DotNet" iconPath="images/cs.svg" padRight={!condense} />
+                            <SkillBar width={width} percentage={80} yearCount={4} skillName="C#/DotNet" iconPath="images/cs.svg" padRight={!condense} /> {/* 2018 */}
                             <div style={{ height: "1rem" }} />
-                            <SkillBar width={width} percentage={80} yearCount={1} skillName="SQL" iconPath="images/sql.png" />
+                            <SkillBar width={width} percentage={80} yearCount={3} skillName="SQL" iconPath="images/sql.png" /> {/* 2019 */}
                         </div>
                         <div className={classes.skillSection} style={{ flexDirection: condense ? "column" : "row" }}>
-                            <SkillBar width={width} percentage={70} yearCount={1} skillName="Python" iconPath="images/python.png" padRight={!condense} />
+                            <SkillBar width={width} percentage={70} yearCount={2} skillName="Python" iconPath="images/python.png" padRight={!condense} /> {/* 2020 */}
                             <div style={{ height: "1rem" }} />
-                            <SkillBar width={width} percentage={50} yearCount={1} skillName="Azure" iconPath="images/azure.png" />
+                            <SkillBar width={width} percentage={50} yearCount={2} skillName="Azure" iconPath="images/azure.png" /> {/* 2020 */}
                         </div>
                     </div>
                 </div>

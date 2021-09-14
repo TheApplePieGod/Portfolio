@@ -31,7 +31,7 @@ const CustomLinearProgress = withStyles((_theme) =>
 export const SkillBar = (props: _props) => {
     return (
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginRight: props.padRight ? "5%" : 0 }}>
-            <img src={props.iconPath} width={props.width/15} height={props.width/15} style={{ marginRight: "10px" }} />
+            <img src={props.iconPath} alt={props.skillName} width={props.width/15} height={props.width/15} style={{ marginRight: "10px" }} />
             <div>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <Typography variant="h4" style={{ color: theme.PALETTE_BLACK }}>{props.skillName}</Typography>

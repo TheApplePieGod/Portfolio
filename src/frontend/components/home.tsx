@@ -7,12 +7,13 @@ import { Transition } from 'react-transition-group';
 
 const animationDuration = 200;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(_theme => ({
     contentLarge: {
         position: "fixed",
         top: "50%",
         transform: "translateY(-50%)",
-        left: "20%"
+        left: "20%",
+        width: "500px"
     },
     contentSmall: {
         position: "fixed",
@@ -24,48 +25,27 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "column",
-        textAlign: "center"
+        textAlign: "center",
+        width: "500px"
     },
-    line: {
-        position: "relative",
-        zIndex: -1,
-        marginTop: "-20px",
-        marginBottom: "20px",
-        [theme.breakpoints.down('xs')]: {
-            clipPath: "inset(0px 225px 0px 0px)"
+    title: {
+        borderBottom: `5px solid ${theme.PALETTE_RED}`,
+        marginBottom: "1rem",
+        width: "max-content",
+        wordWrap: "unset",
+        [_theme.breakpoints.down('xs')]: {
+            lineHeight: "3.5rem"
         },
-        [theme.breakpoints.up('sm')]: {
-            clipPath: "inset(0px 125px 0px 0px)"
+        [_theme.breakpoints.up('sm')]: {
+            lineHeight: "4rem"
         },
-        [theme.breakpoints.up('md')]: {
-            clipPath: "inset(0px 75px 0px 0px)"
+        [_theme.breakpoints.up('md')]: {
+            lineHeight: "4.5rem"
         },
-        [theme.breakpoints.up('lg')]: {
-            clipPath: "inset(0px 25px 0px 0px)"
+        [_theme.breakpoints.up('lg')]: {
+            lineHeight: "5rem"
         },
     },
-    lineCondensed: {
-        position: "relative",
-        zIndex: -1,
-        marginTop: "-20px",
-        marginBottom: "20px",
-        [theme.breakpoints.down('xs')]: {
-            transform: "translateX(115px)",
-            clipPath: "inset(0px 225px 0px 0px)"
-        },
-        [theme.breakpoints.up('sm')]: {
-            transform: "translateX(65px)",
-            clipPath: "inset(0px 125px 0px 0px)"
-        },
-        [theme.breakpoints.up('md')]: {
-            transform: "translateX(40px)",
-            clipPath: "inset(0px 75px 0px 0px)"
-        },
-        [theme.breakpoints.up('lg')]: {
-            transform: "translateX(20px)",
-            clipPath: "inset(0px 25px 0px 0px)"
-        },
-    }
 }));
 
 export const Home = () => {
@@ -88,12 +68,12 @@ export const Home = () => {
         >
             {enterState => (
                 <div className={width <= 1200 ? classes.contentSmall : classes.contentLarge} style={{ transition: `opacity ${animationDuration}ms ease-in-out`, ...textTransitionStyles[enterState] }}>
-                    <Typography variant="h1" color="textPrimary">
+                    <Typography variant="h1" color="textPrimary" style={{ marginBottom: "0.25rem" }}>
                         Evan
-                        <br/>
+                    </Typography>
+                    <Typography variant="h1" color="textPrimary" className={classes.title}>
                         Thompson
                     </Typography>
-                    <img src="images/line.png" width={500} className={width <= 1200 ? classes.lineCondensed : classes.line} />
                     <Typography variant="h5" color="textSecondary" style={{ lineHeight: "40px" }}>
                         programmer
                         <br/>

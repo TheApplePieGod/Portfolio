@@ -46,7 +46,7 @@ export const ProjectElement: React.FunctionComponent<_props> = (props) => {
             <div className={classes.content} style={{ width: (condense || props.fullWidth) ? "80%" : "35%", margin: "0 3% 0 3%" }}>
                 <Typography variant="h4" style={{ color: theme.PALETTE_BLACK }}>{props.title}</Typography>
                 <CircleLine circleCount={props.circleCount} />
-                {props.imageName != "" && <img src={`images/projects/${props.imageName}`} className={classes.image} width={"100%"} /> }
+                {props.imageName != "" && <img src={`images/projects/${props.imageName}`} alt={props.title} className={classes.image} width={"100%"} /> }
                 <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, lineHeight: "40px", margin: "10px 0 10px 0" }}>{props.description}</Typography>
                 <Button onClick={() => setOpen(true)} variant="contained" color="primary" size="small">SEE MORE</Button>
             </div>
