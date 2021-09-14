@@ -28,6 +28,16 @@ export const createApplicationTheme = memoizeOne(() => {
 		},
 		typography: {
 			fontFamily: FONT_FAMILY,
+			h1: {
+				'@media (min-width:200px)': {
+					fontSize: '2.0rem',
+				},
+			},
+			h5: {
+				'@media (min-width:200px)': {
+					fontSize: '1.0rem',
+				},
+			}
 		},
 		overrides: {
 			MuiPaper: {
