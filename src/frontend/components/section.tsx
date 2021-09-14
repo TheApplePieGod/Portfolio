@@ -12,8 +12,8 @@ const expandAnimationDuration = 300;
 const useStyles = makeStyles(_theme => ({
     contentLarge: {
         position: "absolute",
-        top: "50%",
         transform: "translateY(-50%)",
+        top: "50%",
         left: "20vw",
         display: "flex",
         alignItems: "center",
@@ -24,14 +24,14 @@ const useStyles = makeStyles(_theme => ({
     },
     contentSmall: {
         position: "absolute",
-        top: "50%",
         transform: "translate(-50%, -50%)",
+        top: "50%",
         left: "50vw",
         display: "flex",
         alignItems: "center",
         //justifyContent: "center",
         maxWidth: "100vw",
-        height: "100%",
+        height: "80%",
         overflowX: "hidden"
     },
     line: {
@@ -116,6 +116,7 @@ export const Section: React.FunctionComponent<_props> = (props) => {
 
     const expanded = (location.pathname.match(/\//g) || []).length > 1;
     const condense = width <= 1400;
+    const xxsmall = width <= 600;
 
     const textTransitionStyles: any = {
         entering: { opacity: 0 },
@@ -146,10 +147,10 @@ export const Section: React.FunctionComponent<_props> = (props) => {
     };
 
     const marginTransitionStyles: any = {
-        entering: { margin: "0 8vw 0 -4vw", maxWidth: "40vw" },
-        entered:  { margin: "0 0 0 -4vw", maxWidth: "100vw" },
-        exiting:  { margin: "0 0 0 -4vw", maxWidth: "100vw" },
-        exited:  { margin: "0 8vw 0 -4vw", maxWidth: "40vw" },
+        entering: { margin: "0 8vw 0 2vw", maxWidth: "40vw" },
+        entered:  { margin: "0 0 0 2vw", maxWidth: "100vw" },
+        exiting:  { margin: "0 0 0 2vw", maxWidth: "100vw" },
+        exited:  { margin: "0 8vw 0 2vw", maxWidth: "40vw" },
     };
 
     return (
@@ -166,12 +167,12 @@ export const Section: React.FunctionComponent<_props> = (props) => {
                     {expandState => (
                         <React.Fragment>
                             <div className={condense ? classes.contentSmall : classes.contentLarge}>
-                                <div className={classes.textContent} style={{ ...textTransitionStyles[enterState], height: condense ? 600 : 350, minWidth: condense ? 0 : 500 }}>
+                                <div className={classes.textContent} style={{ ...textTransitionStyles[enterState], maxHeight: "100%", height: condense ? "600px" : "350px", minWidth: condense ? 0 : 500 }}>
                                     {(condense && props.imagePath != "") &&
                                         <img src={props.imagePath} alt={props.title} className={classes.image} style={{ marginBottom: "30px", ...imageTransitionStyles[enterState], borderRadius: "50px" }} width={`100%`} height={height/4} />
                                     }
                                     <Typography variant="h1" color="textPrimary" className={classes.title}>{props.title}</Typography>
-                                    <Typography variant="h5" color="textSecondary" style={{ lineHeight: "40px", wordBreak: "break-word", whiteSpace: "pre-wrap" }}>
+                                    <Typography variant="h5" color="textSecondary" style={{ lineHeight: xxsmall ? "30px" : "40px", wordBreak: "break-word", whiteSpace: "pre-wrap" }}>
                                         {props.subtitle}
                                     </Typography>
                                     <br />
