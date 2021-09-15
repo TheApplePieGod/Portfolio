@@ -27,19 +27,18 @@ const useStyles = makeStyles({
     starSection: {
         height: "150px",
         margin: "50px 0 75px 0",
-        clipPath: "polygon(0 50px, 100% 0, 100% calc(100% - 50px), 0 100%)",
+        clipPath: "polygon(0 50px, 100vw 0, 100vw calc(100% - 50px), 0 100%)",
         backgroundImage: "url(images/background-nomoon.jpg)",
-        width: "100%",
-        backgroundSize: 'cover',
+        width: "100vw",
+        backgroundSize: '100vw',
+        backgroundRepeat: 'no-repeat',
     },
     parallax: {
         backgroundAttachment: "fixed",
         backgroundPosition: "left",
-        backgroundRepeat: "no-repeat",
     },
     noParallax: {
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
     },
 });
 

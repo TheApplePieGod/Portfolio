@@ -47,6 +47,9 @@ export const createApplicationTheme = memoizeOne(() => {
 				'@media (min-width:200px)': {
 					fontSize: '0.8rem',
 				},
+				'@media (min-width:600px)': {
+					fontSize: '1.0rem',
+				},
 			},
 		},
 		overrides: {

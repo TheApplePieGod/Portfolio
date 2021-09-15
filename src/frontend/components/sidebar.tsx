@@ -92,10 +92,12 @@ export const Sidebar = () => {
             setSelected(1)
         else if (location.pathname.startsWith("/projects"))
             setSelected(2)
-        else if (location.pathname == "/contact")
+        else if (location.pathname.startsWith("/homelab"))
             setSelected(3)
-        else
+        else if (location.pathname == "/contact")
             setSelected(4)
+        else
+            setSelected(5)
     }
 
     React.useEffect(() => {
@@ -131,6 +133,11 @@ export const Sidebar = () => {
                             </li>
                         )}</Transition>
                         <Transition timeout={animationDuration} in={selected == 3}>{selectState => (
+                            <li onClick={() => history.push('/homelab')} className={`${xxsmall ? classes.circleBaseSmall : classes.circleBase} ${condense ? classes.circleRow : classes.circleColumn}`} style={{ ...circleSelectedStyles[selectState] }}>
+                                <a href="/homelab" target="_self" style={{ display: "none" }}>Homelab</a> 
+                            </li>
+                        )}</Transition>
+                        <Transition timeout={animationDuration} in={selected == 4}>{selectState => (
                             <li onClick={() => history.push('/contact')} className={`${xxsmall ? classes.circleBaseSmall : classes.circleBase} ${condense ? classes.circleRow : classes.circleColumn}`} style={{ ...circleSelectedStyles[selectState], marginBottom: 0, marginRight: 0 }}>
                                 <a href="/contact" target="_self" style={{ display: "none" }}>Contact</a> 
                             </li>
