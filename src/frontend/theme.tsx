@@ -5,6 +5,7 @@ export const FONT_FAMILY: string = 'Fira Code';
 export const PALETTE_RED: string = "#AC0E3E";
 export const PALETTE_WHITE: string = "#FEFFF5";
 export const PALETTE_DARK_WHITE: string = "#CECEC2";
+export const PALETTE_DARK_DARK_WHITE: string = "#99998f";
 export const PALETTE_BLACK: string = "#19181D";
 export const PALETTE_LIGHT_BLACK: string = "#5B5765";
 

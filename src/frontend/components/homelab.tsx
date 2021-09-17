@@ -19,10 +19,11 @@ const useStyles = makeStyles({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        paddingBottom: "8rem",
         top: "100%"
     },
     starSection: {
-        minHeight: "800px",
+        //minHeight: "400px",
         marginTop: "75px",
         clipPath: "polygon(0 50px, 100% 0, 100% calc(100% - 50px), 0 100%)",
         backgroundImage: "url(images/background-nomoon.jpg)",
@@ -31,32 +32,22 @@ const useStyles = makeStyles({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        backgroundSize: 'cover',
+        paddingBottom: "100px",
+        height: "max-content"
     },
     parallax: {
         backgroundAttachment: "fixed",
         backgroundPosition: "left",
         backgroundRepeat: "no-repeat",
+        backgroundSize: '100vw',
     },
     noParallax: {
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
     },
-    interestRow: {
-        display: "flex",
-        aignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        padding: "0 3% 0 3%",
-        paddingTop: "50px",
-        marginBottom: "50px"
-    },
-    skillSection: {
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginBottom: "1rem"
+    bodyText: {
+        lineHeight: "40px",
+        marginTop: "20px",
+        maxWidth: "80%"
     }
 });
 
@@ -82,10 +73,38 @@ export const Homelab = () => {
                 <div className={classes.content}>
                     <Typography variant="h3" style={{ color: theme.PALETTE_BLACK, marginTop: "65px" }}>Introduction</Typography>
                     <CircleLine circleCount={10} />
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "50px", flexDirection: condense ? "column" : "row" }}>
-                        <img src="images/user.png" width={width/3} alt="Generic User Image" />
-                        <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, maxWidth: condense ? "80%" : "50%", marginLeft: condense ? 0 : "75px", marginTop: "1rem", lineHeight: "40px" }}>
-                            Test
+                    <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK }} className={classes.bodyText}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero justo laoreet sit amet cursus sit amet dictum. Luctus accumsan tortor posuere ac ut consequat semper. Sit amet venenatis urna cursus eget nunc scelerisque. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Fermentum iaculis eu non diam phasellus vestibulum lorem sed risus. Amet dictum sit amet justo donec enim diam. Sapien eget mi proin sed libero enim. Etiam dignissim diam quis enim lobortis. Ultricies mi eget mauris pharetra et ultrices neque ornare aenean.
+                    </Typography>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}>
+                        <Typography variant="h3" color="textPrimary" style={{ marginTop: condense ? "20%" : "3%" }}>The Base Layer</Typography>
+                        <CircleLine circleCount={11} />
+                        <Typography variant="body1" color="textSecondary" className={classes.bodyText}>
+                            Velit laoreet id donec ultrices. Ut etiam sit amet nisl purus in mollis nunc. Nisl pretium fusce id velit ut tortor pretium viverra. Sapien faucibus et molestie ac feugiat sed lectus. Metus dictum at tempor commodo ullamcorper a lacus vestibulum sed. Tempor nec feugiat nisl pretium fusce. Tincidunt ornare massa eget egestas purus viverra accumsan. Leo urna molestie at elementum eu facilisis sed odio. Bibendum neque egestas congue quisque egestas diam in. Vestibulum rhoncus est pellentesque elit.
+                        </Typography>
+                    </div>
+                    <Typography variant="h3" style={{ color: theme.PALETTE_BLACK, marginTop: "65px" }}>Node Network</Typography>
+                    <CircleLine circleCount={10} />
+                    <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK }} className={classes.bodyText}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero justo laoreet sit amet cursus sit amet dictum. Luctus accumsan tortor posuere ac ut consequat semper. Sit amet venenatis urna cursus eget nunc scelerisque. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Fermentum iaculis eu non diam phasellus vestibulum lorem sed risus. Amet dictum sit amet justo donec enim diam. Sapien eget mi proin sed libero enim. Etiam dignissim diam quis enim lobortis. Ultricies mi eget mauris pharetra et ultrices neque ornare aenean.
+                    </Typography>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}>
+                        <Typography variant="h3" color="textPrimary" style={{ marginTop: condense ? "20%" : "3%" }}>Cattle System</Typography>
+                        <CircleLine circleCount={11} />
+                        <Typography variant="body1" color="textSecondary" className={classes.bodyText}>
+                            Velit laoreet id donec ultrices. Ut etiam sit amet nisl purus in mollis nunc. Nisl pretium fusce id velit ut tortor pretium viverra. Sapien faucibus et molestie ac feugiat sed lectus. Metus dictum at tempor commodo ullamcorper a lacus vestibulum sed. Tempor nec feugiat nisl pretium fusce. Tincidunt ornare massa eget egestas purus viverra accumsan. Leo urna molestie at elementum eu facilisis sed odio. Bibendum neque egestas congue quisque egestas diam in. Vestibulum rhoncus est pellentesque elit.
+                        </Typography>
+                    </div>
+                    <Typography variant="h3" style={{ color: theme.PALETTE_BLACK, marginTop: "65px" }}>Traffic Routing</Typography>
+                    <CircleLine circleCount={10} />
+                    <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK }} className={classes.bodyText}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero justo laoreet sit amet cursus sit amet dictum. Luctus accumsan tortor posuere ac ut consequat semper. Sit amet venenatis urna cursus eget nunc scelerisque. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Fermentum iaculis eu non diam phasellus vestibulum lorem sed risus. Amet dictum sit amet justo donec enim diam. Sapien eget mi proin sed libero enim. Etiam dignissim diam quis enim lobortis. Ultricies mi eget mauris pharetra et ultrices neque ornare aenean.
+                    </Typography>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}>
+                        <Typography variant="h3" color="textPrimary" style={{ marginTop: condense ? "20%" : "3%" }}>Minecraft Server</Typography>
+                        <CircleLine circleCount={11} />
+                        <Typography variant="body1" color="textSecondary" className={classes.bodyText}>
+                            Velit laoreet id donec ultrices. Ut etiam sit amet nisl purus in mollis nunc. Nisl pretium fusce id velit ut tortor pretium viverra. Sapien faucibus et molestie ac feugiat sed lectus. Metus dictum at tempor commodo ullamcorper a lacus vestibulum sed. Tempor nec feugiat nisl pretium fusce. Tincidunt ornare massa eget egestas purus viverra accumsan. Leo urna molestie at elementum eu facilisis sed odio. Bibendum neque egestas congue quisque egestas diam in. Vestibulum rhoncus est pellentesque elit.
                         </Typography>
                     </div>
                 </div>
