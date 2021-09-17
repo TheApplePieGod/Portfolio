@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, IconButton, makeStyles, SvgIcon, Typography } from "@material-ui/core";
+import { Button, IconButton, makeStyles, SvgIcon, Tooltip, Typography } from "@material-ui/core";
 import * as theme from '../theme';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useWindowDimensions } from './useWindowDimensions';
 import { Transition } from 'react-transition-group';
+import InfoIcon from "@material-ui/icons/Info";
 
 const animationDuration = 200;
 
@@ -61,14 +62,25 @@ export const Header = () => {
         <div className={classes.root}>
             <div className={classes.content}>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    <Typography variant="h6" color="textPrimary">Portfolio</Typography>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <Typography variant="h6" color="textPrimary">Portfolio</Typography>
+                        <Tooltip
+                            style={{ marginTop: "-0.1rem" }}
+                            enterTouchDelay={0}
+                            leaveTouchDelay={3000}
+                            arrow
+                            placement="bottom"
+                            title={<Typography variant="body1">Built from scratch in React/Typescript and deployed on Netlify</Typography>}>
+                            <InfoIcon style={{ color: "white" }} />
+                        </Tooltip>
+                    </div>
                     <Transition
                         timeout={animationDuration}
                         in={animationState}
                         //appear={true}
                     >
                         {state => (
-                            <Button className={classes.button} onClick={() => history.goBack()} style={{ ...arrowTransitionStyles[state] }}>{"<===== Go Back"}</Button>
+                            <Button className={classes.button} onClick={() => history.goBack()} disabled={arrowTransitionStyles[state].opacity == 0} style={{ ...arrowTransitionStyles[state] }}>{"<===== Go Back"}</Button>
                         )}
                     </Transition>
                 </div>

@@ -9,10 +9,11 @@ import { PageWrapper } from "./components/pageWrapper";
 import { Contact } from "./components/contact";
 import { About } from "./components/about";
 import { Projects } from "./components/projects";
+import { Homelab } from "./components/homelab";
 
 export const Routes = () => {
     React.useEffect(() => {
-       const preloadImages = ["images/about.jpg", "images/projects.jpg", "images/contact.jpg"];
+       const preloadImages = ["images/about.jpg", "images/projects.jpg", "images/homelab.png", "images/contact.jpg"];
        preloadImages.forEach((src) => {
            const img = new Image();
            img.src = src;
@@ -26,6 +27,7 @@ export const Routes = () => {
                     <Route exact path={'/'} component={Home} />
                     <Route path={'/about'} component={About} />
                     <Route path={'/projects'} component={Projects} />
+                    <Route path={'/homelab'} component={Homelab} />
                     <Route path={'/contact'} component={Contact} />
                     <Route path={'/'} render={() => <Redirect to={'/'} />} />
                 </Switch>

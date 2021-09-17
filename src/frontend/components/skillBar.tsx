@@ -36,7 +36,7 @@ export const SkillBar = (props: _props) => {
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <Typography variant="h4" style={{ color: theme.PALETTE_BLACK }}>{props.skillName}</Typography>
                     <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
-                      <Typography variant="h5" style={{ color: theme.PALETTE_DARK_WHITE }}>{`${props.yearCount} yr${props.yearCount != 1 ? 's' : ''}`}</Typography>
+                      <Typography variant="h5" style={{ color: theme.PALETTE_DARK_DARK_WHITE }}>{`${props.yearCount} yr${props.yearCount != 1 ? 's' : ''}`}</Typography>
                       <Typography variant="h4" style={{ color: theme.PALETTE_BLACK }}>{`${props.percentage}%`}</Typography>
                     </div>
                 </div>
