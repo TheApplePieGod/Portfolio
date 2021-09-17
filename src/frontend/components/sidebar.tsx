@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     },
     rootColumn: {
         height: "100%",
-        width: "120px",
+        width: "max-content",
         flexDirection: "column",
         //alignItems: "center",
         marginLeft: "2%"
