@@ -92,9 +92,19 @@ const useStyles = makeStyles(_theme => ({
         transition: `opacity ${expandAnimationDuration}ms ease-in-out`,
         position: "absolute",
         transform: "rotate(-90deg)",
-        top: "calc(100% - 115px)",
+        [_theme.breakpoints.down('xs')]: {
+            top: "calc(100% - 75px)",
+            marginLeft: "0px"
+        },
+        [_theme.breakpoints.up('sm')]: {
+            top: "calc(100% - 105px)",
+            marginLeft: "-8px"
+        },
+        [_theme.breakpoints.up('md')]: {
+            top: "calc(100% - 115px)",
+            marginLeft: "-8px"
+        },
         left: 0,
-        marginLeft: "-8px"
     }
 }));
 
