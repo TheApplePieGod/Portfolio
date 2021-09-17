@@ -31,19 +31,18 @@ const useStyles = makeStyles({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        backgroundSize: '100vw',
-        backgroundRepeat: 'no-repeat',
     },
     parallax: {
         backgroundAttachment: "fixed",
         backgroundPosition: "left",
+        backgroundSize: '100vw',
     },
     noParallax: {
         backgroundPosition: 'center',
     },
     interestRow: {
         display: "flex",
-        aignItems: "center",
+        alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
         padding: "0 3% 0 3%",
