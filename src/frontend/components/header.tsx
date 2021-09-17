@@ -25,7 +25,7 @@ const useStyles = makeStyles({
         backgroundColor: theme.PALETTE_BLACK,
     },
     button: {
-        transition: `opacity ${animationDuration}ms ease-in-out`,
+        transition: `opacity ${animationDuration}ms ease-in-out, color ${animationDuration}ms ease-in-out`,
         marginTop: "-1px",
         padding: "0 1% 0 10px",
         backgroundColor: theme.PALETTE_BLACK,
@@ -67,7 +67,7 @@ export const Header = () => {
                         <Tooltip
                             style={{ marginTop: "-0.1rem" }}
                             enterTouchDelay={0}
-                            leaveTouchDelay={3000}
+                            leaveTouchDelay={5000}
                             arrow
                             placement="bottom"
                             title={<Typography variant="body1">Built from scratch in React/Typescript and deployed on Netlify</Typography>}>
@@ -80,7 +80,7 @@ export const Header = () => {
                         //appear={true}
                     >
                         {state => (
-                            <Button className={classes.button} onClick={() => history.goBack()} disabled={arrowTransitionStyles[state].opacity == 0} style={{ ...arrowTransitionStyles[state] }}>{"<===== Go Back"}</Button>
+                            <Button className={classes.button} onClick={() => history.goBack()} disabled={!animationState} style={{ ...arrowTransitionStyles[state] }}>{"<===== Go Back"}</Button>
                         )}
                     </Transition>
                 </div>
