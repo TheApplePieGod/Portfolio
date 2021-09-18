@@ -46,6 +46,20 @@ export const Projects = () => {
     const location = useLocation();
     const { height, width } = useWindowDimensions();
 
+    const [scrollY, setScrollY] = React.useState(0);
+
+    const onScroll = () => {
+        const winScroll = document.body.scrollTop;
+        setScrollY(winScroll);
+    }
+
+    React.useEffect(() => {
+        window.addEventListener("scroll", onScroll);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+        }
+    }, [])
+
     const condense = width < 1200;
 
     return (
@@ -76,7 +90,7 @@ export const Projects = () => {
                             description="I was accepted for a professional internship with Echelon Consulting, where I focused on the full life cycle of application development for the cloud. One other intern and I built an application from the ground up, which tightly integrates with Echelon's commercial time and expense system. It allows Echelon's leadership team to view various aspects of their business in near-real time, including company utilization, individual utilization, individual project health, and client sales distribution. The application is in active use and continues to evolve."
                         />
                     </div>
-                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}></div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
                     <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
@@ -115,7 +129,7 @@ export const Projects = () => {
                             description="My second attempt at a 3D graphics engine. Built from scratch using DX11, I attempted to create a realistic planet which can be viewed from both space and on the surface in real time"
                         />
                     </div>
-                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}></div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
                     <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
@@ -154,7 +168,7 @@ export const Projects = () => {
                             description="A stock monitoring bot inspired by the boom of the graphics card market in late 2020"
                         />
                     </div>
-                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}></div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
                     <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}

@@ -58,6 +58,13 @@ export const Header = () => {
         })
     }, [history])
 
+    const goBack = () => {
+        //history.goBack()
+        let newURL = location.pathname.split('/');
+        newURL.pop();
+        history.push(newURL.join('/'));
+    }
+
     return (
         <div className={classes.root}>
             <div className={classes.content}>
@@ -80,7 +87,7 @@ export const Header = () => {
                         //appear={true}
                     >
                         {state => (
-                            <Button className={classes.button} onClick={() => history.goBack()} disabled={!animationState} style={{ ...arrowTransitionStyles[state] }}>{"<===== Go Back"}</Button>
+                            <Button className={classes.button} onClick={goBack} disabled={!animationState} style={{ ...arrowTransitionStyles[state] }}>{"<===== Go Back"}</Button>
                         )}
                     </Transition>
                 </div>

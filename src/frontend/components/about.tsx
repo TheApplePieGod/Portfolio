@@ -22,8 +22,7 @@ const useStyles = makeStyles({
         top: "100%"
     },
     starSection: {
-        minHeight: "800px",
-        marginTop: "75px",
+        margin: "10px 0 10px 0",
         clipPath: "polygon(0 50px, 100% 0, 100% calc(100% - 50px), 0 100%)",
         backgroundImage: "url(images/background-nomoon.jpg)",
         width: "100%",
@@ -31,6 +30,9 @@ const useStyles = makeStyles({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        paddingBottom: "75px",
+        paddingTop: "75px",
+        height: "max-content"
     },
     parallax: {
         backgroundAttachment: "fixed",
@@ -63,6 +65,20 @@ export const About = () => {
     const location = useLocation();
     const { height, width } = useWindowDimensions();
 
+    const [scrollY, setScrollY] = React.useState(0);
+
+    const onScroll = () => {
+        const winScroll = document.body.scrollTop;
+        setScrollY(winScroll);
+    }
+
+    React.useEffect(() => {
+        window.addEventListener("scroll", onScroll);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+        }
+    }, [])
+
     const condense = width < 1000;
 
     return (
@@ -82,15 +98,15 @@ export const About = () => {
                     <CircleLine circleCount={10} />
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "50px", flexDirection: condense ? "column" : "row" }}>
                         <img src="images/user.png" width={width/3} alt="Generic User Image" />
-                        <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, maxWidth: condense ? "80%" : "50%", marginLeft: condense ? 0 : "75px", marginTop: "1rem", lineHeight: "40px" }}>
+                        <Typography variant="body1" style={{ color: theme.PALETTE_LIGHT_BLACK, maxWidth: condense ? "90%" : "50%", marginLeft: condense ? 0 : "75px", marginTop: "1rem", lineHeight: "40px" }}>
                             Born in the United States in 2003, I have spent most of my life traversing the world of computer science. I started programming at a very young age, and I have dabbled in some of the many different worlds of computer science. Game development, computer graphics, web design, and web development are a few of them that I have experience in.  
                         </Typography>
                     </div>
-                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`}>
-                        <Typography variant="h3" color="textPrimary" style={{ marginTop: condense ? "20%" : "3%" }}>Interests</Typography>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}>
+                        <Typography variant="h3" color="textPrimary">Interests</Typography>
                         <CircleLine circleCount={8} />
                         <div className={classes.interestRow} style={{ flexDirection: condense ? "column" : "row" }}>
-                            <div style={{ margin: condense ? "auto" : "0 5% 0 0", width: condense ? "80%" : "35%" }}>
+                            <div style={{ margin: condense ? "auto" : "0 5% 0 0", width: condense ? "90%" : "35%" }}>
                                 <ComputerIcon style={{ color: theme.PALETTE_WHITE, width: "15vw", height: "15vw" }} />
                                 <Typography variant="body1" color="textSecondary" style={{ lineHeight: "40px" }}>
                                     Computers and technology are dominant in the modern world, and maintaining an understanding of how they work and operate is something I pride myself in
@@ -98,7 +114,7 @@ export const About = () => {
                             </div>
                             <br />
                             <br />
-                            <div style={{ margin: condense ? "auto" : "0 5% 0 0", width: condense ? "80%" : "35%" }}>
+                            <div style={{ margin: condense ? "auto" : "0 5% 0 0", width: condense ? "90%" : "35%" }}>
                                 <CodeIcon style={{ color: theme.PALETTE_WHITE, width: "15vw", height: "15vw" }} />
                                 <Typography variant="body1" color="textSecondary" style={{ lineHeight: "40px" }}>
                                     The programs that drive computers to complete tasks and display information has always fascinated me and is something I have dedicated a lot of my life to
@@ -106,7 +122,7 @@ export const About = () => {
                             </div>
                             <br />
                             <br />
-                            <div style={{ margin: "auto", width: condense ? "80%" : "35%" }}>
+                            <div style={{ margin: "auto", width: condense ? "90%" : "35%" }}>
                                 <CategoryIcon style={{ color: theme.PALETTE_WHITE, width: "15vw", height: "15vw" }} />
                                 <Typography variant="body1" color="textSecondary" style={{ lineHeight: "40px" }}>
                                     Designing systems and models is always a daunting task when presented, but I love doing it and have done it countless times. Graphical design is not my strong suit, but I am learning
@@ -114,7 +130,7 @@ export const About = () => {
                             </div>
                         </div>
                     </div>
-                    <Typography variant="h3" style={{ color: theme.PALETTE_BLACK, marginTop: "65px" }}>Skills</Typography>
+                    <Typography variant="h3" style={{ color: theme.PALETTE_BLACK, marginTop: "60px" }}>Skills</Typography>
                     <CircleLine circleCount={5} />
                     <Typography variant="h5" style={{ color: theme.PALETTE_LIGHT_BLACK }}>Confidence</Typography>
                     <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", margin: "50px 0 100px 0", flexDirection: "column" }}>

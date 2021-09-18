@@ -7,6 +7,7 @@ export const PALETTE_WHITE: string = "#FEFFF5";
 export const PALETTE_DARK_WHITE: string = "#CECEC2";
 export const PALETTE_DARK_DARK_WHITE: string = "#99998f";
 export const PALETTE_BLACK: string = "#19181D";
+export const PALETTE_ALMOST_BLACK: string = "#2c2a33";
 export const PALETTE_LIGHT_BLACK: string = "#5B5765";
 
 export const createApplicationTheme = memoizeOne(() => {
