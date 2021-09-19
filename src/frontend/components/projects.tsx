@@ -67,7 +67,7 @@ export const Projects = () => {
             <Section
                 key="1"
                 title="Projects"
-                subtitle="take a look at some of the various projects i have created and been involved with over the years"
+                subtitle="Take a look at some of the various projects I have created and been involved with over the years"
                 buttonText="EXPLORE"
                 buttonPath="/projects/more"
                 imagePath="images/projects.jpg"

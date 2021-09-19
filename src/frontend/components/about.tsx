@@ -86,7 +86,7 @@ export const About = () => {
             <Section
                 key="0"
                 title="About Me"
-                subtitle="i am a high school student with a passion for computer science"
+                subtitle="I am a high school student with a passion for computer science"
                 buttonText="LEARN MORE"
                 buttonPath="/about/more"
                 imagePath="images/about.jpg"

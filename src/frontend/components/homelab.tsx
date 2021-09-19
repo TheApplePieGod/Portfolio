@@ -76,8 +76,8 @@ const useStyles = makeStyles({
     },
     computerLights: {
         position: "absolute",
-        right: "14px",
-        bottom: "8px",
+        right: "30px",
+        bottom: "14px",
         display: "flex",
         gap: "10px",
         opacity: "0.8"
@@ -101,9 +101,9 @@ const useStyles = makeStyles({
         opacity: "0.3"
     },
     computerLight: {
-        width: "50px",
-        height: "50px",
-        borderRadius: "25px",
+        width: "26px",
+        height: "26px",
+        borderRadius: "13px",
         filter: "blur(2px)"
     },
     computerVent: {
@@ -200,7 +200,7 @@ export const Homelab = () => {
             <Section
                 key="0"
                 title="Homelab"
-                subtitle="take a journey through the datacenter style services i setup inside my own home"
+                subtitle="Take a journey through the datacenter style services I setup inside my own home"
                 buttonText="TOUR"
                 buttonPath="/homelab/more"
                 imagePath="images/homelab.png"
@@ -213,7 +213,7 @@ export const Homelab = () => {
                             <Typography variant="h3" style={{ color: condense ? theme.PALETTE_BLACK : theme.PALETTE_WHITE, zIndex: 2 }}>Introduction</Typography>
                             <CircleLine circleCount={10} />
                             <Typography variant="body1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.bodyText}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero justo laoreet sit amet cursus sit amet dictum. Luctus accumsan tortor posuere ac ut consequat semper. Sit amet venenatis urna cursus eget nunc scelerisque. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Fermentum iaculis eu non diam phasellus vestibulum lorem sed risus. Amet dictum sit amet justo donec enim diam. Sapien eget mi proin sed libero enim. Etiam dignissim diam quis enim lobortis. Ultricies mi eget mauris pharetra et ultrices neque ornare aenean.
+                                I have always been fascinated by Google and Microsoft and other large corporations that manage astronomical datacenters with hundreds of thousands of computers. I always wondered what it would be like to manage a system like that, and that is when I discovered a technology called Kubernetes (will explain later on). With help from my family, I was able to purchase an old datacenter computer off of ebay, and I decided to test out these technolgies once and for all. I will explain all of the infrastructure I set up and the thought processes around them as you continue reading.
                             </Typography>
                             {!condense && <ComputerExtras /> }
                         </div>
@@ -301,8 +301,7 @@ export const Homelab = () => {
                             <Typography variant="h3" style={{ color: condense ? theme.PALETTE_BLACK : theme.PALETTE_WHITE, zIndex: 2 }}>Epilogue</Typography>
                             <CircleLine circleCount={7} />
                             <Typography variant="body1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.bodyText}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero justo laoreet sit amet cursus sit amet dictum. Luctus accumsan tortor posuere ac ut consequat semper. Sit amet venenatis urna cursus eget nunc scelerisque. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Fermentum iaculis eu non diam phasellus vestibulum lorem sed risus. Amet dictum sit amet justo donec enim diam. Sapien eget mi proin sed libero enim. Etiam dignissim diam quis enim lobortis. Ultricies mi eget mauris pharetra et ultrices neque ornare aenean.
-                            </Typography>
+                                I learned a lot from setting up all of this infrastructure. I ventured into uncharted territory for myself, which meant I inevitably spent countless hours pulling my hair out. In the end, everything came together, and now I have the ability to create and test out new services and technologies with ease. I would definitely recommend trying out these technologies, as it taught me a lot about what it would take to run and maintain enterprise services.                             </Typography>
                             {!condense && <ComputerExtras /> }
                         </div>
                     </div>
