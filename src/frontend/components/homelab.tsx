@@ -213,7 +213,7 @@ export const Homelab = () => {
                             <Typography variant="h3" style={{ color: condense ? theme.PALETTE_BLACK : theme.PALETTE_WHITE, zIndex: 2 }}>Introduction</Typography>
                             <CircleLine circleCount={10} />
                             <Typography variant="body1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.bodyText}>
-                                I have always been fascinated by Google and Microsoft and other large corporations that manage astronomical datacenters with hundreds of thousands of computers. I always wondered what it would be like to manage a system like that, and that is when I discovered a technology called Kubernetes (will explain later on). With help from my family, I was able to purchase an old datacenter computer off of ebay, and I decided to test out these technolgies once and for all. I will explain all of the infrastructure I set up and the thought processes around them as you continue reading.
+                                I have always been fascinated by Google and Microsoft and other large corporations that manage astronomical datacenters with hundreds of thousands of computers. I always wondered what it would be like to manage a system like that, and that is when I discovered a technology called Kubernetes. With help from my family, I was able to purchase an old datacenter computer off of ebay, and I decided to test out these technologies once and for all.
                             </Typography>
                             {!condense && <ComputerExtras /> }
                         </div>
@@ -222,11 +222,11 @@ export const Homelab = () => {
                             <Typography variant="h3" style={{ color: theme.PALETTE_WHITE, zIndex: 2 }}>The Base Layer</Typography>
                             <CircleLine circleCount={11} />
                             <Typography variant="body1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.bodyText}>
-                                While it would be possible to run everything in the same space, dividing up computing power into lightweight ‘virtual machines’ allows for efficient organization and separation of services. Using a high horsepower physical machine (we’ll call it ‘Alduin’), it was divided up into smaller virtual ones, each laying claim to a portion of Alduin’s resources. This was possible using a virtualization technology called ‘Proxmox’ -- a flavor of linux running the qemu-based software.
+                                While it would be possible to run everything in the same space, dividing up computing power into lightweight ‘virtual machines’ allows for efficient organization and separation of services. Using a high horsepower physical machine (we’ll call it ‘Alduin’), it was divided up into smaller virtual ones, each laying claim to a portion of Alduin’s resources. This was possible using a virtualization technology called ‘Proxmox’, which is a qemu-based software running on a custom version of linux.
                             </Typography>
                             <div className={classes.imageContainer}>
                                 <img alt="Proxmox dashboard" src="/images/homelab/proxmox.png" style={{ width: "80%", height: condense ? "40vw" : "20vw" }} />
-                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>Proxmox dashboard</Typography>
+                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>Proxmox dashboard</b></Typography>
                             </div>
                             {!condense && <ComputerExtras /> }
                         </div>
@@ -239,7 +239,7 @@ export const Homelab = () => {
                             </Typography>
                             <div className={classes.imageContainer}>
                                 <img alt="Virtual machines running on Alduin" src="/images/homelab/kubernetes1.png" style={{ width: condense ? "80%" : "50%", height: condense ? "40vw" : "20vw" }} />
-                                <Typography variant="subtitle1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>Virtual machines running on Alduin</Typography>
+                                <Typography variant="subtitle1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>Virtual machines running on Alduin</b></Typography>
                             </div>
                             {!condense && <ComputerExtras /> }
                         </div>
@@ -248,17 +248,17 @@ export const Homelab = () => {
                             <Typography variant="h3" style={{ color: theme.PALETTE_WHITE, zIndex: 2 }}>Cattle System</Typography>
                             <CircleLine circleCount={10} />
                             <Typography variant="body1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.bodyText}>
-                                Managing the Kuberenetes cluster all on the command line is difficult, so that’s where Rancher comes in. Rancher is a management tool for Kubernetes that runs inside the cluster itself. It simplifies the DevOps task through a well-featured web UI and provides a one-stop shop for managing the cluster. Running alongside Rancher is another technology known as Longhorn. Longhorn takes disk space and breaks it up into volumetric storage which can be requested by and assigned to workloads. Essentially, Longhorn abstracts the process of allocating storage away from running services on the cluster and allows for more fluid integration. Another key benefit of Longhorn is automatic backup scheduling and replication. If a node running a service fails, replication comes to the rescue because blocks of storage are replicated (copied) across several nodes, meaning the same service can start back up immediately on a different node with no data loss.
+                                Managing the Kuberenetes cluster all on the command line is difficult, so that’s where Rancher comes in. Rancher is a management tool for Kubernetes that runs inside the cluster itself. It simplifies the DevOps task through a well-featured web UI and provides a one-stop shop for managing the cluster. Running alongside Rancher is another technology known as Longhorn. Longhorn, a distributed storage system, takes disk space and breaks it up into volumetric storage which can be requested by and assigned to workloads. Essentially, Longhorn abstracts the process of allocating storage away from running services on the cluster and allows for more fluid integration. Another key benefit of Longhorn is automatic backup scheduling and replication. If a node running a service fails, replication comes to the rescue because blocks of storage are replicated (copied) across several nodes, meaning the same service can start back up immediately on a different node with no data loss.
                             </Typography>
                             <div className={classes.imageContainer}>
                                 <img alt="Rancher cluster explorer" src="/images/homelab/rancher1.png" style={{ width: "80%", height: condense ? "40vw" : "25vw" }} />
-                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>Rancher cluster explorer</Typography>
+                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>Rancher cluster explorer</b></Typography>
                                 <img alt="Rancher list of Kubernetes nodes" src="/images/homelab/rancher2.png" style={{ width: "80%", height: condense ? "40vw" : "25vw" }} />
-                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>Rancher list of Kubernetes nodes</Typography>
+                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>Rancher list of Kubernetes nodes</b></Typography>
                                 <img alt="Longhorn dashboard" src="/images/homelab/longhorn1.png" style={{ width: "80%", height: condense ? "40vw" : "25vw" }} />
-                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>Longhorn dashboard</Typography>
+                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>Longhorn dashboard</b></Typography>
                                 <img alt="A longhorn volume" src="/images/homelab/longhorn2.png" style={{ width: "80%", height: condense ? "40vw" : "25vw" }} />
-                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>A longhorn volume</Typography>
+                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>A longhorn volume</b></Typography>
                             </div>
                             {!condense && <ComputerExtras /> }
                         </div>
@@ -270,12 +270,12 @@ export const Homelab = () => {
                                 As the number of internal and external services on the network increased, a consistent and logical way to route network traffic became a requirement. PiHole, an open source technology, enables custom DNS records, which allows for internal services to be able to reference other services via a sensical string rather than an ip address.  PiHole has the added advantage of automatically blocking domain names that are known advertisers or trackers and as every device on the network uses PiHole as the primary DNS server, no device on the network gets ads (99% of the time). Although PiHole solves a number of the traffic issues, the critical issue of  routing network traffic from the outside internet remains. To remove as many potential security risks as possible, a technology known as Traefik was implemented. Traefik routes external requests and matches the subdomain with the ip of an internal service. This enables hosting of a large number of services without worrying about port overlap or exposing more than the few Traefik access ports on the firewall. Additionally, Traefik routes all traffic through HTTPS using CloudFlare authorized certificates.
                             </Typography>
                             <div className={classes.imageContainer}>
-                                <img alt="PiHole dashboard" src="/images/homelab/pihole1.png" style={{ width: "70%", height: condense ? "40vw" : "30vw" }} />
-                                <Typography variant="subtitle1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>PiHole dashboard</Typography>
+                                <img alt="PiHole dashboard" src="/images/homelab/pihole1.png" style={{ width: "70%", height: condense ? "40vw" : "35vw" }} />
+                                <Typography variant="subtitle1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>PiHole dashboard</b></Typography>
                                 <img alt="Traefik router list" src="/images/homelab/traefik1.png" style={{ width: "70%", height: condense ? "40vw" : "25vw" }} />
-                                <Typography variant="subtitle1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>Traefik router list</Typography>
-                                <img alt="Traefik dashboard" src="/images/homelab/traefik2.png" style={{ width: "70%", height: condense ? "40vw" : "25vw" }} />
-                                <Typography variant="subtitle1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>Traefik dashboard</Typography>
+                                <Typography variant="subtitle1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>Traefik router list</b></Typography>
+                                <img alt="Traefik dashboard" src="/images/homelab/traefik2.png" style={{ width: "70%", height: condense ? "40vw" : "30vw" }} />
+                                <Typography variant="subtitle1" style={{ color: condense ? theme.PALETTE_LIGHT_BLACK : theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>Traefik dashboard</b></Typography>
                             </div>
                             {!condense && <ComputerExtras /> }
                         </div>
@@ -287,12 +287,12 @@ export const Homelab = () => {
                                 With all of the infrastructure finally in place, it was time to put it to the test. As Minecraft was a simple test and a popular game amongst my friend group, I decided to start there. I created my own fully featured docker image that would run the server with a variety of additional administration features, and I created a workload through the Rancher UI. I added the service to traefik so it was accessible via a domain name, and I added the new subdomain to CloudFlare.
                             </Typography>
                             <div className={classes.imageContainer}>
-                                <img alt="Workload basic info" src="/images/homelab/minecraft1.png" style={{ width: "70%", height: condense ? "40vw" : "25vw" }} />
-                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>Workload basic info</Typography>
-                                <img alt="Workload volumes" src="/images/homelab/minecraft2.png" style={{ width: "70%", height: condense ? "40vw" : "30vw" }} />
-                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>Workload volumes</Typography>
+                                <img alt="Workload basic info" src="/images/homelab/minecraft1.png" style={{ width: "70%", height: condense ? "40vw" : "22vw" }} />
+                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>Workload basic info</b></Typography>
+                                <img alt="Workload volumes" src="/images/homelab/minecraft2.png" style={{ width: "70%", height: condense ? "40vw" : "32vw" }} />
+                                <Typography  variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>Workload volumes</b></Typography>
                                 <img alt="Minecraft server screenshot" src="/images/homelab/minecraft3.png" style={{ width: "70%", height: condense ? "40vw" : "25vw" }} />
-                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}>Success!</Typography>
+                                <Typography variant="subtitle1" style={{ color: theme.PALETTE_DARK_WHITE }} className={classes.subtitle}><b>Success!</b></Typography>
                             </div>
                             {!condense && <ComputerExtras /> }
                         </div>
