@@ -40,7 +40,7 @@ export const Contact = () => {
             <Section
                 key="2"
                 title="Contact"
-                subtitle="get in touch with me"
+                subtitle="Get in touch with me"
                 buttonText=""
                 buttonPath=""
                 imagePath="images/contact.jpg"

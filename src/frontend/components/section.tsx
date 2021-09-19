@@ -78,7 +78,7 @@ const useStyles = makeStyles(_theme => ({
     },
     imageContainer: {
         minWidth: "500px",
-        transition: `margin ${expandAnimationDuration}ms ease-in-out, max-width ${expandAnimationDuration}ms ease-in-out`
+        transition: `margin ${expandAnimationDuration}ms ease-in-out, max-width ${expandAnimationDuration}ms ease-in-out`,
     },
     textContent: {
         width: "500px",
