@@ -67,7 +67,7 @@ export const Projects = () => {
             <Section
                 key="1"
                 title="Projects"
-                subtitle="Take a look at some of the various projects I have created and been involved with over the years"
+                subtitle="Take a look at some of the notable projects I have created and been involved with over the years"
                 buttonText="EXPLORE"
                 buttonPath="/projects/more"
                 imagePath="images/projects.jpg"
@@ -102,7 +102,7 @@ export const Projects = () => {
                             link="https://bchess.site/"
                             github="https://github.com/TheApplePieGod/Bandersnatch"
                             title="Bandersnatch"
-                            description="A chess playing engine built from scratch, powered by the browser for anyone to use and experiment with"
+                            description="A chess playing engine built from scratch, powered by the browser for anyone to use and experiment with."
                         />
                         <ProjectElement
                             width={width}
@@ -114,7 +114,7 @@ export const Projects = () => {
                             link="https://codecorner.azurewebsites.net/"
                             github=""
                             title="Code Corner"
-                            description="My friend and I collaborated to create a website where users can complete and collaborate on programming-oriented challenges"
+                            description="My friend and I collaborated to create a website where users can complete and collaborate on programming-oriented challenges."
                         />
                         <ProjectElement
                             width={width}
@@ -126,7 +126,7 @@ export const Projects = () => {
                             link="https://youtu.be/ChWMxhsLzy8"
                             github="https://github.com/TheApplePieGod/Spade"
                             title="Spade"
-                            description="My second attempt at a 3D graphics engine. Built from scratch using DX11, I attempted to create a realistic planet which can be viewed from both space and on the surface in real time"
+                            description="My second attempt at a 3D graphics engine. Built from scratch using DX11, I attempted to create a realistic planet which can be viewed from both space and on the surface in real time."
                         />
                     </div>
                     <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
@@ -141,7 +141,7 @@ export const Projects = () => {
                             link=""
                             github="https://github.com/TheApplePieGod/Diamond"
                             title="Diamond"
-                            description="An open source, cross-platform, Vulkan-based 2D rendering/compute engine, which I hope to use in future projects and games"
+                            description="An open source, cross-platform, Vulkan-based 2D rendering/compute engine, which I hope to use in future projects and games."
                         />
                         <ProjectElement
                             width={width}
@@ -165,7 +165,7 @@ export const Projects = () => {
                             link=""
                             github="https://github.com/TheApplePieGod/DropBot"
                             title="DropBot"
-                            description="A stock monitoring bot inspired by the boom of the graphics card market in late 2020"
+                            description="A stock monitoring bot inspired by the boom of the graphics card market in late 2020."
                         />
                     </div>
                     <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
@@ -180,7 +180,7 @@ export const Projects = () => {
                             link="https://ideacloud.site/"
                             github=""
                             title="Idea Cloud"
-                            description="A lightweight application to quickly store and look back at ideas that you find important. This is also the first app which I manually setup all of the hosting on a DigitalOcean droplet"
+                            description="A lightweight application to quickly store and look back at ideas that you find important. This is also the first app which I manually setup all of the hosting on a DigitalOcean droplet."
                         />
                         <ProjectElement
                             width={width}
@@ -193,6 +193,45 @@ export const Projects = () => {
                             github="https://github.com/TheApplePieGod/DepthsOfPower"
                             title="Depths of Power"
                             description="A 2D game powered by Diamond. I have a vision for a automation focused 2D exploration game, and I have a basic prototype complete so far."
+                        />
+                        <ProjectElement
+                            width={width}
+                            circleCount={9}
+                            type="Desktop app"
+                            languages="ReactJS, CSS, Typescript"
+                            screenshotPaths={[]}
+                            imageName="game-manager.png"
+                            link=""
+                            github="https://github.com/TheApplePieGod/GameManager"
+                            title="Game Manager"
+                            description="An electron-powered app used to interface over the internet with minecraft servers running on the homelab in my house."
+                        />
+                    </div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
+                    <div style={{ display: "flex", width: "100%", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
+                        <ProjectElement
+                            width={width}
+                            circleCount={4}
+                            type="Desktop app"
+                            languages="ReactJS, CSS, Typescript, SQL"
+                            screenshotPaths={[]}
+                            imageName="sql-dev.png"
+                            link=""
+                            github="https://github.com/TheApplePieGod/SQLDev"
+                            title="SQL Dev"
+                            description="An electron-powered app I created to assist the development process of writing SQL functions and integrating them with C#."
+                        />
+                        <ProjectElement
+                            width={width}
+                            circleCount={6}
+                            type="Discord bot"
+                            languages="C#, SQL"
+                            screenshotPaths={[]}
+                            imageName="discord-bot.png"
+                            link=""
+                            github="https://github.com/TheApplePieGod/BigMoBot"
+                            title="Discord Bot"
+                            description="A discord bot I wrote to track user activity in my friend group's discord along with other cool features."
                         />
                     </div>
                 </div>
