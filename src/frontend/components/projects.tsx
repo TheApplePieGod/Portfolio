@@ -94,6 +94,30 @@ export const Projects = () => {
                     <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
+                            circleCount={6}
+                            type="Web app"
+                            languages="ReactJS, Typescript, CSS, C#, SQL"
+                            screenshotPaths={[]}
+                            imageName="word-arena.png"
+                            link="https://wordarena.xyz/"
+                            github=""
+                            title="Word Arena"
+                            description="An online multiplayer-enhanced version of the popular word game Wordle filled with other cool, interactive, and customizable features."
+                        />
+                        <ProjectElement
+                            width={width}
+                            circleCount={4}
+                            type="Library / Desktop App"
+                            languages="C++"
+                            screenshotPaths={[]}
+                            imageName="heart.png"
+                            link=""
+                            github="https://github.com/TheApplePieGod/Heart"
+                            title="Heart"
+                            description="An open source, cross-platform, game engine and api-agnostic rendering library that currently supports both OpenGL and Vulkan."
+                        />
+                        <ProjectElement
+                            width={width}
                             circleCount={7}
                             type="Web app"
                             languages="ReactJS, Typescript"
@@ -104,6 +128,9 @@ export const Projects = () => {
                             title="Bandersnatch"
                             description="A chess playing engine built from scratch, powered by the browser for anyone to use and experiment with."
                         />
+                    </div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
+                    <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
                             circleCount={6}
@@ -128,9 +155,6 @@ export const Projects = () => {
                             title="Spade"
                             description="My second attempt at a 3D graphics engine. Built from scratch using DX11, I attempted to create a realistic planet which can be viewed from both space and on the surface in real time."
                         />
-                    </div>
-                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
-                    <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
                             circleCount={5}
@@ -143,6 +167,9 @@ export const Projects = () => {
                             title="Diamond"
                             description="An open source, cross-platform, Vulkan-based 2D rendering/compute engine, which I hope to use in future projects and games."
                         />
+                    </div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
+                    <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
                             circleCount={11}
@@ -167,9 +194,6 @@ export const Projects = () => {
                             title="DropBot"
                             description="A stock monitoring bot inspired by the boom of the graphics card market in late 2020."
                         />
-                    </div>
-                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
-                    <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
                             circleCount={6}
@@ -182,6 +206,9 @@ export const Projects = () => {
                             title="Idea Cloud"
                             description="A lightweight application to quickly store and look back at ideas that you find important. This is also the first app which I manually setup all of the hosting on a DigitalOcean droplet."
                         />
+                    </div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
+                    <div style={{ display: "flex", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
                             circleCount={9}
@@ -206,9 +233,6 @@ export const Projects = () => {
                             title="Game Manager"
                             description="An electron-powered app used to interface over the internet with minecraft servers running on the homelab in my house."
                         />
-                    </div>
-                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
-                    <div style={{ display: "flex", width: "100%", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
                             circleCount={4}
@@ -221,6 +245,9 @@ export const Projects = () => {
                             title="SQL Dev"
                             description="An electron-powered app I created to assist the development process of writing SQL functions and integrating them with C#."
                         />
+                    </div>
+                    <div className={`${classes.starSection} ${condense ? classes.noParallax : classes.parallax}`} style={{ backgroundPositionY: condense ? 0 : -scrollY * 0.25 }}></div>
+                    <div style={{ display: "flex", width: "100%", alignItems: condense ? "center" : "baseline", justifyContent: "center", flexDirection: condense ? "column" : "row", gap: condense ? "2rem" : "0px" }}>
                         <ProjectElement
                             width={width}
                             circleCount={6}
