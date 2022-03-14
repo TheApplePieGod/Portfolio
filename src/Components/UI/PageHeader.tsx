@@ -1,8 +1,14 @@
 ﻿import * as React from "react";
-import { styled, Box, Typography, Tooltip, IconButton } from "@mui/material";
+import { styled, Box, Typography, Tooltip, IconButton, Button, useTheme, Grow } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import { useAppDispatch, useAppSelector } from "../../Redux/Hooks";
+import { setPageExpanded } from "../../Redux/PageExpandedSlice";
 
 export const PageHeader: React.FunctionComponent = (props) => {
+    const theme = useTheme();
+    const dispatch = useAppDispatch();
+    const expanded = useAppSelector(state => state.pageExpanded);
+
     return (
         <Box
             sx={{
@@ -34,6 +40,24 @@ export const PageHeader: React.FunctionComponent = (props) => {
                 >
                     <InfoIcon />
                 </Tooltip>
+                <Grow
+                    in={expanded}
+                    timeout={theme.transitions.duration.standard}
+                >
+                    <Button
+                        onClick={() => dispatch(setPageExpanded(false))}
+                        sx={{
+                            color: "text.primary",
+                            marginTop: "-1px",
+                            padding: "0 1% 0 10px",
+                            backgroundColor: "unset",
+                            borderRadius: 0,
+                            width: "150px"
+                        }}
+                    >
+                        {"<===== Go Back"}
+                    </Button>
+                </Grow>
             </Box>
             <Box
                 sx={{

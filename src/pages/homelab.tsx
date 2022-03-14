@@ -4,23 +4,23 @@ import { NextSeo } from "next-seo";
 import { Section } from "../Components/UI/Section";
 import { useAppSelector } from "../Redux/Hooks";
 
-const AboutPage = () => {
+const HomelabPage = () => {
     const expanded = useAppSelector(state => state.pageExpanded);
 
     return (
         <React.Fragment>
             <NextSeo
-                title="About | Evan Thompson's Portfolio"
+                title="Homelab | Evan Thompson's Portfolio"
                 openGraph={{
-                    title: "About"
+                    title: "Homelab"
                 }}
             />
             <Box>
                 <Section
-                    title="About Me"
-                    subtitle="I am a high school student with a passion for computer science"
-                    buttonText="LEARN MORE"
-                    imagePath="/images/about.jpg"
+                    title="Homelab"
+                    subtitle="Take a journey through the datacenter style services I setup inside my own home"
+                    buttonText="TOUR"
+                    imagePath="/images/homelab.png"
                 />
                 {expanded &&
                     <Box
@@ -44,4 +44,4 @@ const AboutPage = () => {
     );
 }
 
-export default AboutPage;
+export default HomelabPage;

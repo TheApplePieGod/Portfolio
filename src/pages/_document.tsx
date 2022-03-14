@@ -15,20 +15,6 @@ class CustomDocument extends Document {
                     <link rel="preconnect" href="https://fonts.googleapis.com" />
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" /> 
                     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;700&display=swap" rel="stylesheet" />
-                    <style jsx global>
-                        {`
-                            html,
-                            body {
-                                height: 100%;
-                                width: 100%;
-                            }
-                            *,
-                            *:after,
-                            *:before {
-                                box-sizing: border-box;
-                            }
-                        `}
-                    </style>
                     {
                         // Inject MUI styles first to match with the prepend: true configuration
                         // @ts-ignore

@@ -1,6 +1,7 @@
 ﻿import * as React from "react";
 import { Box, Fade, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { NextSeo } from "next-seo";
+import { PageTitle } from "../Components/UI/PageTitle";
 
 const HomePage = () => {
     const theme = useTheme();
@@ -22,10 +23,10 @@ const HomePage = () => {
                 <Box
                     sx={{
                         position: "fixed",
-                        top: "50%",
+                        top: "50vh",
                         width: "500px",
                         ...(condense ? {
-                            left: "50%",
+                            left: "50vw",
                             transform: "translate(-50%, -50%)",
                             display: "flex",
                             alignItems: "center",
@@ -33,26 +34,16 @@ const HomePage = () => {
                             textAlign: "center"
                         } : {
                             transform: "translateY(-50%)",
-                            left: "20%"
+                            left: "20vw"
                         })
                     }}
                 >
                     <Typography variant="h1" color="textPrimary" sx={{ marginBottom: "0.25rem" }}>
                         Evan
                     </Typography>
-                    <Typography
-                        variant="h1"
-                        color="textPrimary"
-                        sx={{
-                            borderBottom: theme => `5px solid ${theme.palette.primary.main}`,
-                            marginBottom: "1rem",
-                            width: "max-content",
-                            wordWrap: "unset",
-                            lineHeight: { xs: "3.5rem", sm: "4rem", md: "4.5rem", lg: "5rem" }
-                        }}
-                    >
+                    <PageTitle>
                         Thompson
-                    </Typography>
+                    </PageTitle>
                     <Typography variant="h5" color="textSecondary" sx={{ lineHeight: "40px" }}>
                         programmer
                         <br/>
