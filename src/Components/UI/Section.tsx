@@ -15,7 +15,6 @@ interface Props {
 
 export const Section: React.FunctionComponent<Props> = (props) => {
     const theme = useTheme();
-    const condense = useMediaQuery(theme.breakpoints.down("lg"));
     const expanded = useAppSelector(state => state.pageExpanded);
     const dispatch = useAppDispatch();
 
@@ -41,15 +40,10 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
-                        ...(condense ? {
-                            width: "100vw",
-                            height: "85vh",
-                            left: 0
-                        } : {
-                            left: "20vw",
-                            width: "80vw",
-                            height: "100vh"
-                        })
+                        width: { xs: "100vw", lg: "80vw" },
+                        height: { xs: "85vh", lg: "100vh" },
+                        left: { xs: 0, lg: "20vw" },
+                        pointerEvents: "none"
                     }}
                 >
                     <Box
@@ -67,65 +61,82 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                             timeout={theme.transitions.duration.standard}
                         >
                             {expandedState => (
-                                <Box
-                                    sx={{
-                                        width: { xs: "500px", lg: "100%" },
-                                        position: "relative",
-                                        zIndex: -3,
-                                        "& span:nth-of-type(1)": {
-                                            transition: theme => theme.transitions.create('border-radius', {
-                                                easing: theme.transitions.easing.sharp,
-                                                duration: theme.transitions.duration.standard
-                                            })
-                                        },
-                                        transition: theme => theme.transitions.create(['margin', 'height', 'border-radius', 'max-width'], {
-                                            easing: theme.transitions.easing.sharp,
-                                            duration: theme.transitions.duration.standard
-                                        }),
-                                        ...({
-                                            entering: {
-                                                margin: { xs: "0 0 20px 0", lg: "0 8% 0 2%" },
-                                                height: { xs: "25%", lg: "67%" },
-                                                maxWidth: { xs: "75%", lg: "100%" },
-                                                "& span:first-of-type": {
-                                                    borderRadius: { xs: "50px", lg: "100px" },
-                                                }
-                                            },
-                                            entered: {
-                                                margin: { xs: "0 0 20px 0", lg: "0 0 0 2%" },
-                                                height: { xs: "25%", lg: "100%" },
-                                                maxWidth: { xs: "75%", lg: "100%" },
-                                                "& span:first-of-type": {
-                                                    borderRadius: { xs: "50px", lg: 0 }
-                                                }
-                                            },
-                                            exiting: {
-                                                margin: { xs: "0 0 20px 0", lg: "0 0 0 2%" },
-                                                height: { xs: "25%", lg: "100%" },
-                                                maxWidth: { xs: "75%", lg: "100%" },
-                                                "& span:first-of-type": {
-                                                    borderRadius: { xs: "50px", lg: 0 }
-                                                }
-                                            },
-                                            exited: {
-                                                margin: { xs: "0 0 20px 0", lg: "0 8% 0 2%" },
-                                                height: { xs: "25%", lg: "67%" },
-                                                maxWidth: { xs: "75%", lg: "100%" },
-                                                "& span:first-of-type": {
-                                                    borderRadius: { xs: "50px", lg: "100px" },
-                                                }
-                                            },
-                                            unmounted: {}
-                                        }[expandedState])
-                                    }}>
-                                    <Image
-                                        src={props.imagePath}
-                                        alt={props.title}
-                                        layout="fill"
-                                        objectFit="cover"
-                                        priority
-                                    />
-                                </Box>
+                                <Transition
+                                    in={true}
+                                    timeout={{ appear: 100, enter: theme.transitions.duration.standard}}
+                                    appear
+                                >
+                                    {loadState => (
+                                        <Box
+                                            sx={{
+                                                width: { xs: "500px", lg: "100%" },
+                                                position: "relative",
+                                                "& span:nth-of-type(1)": {
+                                                    transition: theme => theme.transitions.create('border-radius', {
+                                                        easing: theme.transitions.easing.sharp,
+                                                        duration: theme.transitions.duration.standard
+                                                    })
+                                                },
+                                                transition: theme => theme.transitions.create(['margin', 'height', 'border-radius', 'max-width'], {
+                                                    easing: theme.transitions.easing.sharp,
+                                                    duration: theme.transitions.duration.standard
+                                                }) + "," + theme.transitions.create('clip-path', {
+                                                    easing: theme.transitions.easing.sharp,
+                                                    duration: theme.transitions.duration.shortest
+                                                }),
+                                                ...({
+                                                    entering: {
+                                                        margin: { xs: "0 0 20px 0", lg: "0 8% 0 2%" },
+                                                        height: { xs: "25%", sm: "40%", lg: "67%" },
+                                                        maxWidth: { xs: "75%", lg: "100%" },
+                                                        "& span:first-of-type": {
+                                                            borderRadius: { xs: "50px", lg: "100px" },
+                                                        }
+                                                    },
+                                                    entered: {
+                                                        margin: { xs: "0 0 20px 0", lg: "0 0 0 2%" },
+                                                        height: { xs: "25%", sm: "40%", lg: "100%" },
+                                                        maxWidth: { xs: "75%", lg: "100%" },
+                                                        "& span:first-of-type": {
+                                                            borderRadius: { xs: "50px", lg: 0 }
+                                                        }
+                                                    },
+                                                    exiting: {
+                                                        margin: { xs: "0 0 20px 0", lg: "0 0 0 2%" },
+                                                        height: { xs: "25%", sm: "40%", lg: "100%" },
+                                                        maxWidth: { xs: "75%", lg: "100%" },
+                                                        "& span:first-of-type": {
+                                                            borderRadius: { xs: "50px", lg: 0 }
+                                                        }
+                                                    },
+                                                    exited: {
+                                                        margin: { xs: "0 0 20px 0", lg: "0 8% 0 2%" },
+                                                        height: { xs: "25%", sm: "40%", lg: "67%" },
+                                                        maxWidth: { xs: "75%", lg: "100%" },
+                                                        "& span:first-of-type": {
+                                                            borderRadius: { xs: "50px", lg: "100px" },
+                                                        }
+                                                    },
+                                                    unmounted: {}
+                                                }[expandedState]),
+                                                ...({
+                                                    entering: { clipPath: 'inset(50% 0 50% 0)' },
+                                                    entered: { clipPath: 'inset(0 0 0 0)' },
+                                                    exiting: {},
+                                                    exited: {},
+                                                    unmounted: {}
+                                                }[loadState])
+                                            }}>
+                                            <Image
+                                                src={props.imagePath}
+                                                alt={props.title}
+                                                layout="fill"
+                                                objectFit="cover"
+                                                priority
+                                            />
+                                        </Box>
+                                    )}
+                                </Transition>
                             )}
                         </Transition>
                         <Box
@@ -166,7 +177,8 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                                                     exiting: { opacity: 0.0 },
                                                     exited: { opacity: 1.0 },
                                                     unmounted: {}
-                                                }[expandedState])
+                                                }[expandedState]),
+                                                pointerEvents: "all"
                                             }}
                                             disabled={expanded}
                                             onClick={expandPage}

@@ -5,11 +5,13 @@ import memoizeOne from "memoize-one";
 declare module '@mui/material/styles' {
 	interface TypeText {
 		primaryDark: string;
+		secondaryDark: string;
 	}
 
 	// allow configuration using `createTheme`
 	interface TypeTextOptions {
 		primaryDark?: string;
+		secondaryDark?: string;
 	}
 }
 
@@ -34,7 +36,9 @@ export const createAppTheme = memoizeOne(() => {
 			},
 			text: {
 				primary: "#FEFFF5",
-				secondary: "#CECEC2"
+				secondary: "#CECEC2",
+				primaryDark: "#19181D",
+				secondaryDark: "#5B5765"
 			}
 		},
 		typography: {
@@ -57,6 +61,9 @@ export const createAppTheme = memoizeOne(() => {
 			body1: {
 				'@media (min-width:200px)': {
 					fontSize: '0.8rem',
+				},
+				'@media (min-width:600px)': {
+					fontSize: '1.0rem',
 				}
 			}
 		},

@@ -24,6 +24,7 @@ export const PageWrapper: React.FunctionComponent = (props) => {
                             height: "100vh",
                             top: 0,
                             left: 0,
+                            pointerEvents: "none",
                             backgroundImage: "url(images/background-nomoon.jpg)",
                             backgroundPosition: 'center',
                             backgroundSize: 'cover',

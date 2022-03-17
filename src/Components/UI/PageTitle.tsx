@@ -6,7 +6,7 @@ export const PageTitle = styled(p => <Typography {...p} variant="h1" />)(
         margin-bottom: 1rem;
         width: max-content;
         word-wrap: unset;
-        ${theme.breakpoints.down('xs')} {
+        ${theme.breakpoints.up('xs')} {
             line-height: 3.5rem;
         }
         ${theme.breakpoints.up('sm')} {
