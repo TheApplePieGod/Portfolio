@@ -36,7 +36,7 @@ export const PageHeader: React.FunctionComponent = (props) => {
                     leaveTouchDelay={5000}
                     arrow
                     placement="bottom"
-                    title={<Typography variant="body1">Built from scratch in React/Typescript on NextJS and deployed on Vercel</Typography>}
+                    title={<Typography variant="subtitle1">Built from scratch in React/Typescript on NextJS and deployed on Vercel</Typography>}
                 >
                     <InfoIcon />
                 </Tooltip>
