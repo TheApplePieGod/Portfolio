@@ -6,7 +6,7 @@ const StyledSection = styled("div")(
         margin: 10px 0 10px 0;
         clip-path: polygon(0 50px, 100% 0, 100% calc(100% - 50px), 0 100%);
         background-image: url(images/background-nomoon.jpg);
-        width: 100%;
+        width: 100vw;
         display: flex;
         flex-direction: column;
         align-items: center;

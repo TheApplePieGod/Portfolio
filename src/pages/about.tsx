@@ -55,7 +55,7 @@ const AboutPage = () => {
                             top: "100%"
                         }}
                     >
-                        <Typography variant="h3" color="text.primaryDark" sx={{ mt: "65px" }}>Introduction</Typography>
+                        <Typography variant="h3" color="text.primaryDark" sx={{ mt: "60px" }}>Introduction</Typography>
                         <CircleLine count={10} />
                         <Box
                             sx={{
