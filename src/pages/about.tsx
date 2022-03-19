@@ -16,7 +16,7 @@ const InterestBlock = (props: { text: string; icon: typeof SvgIcon }) => {
     return (
         <Box sx={{ width: { xs: "90%", md: "35%" } }}>
             <props.icon sx={{ width: "15vw", height: "15vw" }} />
-            <Typography variant="body1" color="textSecondary" sx={{ lineHeight: "40px" }}>
+            <Typography variant="body1" color="textSecondary">
                 {props.text}
             </Typography>
         </Box>

@@ -51,6 +51,7 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                             width: "100%",
                             height: { xs: "600px", lg: "100%" },
                             display: "flex",
+                            left: 0,
                             flexDirection: { xs: "column", lg: "row-reverse" },
                             alignItems: "center",
                             justifyContent: { xs: "center", lg: "left" }
@@ -153,12 +154,12 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                                 sx={{
                                     lineHeight: { xs: "30px", sm: "40px" },
                                     wordBreak: "break-word",
-                                    whiteSpace: "pre-wrap"
+                                    whiteSpace: "pre-wrap",
+                                    marginBottom: "1rem"
                                 }}
                             >
                                 {props.subtitle}
                             </Typography>
-                            <br />
                             {props.buttonText != "" &&
                                 <Transition
                                     in={expanded}

@@ -61,9 +61,11 @@ export const createAppTheme = memoizeOne(() => {
 			body1: {
 				'@media (min-width:200px)': {
 					fontSize: '0.8rem',
+					lineHeight: "30px"
 				},
 				'@media (min-width:600px)': {
 					fontSize: '1.0rem',
+					lineHeight: "40px"
 				}
 			}
 		},

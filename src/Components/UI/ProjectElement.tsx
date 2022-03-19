@@ -51,13 +51,13 @@ const _ProjectElement: React.FunctionComponent<Props> = (props) => {
                         <Image src={`/images/projects/${props.imageName}`} alt={props.title} layout="fill" objectFit="cover" />
                     </Box>
                 }
-                <Typography variant="body1" color="text.secondaryDark" sx={{ lineHeight: "40px", margin: "10px 0 10px 0" }}>{props.description}</Typography>
+                <Typography variant="body1" color="text.secondaryDark" sx={{ margin: "10px 0 10px 0" }}>{props.description}</Typography>
                 <Button onClick={() => setOpen(true)} variant="contained" color="primary" size="small">SEE MORE</Button>
             </Grid>
             <Dialog open={open} onClose={() => setOpen(false)} PaperProps={{ sx: { backgroundColor: "text.primary" } }}>
                 <DialogTitle color="text.primaryDark">{props.title}</DialogTitle>
                 <DialogContent>
-                    <Typography variant="body1" color="text.secondaryDark" sx={{ lineHeight: "40px", margin: "10px 0 10px 0" }}>
+                    <Typography variant="body1" color="text.secondaryDark" sx={{ margin: "10px 0 10px 0" }}>
                         {props.type != "" && <><b>Type:</b> {props.type} <br /></>}
                         {props.languages != "" && <><b>Focuses:</b> {props.languages} <br /></>}
                         {props.screenshotPaths.length > 0 && <><b>Screenshots:</b>  <br /></> }
