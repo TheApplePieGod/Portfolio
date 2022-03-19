@@ -17,7 +17,7 @@ export default {
                 width: 1200,
                 height: 600,
                 alt: "Portfolio background image",
-                type: "image/jpg",
+                type: "image/png",
             },
         ],
         site_name: SITE_NAME
