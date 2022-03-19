@@ -2,13 +2,13 @@
 import { Box, Divider, Typography } from "@mui/material";
 import { NextSeo } from "next-seo";
 
-const NotFoundPage = () => {
+const ErrorPage = () => {
     return (
         <React.Fragment>
             <NextSeo
-                title="404 | Evan Thompson's Portfolio"
+                title="500 | Evan Thompson's Portfolio"
                 openGraph={{
-                    title: "Page Not Found"
+                    title: "Server Error"
                 }}
             />
             <Box
@@ -21,11 +21,11 @@ const NotFoundPage = () => {
                     paddingTop: "6rem"
                 }}
             >
-                <Typography variant="h2">404</Typography>
-                <Typography variant="subtitle1">Cannot find the page you are looking for.</Typography>
+                <Typography variant="h2">500</Typography>
+                <Typography variant="subtitle1">An internal server error has occured.</Typography>
             </Box>
         </React.Fragment>
     );
 }
 
-export default NotFoundPage;
+export default ErrorPage;

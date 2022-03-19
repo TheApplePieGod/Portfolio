@@ -13,11 +13,11 @@ export default {
         description: DESCRIPTION,
         images: [
             {
-                url: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffc09.deviantart.net%2Ffs71%2Fi%2F2010%2F218%2F5%2Ff%2FGeneric_Background_by_transylvaniandreams.png&f=1&nofb=1",
-                width: 900,
-                height: 504,
-                alt: "Generic background image",
-                type: "image/png",
+                url: "https://i.ibb.co/qdR0t7j/background-moon.jpg",
+                width: 1920,
+                height: 1080,
+                alt: "Portfolio background image",
+                type: "image/jpg",
             },
         ],
         site_name: SITE_NAME

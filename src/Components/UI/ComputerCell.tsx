@@ -21,7 +21,7 @@ const ComputerVent = styled("div")(
     `
 );
 
-const ComputerExtras = React.memo(() => {
+const ComputerExtras: React.FunctionComponent = () => {
     const [colors, setColors] = React.useState([
         "radial-gradient(circle, rgba(255,213,213,1) 0%, rgba(254,150,150,1) 3%, rgba(252,0,0,1) 100%)",
         "radial-gradient(circle, rgba(213,255,215,1) 0%, rgba(150,254,151,1) 3%, rgba(90,252,0,1) 100%)",
@@ -76,8 +76,8 @@ const ComputerExtras = React.memo(() => {
                     opacity: "0.3"
                 }}
             >
-                <img src="images/port1.svg" width={70} height={70} />
-                <img src="images/port2.svg" width={100} height={100} />
+                <Image src="/images/port1.svg" alt="" width={70} height={70} />
+                <Image src="/images/port2.svg" alt="" width={100} height={100} />
             </Box>
             <Box
                 sx={{
@@ -93,7 +93,7 @@ const ComputerExtras = React.memo(() => {
             </Box>
         </React.Fragment>
     );
-});
+}
 
 interface ContentImage {
     path: string;

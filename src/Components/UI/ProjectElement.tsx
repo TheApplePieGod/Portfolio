@@ -43,7 +43,7 @@ const _ProjectElement: React.FunctionComponent<Props> = (props) => {
                             height: { xs: 150, sm: 250, md: 250, lg: 250 },
                             position: "relative",
                             marginTop: "10px",
-                            "& :first-child": {
+                            "& span:first-of-type": {
                                 borderRadius: "20px"
                             }
                         }}

@@ -13,8 +13,10 @@ const ContactPage = () => {
         <React.Fragment>
             <NextSeo
                 title="Contact | Evan Thompson's Portfolio"
+                description="Contact information to help you reach out to me"
                 openGraph={{
-                    title: "Contact"
+                    title: "Contact",
+                    description: "Contact information to help you reach out to me"
                 }}
             />
             <Box>
@@ -31,10 +33,10 @@ const ContactPage = () => {
                             gap: "0.5rem",
                         }}
                     >
-                        <IconButton aria-label="mail" href="mailto:evant.002@gmail.com" sx={{ padding: 0 }}>
+                        <IconButton href="mailto:evant.002@gmail.com" sx={{ padding: 0 }}>
                             <MailOutlineIcon sx={{ fontSize: "40px", color: theme => theme.palette.text.primary }} />
                         </IconButton>
-                        <IconButton aria-label="twitter" href="https://twitter.com/TheApplePieGod" target="_blank" sx={{ padding: 0 }}>
+                        <IconButton href="https://twitter.com/TheApplePieGod" target="_blank" sx={{ padding: 0 }}>
                             <TwitterIcon sx={{ fontSize: "40px", color: theme => theme.palette.text.primary }} />
                         </IconButton>
                     </Box>

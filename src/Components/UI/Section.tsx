@@ -24,7 +24,7 @@ export const Section: React.FunctionComponent<Props> = (props) => {
 
     React.useEffect(() => {
         return () => { dispatch(setPageExpanded(false)); }
-    }, [])
+    }, [dispatch])
 
     return (
         <React.Fragment>

@@ -16,8 +16,10 @@ const HomelabPage = () => {
         <React.Fragment>
             <NextSeo
                 title="Homelab | Evan Thompson's Portfolio"
+                description="An overview of the datacenter style services I setup inside my own home"
                 openGraph={{
-                    title: "Homelab"
+                    title: "Homelab",
+                    description: "An overview of the datacenter style services I setup inside my own home"
                 }}
             />
             <Box>

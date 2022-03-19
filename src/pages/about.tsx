@@ -30,8 +30,10 @@ const AboutPage = () => {
         <React.Fragment>
             <NextSeo
                 title="About | Evan Thompson's Portfolio"
+                description="I am a high school student with a passion for computer science"
                 openGraph={{
-                    title: "About"
+                    title: "About",
+                    description: "I am a high school student with a passion for computer science"
                 }}
             />
             <Box>
@@ -113,7 +115,7 @@ const AboutPage = () => {
                                     icon={CodeIcon}
                                 />
                                 <InterestBlock
-                                    text="Designing systems and models is always a daunting task when presented, but I love doing it and have done it countless times. Graphical design is not my strong suit, but I am learning"
+                                    text="Designing systems and models is always a daunting task when presented, but I love doing it and have done it countless times. Graphical design is not my strong suit, but I am always improving"
                                     icon={CategoryIcon}
                                 />
                             </Box>

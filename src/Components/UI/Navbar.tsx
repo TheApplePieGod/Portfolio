@@ -51,12 +51,12 @@ export const Navbar: React.FunctionComponent = (props) => {
     const expanded = useAppSelector(state => state.pageExpanded);
     const [scrollDisabled, setScrollDisabled] = React.useState(false);
 
-    const isRouteSelected = (route: string, exact: boolean) => {
+    const isRouteSelected = React.useCallback((route: string, exact: boolean) => {
         return exact ? route == router.pathname : router.pathname.startsWith(route);
-    }
+    }, [router]);
 
     // + up, - down
-    const onScroll = (e: WheelEvent) => {
+    const onScroll = React.useCallback((e: WheelEvent) => {
         if (Math.abs(e.deltaY) < 3) return;
 
         const currentRouteIndex = NAV_ROUTES.findIndex(e => isRouteSelected(e.route, e.exact));
@@ -69,7 +69,7 @@ export const Navbar: React.FunctionComponent = (props) => {
 
         setScrollDisabled(true);
         setTimeout(() => setScrollDisabled(false), 200);
-    }
+    }, [router, isRouteSelected]);
 
     React.useEffect(() => {
         if (!expanded && !scrollDisabled) {
@@ -78,7 +78,7 @@ export const Navbar: React.FunctionComponent = (props) => {
                 window.removeEventListener("wheel", onScroll);
             }
         }
-    }, [expanded, router, scrollDisabled]);
+    }, [expanded, onScroll, scrollDisabled]);
 
     return (
         <nav aria-label="main">
@@ -95,15 +95,15 @@ export const Navbar: React.FunctionComponent = (props) => {
                     paddingInline: "unset",
                     ...(condense ? {
                         bottom: 0,
-                        width: "100%",
+                        width: "100vw",
                         height: { xs: 50, sm: 60 },
                         flexDirection: "row"
                     } : {
                         top: 0,
-                        height: "100%",
+                        height: "100vh",
                         width: "max-content",
                         flexDirection: "column",
-                        marginLeft: "2%"
+                        marginLeft: "2vw"
                     })
                 }}
             >
