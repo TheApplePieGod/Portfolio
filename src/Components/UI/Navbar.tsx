@@ -1,6 +1,7 @@
 ﻿import * as React from "react";
 import { Box, List, ListItem, styled, useMediaQuery, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
+import { useAppSelector } from "../../Redux/Hooks";
 
 const HiddenA = styled("a")(
     ({ theme }) => `
@@ -29,26 +30,55 @@ const NavCircle = styled(ListItem)(
     `
 );
 
+interface NavRoute {
+    route: string;
+    exact: boolean;
+    name: string;
+}
+
+const NAV_ROUTES: NavRoute[] = [
+    { route: "/", exact: true, name: "Home" },
+    { route: "/about", exact: true, name: "About" },
+    { route: "/projects", exact: true, name: "Projects" },
+    { route: "/homelab", exact: true, name: "Homelab" },
+    { route: "/contact", exact: true, name: "Contact" }
+] 
+
 export const Navbar: React.FunctionComponent = (props) => {
     const theme = useTheme();
     const router = useRouter();
     const condense = useMediaQuery(theme.breakpoints.down("lg"));
+    const expanded = useAppSelector(state => state.pageExpanded);
+    const [scrollDisabled, setScrollDisabled] = React.useState(false);
 
-    // Include the hidden 'a' element for SEO optimization
-    const renderNavItem = (route: string, exact: boolean, name: string) => {
-        const selected = exact ? route == router.pathname : router.pathname.startsWith(route);
-
-        return (
-            <NavCircle
-                onClick={() => router.push(route)}
-                sx={{
-                    backgroundColor: selected ? "text.primary" : "rgba(0,0,0,0)"
-                }}
-            >
-                <HiddenA href={route} target="_self">{name}</HiddenA>
-            </NavCircle>
-        );
+    const isRouteSelected = (route: string, exact: boolean) => {
+        return exact ? route == router.pathname : router.pathname.startsWith(route);
     }
+
+    // + up, - down
+    const onScroll = (e: WheelEvent) => {
+        if (Math.abs(e.deltaY) < 3) return;
+
+        const currentRouteIndex = NAV_ROUTES.findIndex(e => isRouteSelected(e.route, e.exact));
+        if (currentRouteIndex != -1) {
+            if (e.deltaY < 0 && currentRouteIndex > 0)
+                router.push(NAV_ROUTES[currentRouteIndex - 1].route);
+            else if (e.deltaY > 0 && currentRouteIndex < NAV_ROUTES.length - 1)
+                router.push(NAV_ROUTES[currentRouteIndex + 1].route);
+        }
+
+        setScrollDisabled(true);
+        setTimeout(() => setScrollDisabled(false), 200);
+    }
+
+    React.useEffect(() => {
+        if (!expanded && !scrollDisabled) {
+            window.addEventListener("wheel", onScroll);
+            return () => {
+                window.removeEventListener("wheel", onScroll);
+            }
+        }
+    }, [expanded, router, scrollDisabled]);
 
     return (
         <nav aria-label="main">
@@ -77,11 +107,23 @@ export const Navbar: React.FunctionComponent = (props) => {
                     })
                 }}
             >
-                {renderNavItem("/", true, "Home")}
-                {renderNavItem("/about", true, "About")}
-                {renderNavItem("/projects", true, "Projects")}
-                {renderNavItem("/homelab", true, "Homelab")}
-                {renderNavItem("/contact", true, "Contact")}
+                {
+                    NAV_ROUTES.map((e, i) => {
+                        const selected = isRouteSelected(e.route, e.exact);
+
+                        return (
+                            <NavCircle
+                                key={i}
+                                onClick={() => router.push(e.route)}
+                                sx={{
+                                    backgroundColor: selected ? "text.primary" : "rgba(0,0,0,0)"
+                                }}
+                            >
+                                <HiddenA href={e.route} target="_self">{e.name}</HiddenA>
+                            </NavCircle>
+                        );
+                    })
+                }
             </List>
         </nav>
     );
