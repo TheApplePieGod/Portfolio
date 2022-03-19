@@ -31,6 +31,7 @@ const ContactPage = () => {
                             display: "flex",
                             alignItems: "center",
                             gap: "0.5rem",
+                            pointerEvents: "all"
                         }}
                     >
                         <IconButton href="mailto:evant.002@gmail.com" sx={{ padding: 0 }}>
