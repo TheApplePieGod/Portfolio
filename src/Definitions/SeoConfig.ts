@@ -13,11 +13,11 @@ export default {
         description: DESCRIPTION,
         images: [
             {
-                url: "https://i.ibb.co/qdR0t7j/background-moon.jpg",
-                width: 1920,
-                height: 1080,
+                url: "https://i.ibb.co/PQxc91P/site-preview.png",
+                width: 1200,
+                height: 600,
                 alt: "Portfolio background image",
-                type: "image/jpg",
+                type: "image/png",
             },
         ],
         site_name: SITE_NAME
