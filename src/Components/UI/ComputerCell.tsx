@@ -1,5 +1,11 @@
 ﻿import * as React from "react";
-import { styled, Box, useTheme, useMediaQuery, Typography } from "@mui/material";
+import {
+    styled,
+    Box,
+    useTheme,
+    useMediaQuery,
+    Typography
+} from "@mui/material";
 import { CircleLine } from "./CircleLine";
 import Image from "next/image";
 import { StarrySection } from "./StarrySection";
@@ -27,27 +33,27 @@ const ComputerExtras: React.FunctionComponent = () => {
         "radial-gradient(circle, rgba(213,255,215,1) 0%, rgba(150,254,151,1) 3%, rgba(90,252,0,1) 100%)",
         "radial-gradient(circle, rgba(255,253,213,1) 0%, rgba(254,253,150,1) 3%, rgba(252,249,0,1) 100%)"
     ]);
-    const [lightCount, setLightCount] = React.useState(Math.trunc(Math.random() * 2) + 1);
+    const [lightCount, setLightCount] = React.useState(
+        Math.trunc(Math.random() * 2) + 1
+    );
 
     const mapLights = () => {
         let elements: JSX.Element[] = [];
         for (let i = 0; i < lightCount; i++) {
-            elements.push(<ComputerLight key={colors[i]} sx={{ background: colors[i] }} />);
+            elements.push(
+                <ComputerLight key={colors[i]} sx={{ background: colors[i] }} />
+            );
         }
         return elements;
-    }
+    };
 
     const ventRow = () => {
         let elements: JSX.Element[] = [];
         for (let i = 0; i < 8; i++) {
             elements.push(<ComputerVent key={i} />);
         }
-        return (
-            <Box sx={{ display: "flex", gap: "4px" }}>
-                {elements}
-            </Box>
-        )
-    }
+        return <Box sx={{ display: "flex", gap: "4px" }}>{elements}</Box>;
+    };
 
     return (
         <React.Fragment>
@@ -77,7 +83,12 @@ const ComputerExtras: React.FunctionComponent = () => {
                 }}
             >
                 <Image src="/images/port1.svg" alt="" width={70} height={70} />
-                <Image src="/images/port2.svg" alt="" width={100} height={100} />
+                <Image
+                    src="/images/port2.svg"
+                    alt=""
+                    width={100}
+                    height={100}
+                />
             </Box>
             <Box
                 sx={{
@@ -89,11 +100,11 @@ const ComputerExtras: React.FunctionComponent = () => {
                     opacity: "0.8"
                 }}
             >
-                {mapLights()}          
+                {mapLights()}
             </Box>
         </React.Fragment>
     );
-}
+};
 
 interface ContentImage {
     path: string;
@@ -111,7 +122,7 @@ interface Props {
 export const ComputerCell: React.FunctionComponent<Props> = (props) => {
     const theme = useTheme();
     const condense = useMediaQuery(theme.breakpoints.down("md"));
-    
+
     const starryEnabled = props.starry && condense;
     const lightText = starryEnabled || !condense;
 
@@ -128,17 +139,25 @@ export const ComputerCell: React.FunctionComponent<Props> = (props) => {
                         width: "calc(100% - 80px)",
                         border: `5px solid ${theme.palette.text.primaryDark}`,
                         borderRadius: "50px 50px 50px 50px",
-                        
+
                         position: "relative",
                         marginTop: "-5px"
                     })
                 }}
             >
-                <Typography variant="h3" color={lightText ? "text.primary" : "text.primaryDark"} sx={{ zIndex: 2, whiteSpace: "nowrap" }}>
+                <Typography
+                    variant="h3"
+                    color={lightText ? "text.primary" : "text.primaryDark"}
+                    sx={{ zIndex: 2, whiteSpace: "nowrap" }}
+                >
                     {props.title}
                 </Typography>
                 <CircleLine count={props.circleCount} />
-                <Typography variant="body1" color={lightText ? "text.secondary" : "text.secondaryDark"} sx={{ marginTop: "10px" }}>
+                <Typography
+                    variant="body1"
+                    color={lightText ? "text.secondary" : "text.secondaryDark"}
+                    sx={{ marginTop: "10px" }}
+                >
                     {props.content}
                 </Typography>
                 <Box
@@ -153,35 +172,48 @@ export const ComputerCell: React.FunctionComponent<Props> = (props) => {
                         width: "100%"
                     }}
                 >
-                    {
-                        props.images?.map((e, i) => (
-                            <React.Fragment key={i}>
-                                <Box
-                                    sx={{
-                                        width: "100%",
-                                        height: { xs: 200, sm: 250, md: 300, lg: 350 },
-                                        position: "relative"
-                                    }}
-                                >
-                                    <Image src={e.path} alt={e.subtitle} layout="fill" objectFit="contain" />
-                                </Box>
-                                <Typography
-                                    variant="subtitle1"
-                                    color={lightText ? "text.secondary" : "text.secondaryDark"}
-                                    sx={{
-                                        marginTop: "-0.25rem",
-                                        marginBottom: "0.75rem",
-                                        maxWidth: "80%"
-                                    }}
-                                >
-                                    <b>{e.subtitle}</b>
-                                </Typography>
-                            </React.Fragment>
-                        ))
-                    }
+                    {props.images?.map((e, i) => (
+                        <React.Fragment key={i}>
+                            <Box
+                                sx={{
+                                    width: "100%",
+                                    height: {
+                                        xs: 200,
+                                        sm: 250,
+                                        md: 300,
+                                        lg: 350
+                                    },
+                                    position: "relative"
+                                }}
+                            >
+                                <Image
+                                    src={e.path}
+                                    alt={e.subtitle}
+                                    style={{ objectFit: "contain" }}
+                                    sizes="90vw"
+                                    fill
+                                />
+                            </Box>
+                            <Typography
+                                variant="subtitle1"
+                                color={
+                                    lightText
+                                        ? "text.secondary"
+                                        : "text.secondaryDark"
+                                }
+                                sx={{
+                                    marginTop: "-0.25rem",
+                                    marginBottom: "0.75rem",
+                                    maxWidth: "80%"
+                                }}
+                            >
+                                <b>{e.subtitle}</b>
+                            </Typography>
+                        </React.Fragment>
+                    ))}
                 </Box>
                 {!condense && <ComputerExtras />}
             </Box>
         </StarrySection>
     );
-}
+};

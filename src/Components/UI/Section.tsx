@@ -1,5 +1,14 @@
 ﻿import * as React from "react";
-import { styled, Box, Fade, useTheme, useMediaQuery, Typography, Button, Slide } from "@mui/material";
+import {
+    styled,
+    Box,
+    Fade,
+    useTheme,
+    useMediaQuery,
+    Typography,
+    Button,
+    Slide
+} from "@mui/material";
 import { PageTitle } from "./PageTitle";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "../../Redux/Hooks";
@@ -15,16 +24,18 @@ interface Props {
 
 export const Section: React.FunctionComponent<Props> = (props) => {
     const theme = useTheme();
-    const expanded = useAppSelector(state => state.pageExpanded);
+    const expanded = useAppSelector((state) => state.pageExpanded);
     const dispatch = useAppDispatch();
 
     const expandPage = () => {
         dispatch(setPageExpanded(true));
-    }
+    };
 
     React.useEffect(() => {
-        return () => { dispatch(setPageExpanded(false)); }
-    }, [dispatch])
+        return () => {
+            dispatch(setPageExpanded(false));
+        };
+    }, [dispatch]);
 
     return (
         <React.Fragment>
@@ -61,78 +72,182 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                             in={expanded}
                             timeout={theme.transitions.duration.standard}
                         >
-                            {expandedState => (
+                            {(expandedState) => (
                                 <Transition
                                     in={true}
-                                    timeout={{ appear: 100, enter: theme.transitions.duration.standard}}
+                                    timeout={{
+                                        appear: 100,
+                                        enter: theme.transitions.duration
+                                            .standard
+                                    }}
                                     appear
                                 >
-                                    {loadState => (
+                                    {(loadState) => (
                                         <Box
                                             sx={{
-                                                width: { xs: "500px", lg: "100%" },
-                                                position: "relative",
-                                                "& span:nth-of-type(1)": {
-                                                    transition: theme => theme.transitions.create('border-radius', {
-                                                        easing: theme.transitions.easing.sharp,
-                                                        duration: theme.transitions.duration.standard
-                                                    })
+                                                width: {
+                                                    xs: "500px",
+                                                    lg: "100%"
                                                 },
-                                                transition: theme => theme.transitions.create(['margin', 'height', 'border-radius', 'max-width'], {
-                                                    easing: theme.transitions.easing.sharp,
-                                                    duration: theme.transitions.duration.standard
-                                                }) + "," + theme.transitions.create('clip-path', {
-                                                    easing: theme.transitions.easing.sharp,
-                                                    duration: theme.transitions.duration.shortest
-                                                }),
-                                                ...({
+                                                position: "relative",
+                                                "& img:nth-of-type(1)": {
+                                                    transition: (theme) =>
+                                                        theme.transitions.create(
+                                                            "border-radius",
+                                                            {
+                                                                easing: theme
+                                                                    .transitions
+                                                                    .easing
+                                                                    .sharp,
+                                                                duration:
+                                                                    theme
+                                                                        .transitions
+                                                                        .duration
+                                                                        .standard
+                                                            }
+                                                        )
+                                                },
+                                                transition: (theme) =>
+                                                    theme.transitions.create(
+                                                        [
+                                                            "margin",
+                                                            "height",
+                                                            "border-radius",
+                                                            "max-width"
+                                                        ],
+                                                        {
+                                                            easing: theme
+                                                                .transitions
+                                                                .easing.sharp,
+                                                            duration:
+                                                                theme
+                                                                    .transitions
+                                                                    .duration
+                                                                    .standard
+                                                        }
+                                                    ) +
+                                                    "," +
+                                                    theme.transitions.create(
+                                                        "clip-path",
+                                                        {
+                                                            easing: theme
+                                                                .transitions
+                                                                .easing.sharp,
+                                                            duration:
+                                                                theme
+                                                                    .transitions
+                                                                    .duration
+                                                                    .shortest
+                                                        }
+                                                    ),
+                                                ...{
                                                     entering: {
-                                                        margin: { xs: "0 0 20px 0", lg: "0 8% 0 2%" },
-                                                        height: { xs: "25%", sm: "40%", lg: "67%" },
-                                                        maxWidth: { xs: "75%", lg: "100%" },
-                                                        "& span:first-of-type": {
-                                                            borderRadius: { xs: "50px", lg: "100px" },
+                                                        margin: {
+                                                            xs: "0 0 20px 0",
+                                                            lg: "0 8% 0 2%"
+                                                        },
+                                                        height: {
+                                                            xs: "25%",
+                                                            sm: "40%",
+                                                            lg: "67%"
+                                                        },
+                                                        maxWidth: {
+                                                            xs: "75%",
+                                                            lg: "100%"
+                                                        },
+                                                        "& img:first-of-type": {
+                                                            borderRadius: {
+                                                                xs: "50px",
+                                                                lg: "100px"
+                                                            }
                                                         }
                                                     },
                                                     entered: {
-                                                        margin: { xs: "0 0 20px 0", lg: "0 0 0 2%" },
-                                                        height: { xs: "25%", sm: "40%", lg: "100%" },
-                                                        maxWidth: { xs: "75%", lg: "100%" },
-                                                        "& span:first-of-type": {
-                                                            borderRadius: { xs: "50px", lg: 0 }
+                                                        margin: {
+                                                            xs: "0 0 20px 0",
+                                                            lg: "0 0 0 2%"
+                                                        },
+                                                        height: {
+                                                            xs: "25%",
+                                                            sm: "40%",
+                                                            lg: "100%"
+                                                        },
+                                                        maxWidth: {
+                                                            xs: "75%",
+                                                            lg: "100%"
+                                                        },
+                                                        "& img:first-of-type": {
+                                                            borderRadius: {
+                                                                xs: "50px",
+                                                                lg: 0
+                                                            }
                                                         }
                                                     },
                                                     exiting: {
-                                                        margin: { xs: "0 0 20px 0", lg: "0 0 0 2%" },
-                                                        height: { xs: "25%", sm: "40%", lg: "100%" },
-                                                        maxWidth: { xs: "75%", lg: "100%" },
-                                                        "& span:first-of-type": {
-                                                            borderRadius: { xs: "50px", lg: 0 }
+                                                        margin: {
+                                                            xs: "0 0 20px 0",
+                                                            lg: "0 0 0 2%"
+                                                        },
+                                                        height: {
+                                                            xs: "25%",
+                                                            sm: "40%",
+                                                            lg: "100%"
+                                                        },
+                                                        maxWidth: {
+                                                            xs: "75%",
+                                                            lg: "100%"
+                                                        },
+                                                        "& img:first-of-type": {
+                                                            borderRadius: {
+                                                                xs: "50px",
+                                                                lg: 0
+                                                            }
                                                         }
                                                     },
                                                     exited: {
-                                                        margin: { xs: "0 0 20px 0", lg: "0 8% 0 2%" },
-                                                        height: { xs: "25%", sm: "40%", lg: "67%" },
-                                                        maxWidth: { xs: "75%", lg: "100%" },
-                                                        "& span:first-of-type": {
-                                                            borderRadius: { xs: "50px", lg: "100px" },
+                                                        margin: {
+                                                            xs: "0 0 20px 0",
+                                                            lg: "0 8% 0 2%"
+                                                        },
+                                                        height: {
+                                                            xs: "25%",
+                                                            sm: "40%",
+                                                            lg: "67%"
+                                                        },
+                                                        maxWidth: {
+                                                            xs: "75%",
+                                                            lg: "100%"
+                                                        },
+                                                        "& img:first-of-type": {
+                                                            borderRadius: {
+                                                                xs: "50px",
+                                                                lg: "100px"
+                                                            }
                                                         }
                                                     },
                                                     unmounted: {}
-                                                }[expandedState]),
-                                                ...({
-                                                    entering: { clipPath: 'inset(50% 0 50% 0)' },
-                                                    entered: { clipPath: 'inset(0 0 0 0)' },
+                                                }[expandedState],
+                                                ...{
+                                                    entering: {
+                                                        clipPath:
+                                                            "inset(50% 0 50% 0)"
+                                                    },
+                                                    entered: {
+                                                        clipPath:
+                                                            "inset(0 0 0 0)"
+                                                    },
                                                     exiting: {},
                                                     exited: {},
                                                     unmounted: {}
-                                                }[loadState])
-                                            }}>
+                                                }[loadState]
+                                            }}
+                                        >
                                             <Image
                                                 src={props.imagePath}
                                                 alt={props.title}
-                                                layout="fill"
-                                                objectFit="cover"
+                                                style={{ objectFit: "cover" }}
+                                                sizes="50vw"
+                                                fill
                                                 priority
                                             />
                                         </Box>
@@ -160,25 +275,43 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                             >
                                 {props.subtitle}
                             </Typography>
-                            {props.buttonText != "" &&
+                            {props.buttonText != "" && (
                                 <Transition
                                     in={expanded}
-                                    timeout={theme.transitions.duration.standard}
+                                    timeout={
+                                        theme.transitions.duration.standard
+                                    }
                                 >
-                                    {expandedState => (
+                                    {(expandedState) => (
                                         <Button
                                             sx={{
-                                                transition: theme => theme.transitions.create(['background-color', 'box-shadow', 'border-color', 'color', 'opacity'], {
-                                                    easing: theme.transitions.easing.sharp,
-                                                    duration: theme.transitions.duration.standard
-                                                }),
-                                                ...({
+                                                transition: (theme) =>
+                                                    theme.transitions.create(
+                                                        [
+                                                            "background-color",
+                                                            "box-shadow",
+                                                            "border-color",
+                                                            "color",
+                                                            "opacity"
+                                                        ],
+                                                        {
+                                                            easing: theme
+                                                                .transitions
+                                                                .easing.sharp,
+                                                            duration:
+                                                                theme
+                                                                    .transitions
+                                                                    .duration
+                                                                    .standard
+                                                        }
+                                                    ),
+                                                ...{
                                                     entering: { opacity: 1.0 },
                                                     entered: { opacity: 0.0 },
                                                     exiting: { opacity: 0.0 },
                                                     exited: { opacity: 1.0 },
                                                     unmounted: {}
-                                                }[expandedState]),
+                                                }[expandedState],
                                                 pointerEvents: "all"
                                             }}
                                             disabled={expanded}
@@ -191,7 +324,7 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                                         </Button>
                                     )}
                                 </Transition>
-                            }
+                            )}
                             {props.children}
                         </Box>
                     </Box>
@@ -207,7 +340,11 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                 <Box
                     sx={{
                         position: "absolute",
-                        top: { xs: "calc(100% - 75px)", sm: "calc(100% - 105px)", md: "calc(100% - 115px)" },
+                        top: {
+                            xs: "calc(100% - 75px)",
+                            sm: "calc(100% - 105px)",
+                            md: "calc(100% - 115px)"
+                        },
                         marginLeft: { xs: 0, sm: "-8px" },
                         left: 0
                     }}
@@ -220,4 +357,4 @@ export const Section: React.FunctionComponent<Props> = (props) => {
             </Slide>
         </React.Fragment>
     );
-}
+};

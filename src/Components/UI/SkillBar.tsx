@@ -19,7 +19,7 @@ export const SkillBar: React.FunctionComponent<Props> = (props) => {
             sx={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "center"
             }}
         >
             <Box
@@ -30,14 +30,35 @@ export const SkillBar: React.FunctionComponent<Props> = (props) => {
                     marginRight: "0.5rem"
                 }}
             >
-                <Image src={props.iconPath} alt={props.iconAlt} layout="fill" />
+                <Image
+                    src={props.iconPath}
+                    alt={props.iconAlt}
+                    fill
+                    sizes="70px"
+                />
             </Box>
             <Box sx={{ width: "100%" }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                    <Typography variant="h4" color="text.primaryDark">{props.skillName}</Typography>
-                    <Box sx={{ display: "flex", gap: { xs: "0.75rem", sm: "1rem" }, alignItems: "center" }}>
-                        <Typography variant="body1" color="text.secondaryDark">{`${props.yearCount} yr${props.yearCount != 1 ? 's' : ''}`}</Typography>
-                        <Typography variant="h4" color="text.primaryDark">{`${props.percentage}%`}</Typography>
+                    <Typography variant="h4" color="text.primaryDark">
+                        {props.skillName}
+                    </Typography>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            gap: { xs: "0.75rem", sm: "1rem" },
+                            alignItems: "center"
+                        }}
+                    >
+                        <Typography
+                            variant="body1"
+                            color="text.secondaryDark"
+                        >{`${props.yearCount} yr${
+                            props.yearCount != 1 ? "s" : ""
+                        }`}</Typography>
+                        <Typography
+                            variant="h4"
+                            color="text.primaryDark"
+                        >{`${props.percentage}%`}</Typography>
                     </Box>
                 </Box>
                 <LinearProgress
@@ -55,4 +76,4 @@ export const SkillBar: React.FunctionComponent<Props> = (props) => {
             </Box>
         </Grid>
     );
-}
+};

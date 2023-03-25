@@ -7,11 +7,15 @@ import { ProjectElement } from "../Components/UI/ProjectElement";
 import { StarrySection } from "../Components/UI/StarrySection";
 
 const ProjectsPage = () => {
-    const expanded = useAppSelector(state => state.pageExpanded);
+    const expanded = useAppSelector((state) => state.pageExpanded);
 
     const renderStarrySection = (key?: string) => {
-        return <Grid item xs={12} key={key}><StarrySection /></Grid>
-    }
+        return (
+            <Grid item xs={12} key={key}>
+                <StarrySection />
+            </Grid>
+        );
+    };
 
     const renderProjects = () => {
         const elements: React.ReactNode[] = [
@@ -174,13 +178,11 @@ const ProjectsPage = () => {
         ];
 
         for (let i = 3; i < elements.length; i += 4) {
-            elements.splice(
-                i, 0, renderStarrySection(`starry${i}`)
-            );
+            elements.splice(i, 0, renderStarrySection(`starry${i}`));
         }
 
         return elements;
-    }
+    };
 
     return (
         <React.Fragment>
@@ -189,7 +191,8 @@ const ProjectsPage = () => {
                 description="Some notable projects that I have created and been involved with over the years"
                 openGraph={{
                     title: "Projects",
-                    description: "Some notable projects that I have created and been involved with over the years"
+                    description:
+                        "Some notable projects that I have created and been involved with over the years"
                 }}
             />
             <Box>
@@ -199,7 +202,7 @@ const ProjectsPage = () => {
                     buttonText="EXPLORE"
                     imagePath="/images/projects.jpg"
                 />
-                {expanded &&
+                {expanded && (
                     <Box
                         sx={{
                             backgroundColor: "text.primary",
@@ -214,7 +217,13 @@ const ProjectsPage = () => {
                             paddingTop: "60px"
                         }}
                     >
-                        <Grid container spacing={{ xs: 6, sm: 6, md: 4 }} columnSpacing={6} columns={12} sx={{ justifyContent: "center" }}>
+                        <Grid
+                            container
+                            spacing={{ xs: 6, sm: 6, md: 4 }}
+                            columnSpacing={6}
+                            columns={12}
+                            sx={{ justifyContent: "center" }}
+                        >
                             <ProjectElement
                                 fullWidth
                                 circleCount={10}
@@ -232,12 +241,12 @@ const ProjectsPage = () => {
                         </Grid>
 
                         {/* Spacer */}
-                        <Box sx={{ height: "150px" }}/>
+                        <Box sx={{ height: "150px" }} />
                     </Box>
-                }
+                )}
             </Box>
         </React.Fragment>
     );
-}
+};
 
 export default ProjectsPage;
