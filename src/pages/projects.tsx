@@ -235,7 +235,8 @@ const ProjectsPage = () => {
                         sx={{
                             position: "absolute",
                             width: "100vw",
-                            top: "100%"
+                            top: "100%",
+                            left: 0
                         }}
                     >
                         <StarrySection>

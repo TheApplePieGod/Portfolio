@@ -264,10 +264,11 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                         >
                             <PageTitle>{props.title}</PageTitle>
                             <Typography
-                                variant="h5"
+                                variant="body1"
                                 color="textSecondary"
                                 sx={{
                                     lineHeight: { xs: "30px", sm: "40px" },
+                                    fontSize: { xs: "1.2rem", sm: "1.5rem" },
                                     wordBreak: "break-word",
                                     whiteSpace: "pre-wrap",
                                     marginBottom: "1rem"
@@ -341,17 +342,31 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                     sx={{
                         position: "absolute",
                         top: {
-                            xs: "calc(100% - 75px)",
-                            sm: "calc(100% - 105px)",
-                            md: "calc(100% - 115px)"
+                            xs: "calc(100% - 80px)",
+                            sm: "calc(100% - 95px)"
                         },
-                        marginLeft: { xs: 0, sm: "-8px" },
+                        marginLeft: "-8px",
                         left: 0
                     }}
                 >
-                    <Box sx={{ transform: "rotate(-90deg)" }}>
+                    <Box
+                        sx={{
+                            transform: "rotate(-90deg)",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center"
+                        }}
+                    >
                         <Typography variant="h4">Scroll</Typography>
-                        <Typography variant="h4">{"<====="}</Typography>
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                lineHeight: "2rem",
+                                fontSize: { xs: "3.5rem", sm: "4rem" }
+                            }}
+                        >
+                            {"⟵"}
+                        </Typography>
                     </Box>
                 </Box>
             </Slide>

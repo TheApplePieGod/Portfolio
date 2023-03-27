@@ -63,24 +63,24 @@ export const createAppTheme = memoizeOne(() => {
             fontFamily: bodyFontFamily.style.fontFamily,
             h1: {
                 fontFamily: headerFontFamily.style.fontFamily,
-                "@media (min-width:0px)": {
-                    fontSize: "2.0rem"
+                "@media (max-width:600px)": {
+                    fontSize: "2.5rem"
                 },
-                "@media (min-width:200px)": {
-                    fontSize: "4.0rem"
-                }
+                fontSize: "4.0rem"
             },
             h3: {
                 fontFamily: headerFontFamily.style.fontFamily,
-                "@media (min-width:200px)": {
-                    fontSize: "2.25rem"
-                }
+                "@media (max-width:600px)": {
+                    fontSize: "1.7rem"
+                },
+                fontSize: "2.25rem"
             },
             h4: {
                 fontFamily: headerFontFamily.style.fontFamily,
-                "@media (min-width:200px)": {
-                    fontSize: "1.5rem"
-                }
+                "@media (max-width:600px)": {
+                    fontSize: "1.2rem"
+                },
+                fontSize: "1.5rem"
             },
             h5: {
                 "@media (min-width:0px)": {
@@ -91,18 +91,12 @@ export const createAppTheme = memoizeOne(() => {
                 }
             },
             body1: {
-                "@media (min-width:0px)": {
-                    fontSize: "0.8rem",
+                "@media (max-width:600px)": {
+                    fontSize: "0.9rem",
                     lineHeight: "30px"
                 },
-                "@media (min-width:200px)": {
-                    fontSize: "1.0rem",
-                    lineHeight: "40px"
-                },
-                "@media (min-width:600px)": {
-                    fontSize: "1.1rem",
-                    lineHeight: "30px"
-                }
+                fontSize: "1.0rem",
+                lineHeight: "40px"
             }
         },
         components: {

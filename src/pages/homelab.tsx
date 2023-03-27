@@ -1,5 +1,12 @@
 ﻿import * as React from "react";
-import { Box, Divider, styled, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+    Box,
+    Divider,
+    styled,
+    Typography,
+    useMediaQuery,
+    useTheme
+} from "@mui/material";
 import { NextSeo } from "next-seo";
 import { Section } from "../Components/UI/Section";
 import { useAppSelector } from "../Redux/Hooks";
@@ -10,7 +17,7 @@ import { CircleLine } from "../Components/UI/CircleLine";
 const HomelabPage = () => {
     const theme = useTheme();
     const condense = useMediaQuery(theme.breakpoints.down("md"));
-    const expanded = useAppSelector(state => state.pageExpanded);
+    const expanded = useAppSelector((state) => state.pageExpanded);
 
     return (
         <React.Fragment>
@@ -19,7 +26,8 @@ const HomelabPage = () => {
                 description="An overview of the datacenter style services I setup inside my own home"
                 openGraph={{
                     title: "Homelab",
-                    description: "An overview of the datacenter style services I setup inside my own home"
+                    description:
+                        "An overview of the datacenter style services I setup inside my own home"
                 }}
             />
             <Box>
@@ -29,7 +37,7 @@ const HomelabPage = () => {
                     buttonText="TOUR"
                     imagePath="/images/homelab.png"
                 />
-                {expanded &&
+                {expanded && (
                     <Box
                         sx={{
                             position: "absolute",
@@ -38,7 +46,11 @@ const HomelabPage = () => {
                             flexDirection: "column",
                             alignItems: "center",
                             top: "100%",
-                            backgroundColor: { xs: "text.primary", md: "inherit" }
+                            left: 0,
+                            backgroundColor: {
+                                xs: "text.primary",
+                                md: "inherit"
+                            }
                         }}
                     >
                         <StarrySection disabled={condense}>
@@ -51,10 +63,12 @@ const HomelabPage = () => {
                                     width: { xs: "90%", md: "80%" },
                                     marginTop: "40px",
                                     ...(!condense && {
-                                        background: "linear-gradient(90deg, rgba(44,42,48,0.95) 0%, rgba(66,63,73,0.95) 50%, rgba(44,42,48,0.95) 100%)",
+                                        background:
+                                            "linear-gradient(90deg, rgba(44,42,48,0.95) 0%, rgba(66,63,73,0.95) 50%, rgba(44,42,48,0.95) 100%)",
                                         borderRadius: "50px",
                                         padding: "20px 0 20px 0",
-                                        border: theme => `5px solid ${theme.palette.text.primaryDark}`
+                                        border: (theme) =>
+                                            `5px solid ${theme.palette.text.primaryDark}`
                                     })
                                 }}
                             >
@@ -82,7 +96,8 @@ const HomelabPage = () => {
                                     images={[
                                         {
                                             path: "/images/homelab/kubernetes1.png",
-                                            subtitle: "Virtual machines running on Alduin"
+                                            subtitle:
+                                                "Virtual machines running on Alduin"
                                         }
                                     ]}
                                 />
@@ -98,7 +113,8 @@ const HomelabPage = () => {
                                         },
                                         {
                                             path: "/images/homelab/rancher2.png",
-                                            subtitle: "Rancher list of Kubernetes nodes"
+                                            subtitle:
+                                                "Rancher list of Kubernetes nodes"
                                         },
                                         {
                                             path: "/images/homelab/longhorn1.png",
@@ -157,13 +173,13 @@ const HomelabPage = () => {
                             </Box>
 
                             {/* Spacer */}
-                            <Box sx={{ height: "100px" }}/>
+                            <Box sx={{ height: "100px" }} />
                         </StarrySection>
                     </Box>
-                }
+                )}
             </Box>
         </React.Fragment>
     );
-}
+};
 
 export default HomelabPage;
