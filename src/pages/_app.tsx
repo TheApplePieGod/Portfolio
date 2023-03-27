@@ -9,8 +9,8 @@ import { createAppTheme } from "../Styles/AppTheme";
 import { GlobalSnackbar } from "../Components/UI/GlobalSnackbar";
 import { PageWrapper } from "../Components/UI/PageWrapper";
 import { DefaultSeo } from "next-seo";
-import { store } from '../Redux/Store';
-import { Provider } from 'react-redux';
+import { store } from "../Redux/Store";
+import { Provider } from "react-redux";
 
 import SeoConfig from "../Definitions/SeoConfig";
 
@@ -20,7 +20,11 @@ const clientSideEmotionCache = createEmotionCache();
 // TODO: types for these things?
 // https://github.com/mui/material-ui/blob/master/examples/nextjs/pages/_app.js
 const CustomApp = (props: any) => {
-    const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+    const {
+        Component,
+        emotionCache = clientSideEmotionCache,
+        pageProps
+    } = props;
 
     return (
         <Provider store={store}>
@@ -44,6 +48,6 @@ const CustomApp = (props: any) => {
             </CacheProvider>
         </Provider>
     );
-}
+};
 
 export default CustomApp;

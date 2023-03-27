@@ -3,9 +3,8 @@ import { Box, Divider, Grid, Typography } from "@mui/material";
 import { NextSeo } from "next-seo";
 import { Section } from "../Components/UI/Section";
 import { useAppSelector } from "../Redux/Hooks";
-import { ProjectElement } from "../Components/UI/ProjectElement2";
+import { ProjectElement } from "../Components/UI/ProjectElement";
 import { StarrySection } from "../Components/UI/StarrySection";
-import { TechIconType } from "../Components/UI/TechIcon";
 
 const ProjectsPage = () => {
     const expanded = useAppSelector((state) => state.pageExpanded);
@@ -23,13 +22,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={6}
                 type="Web app"
-                techs={[
-                    TechIconType.React,
-                    TechIconType.TS,
-                    TechIconType.HTMLCss,
-                    TechIconType.CSharp,
-                    TechIconType.SQL
-                ]}
+                languages="ReactJS, Typescript, CSS, C#, SQL"
                 screenshotPaths={[]}
                 imageName="word-arena.png"
                 link="https://wordarena.xyz/"
@@ -41,7 +34,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={4}
                 type="Library / Desktop App"
-                techs={[TechIconType.Cpp]}
+                languages="C++"
                 screenshotPaths={[]}
                 imageName="heart.png"
                 link=""
@@ -53,11 +46,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={7}
                 type="Web app"
-                techs={[
-                    TechIconType.React,
-                    TechIconType.TS,
-                    TechIconType.HTMLCss
-                ]}
+                languages="ReactJS, Typescript"
                 screenshotPaths={[]}
                 imageName="bandersnatch.png"
                 link="https://bchess.site/"
@@ -69,13 +58,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={6}
                 type="Web app"
-                techs={[
-                    TechIconType.React,
-                    TechIconType.TS,
-                    TechIconType.HTMLCss,
-                    TechIconType.CSharp,
-                    TechIconType.SQL
-                ]}
+                languages="ReactJS, Typescript, CSS, C#, SQL"
                 screenshotPaths={[]}
                 imageName="codecorner.png"
                 link="https://codecorner.azurewebsites.net/"
@@ -87,7 +70,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={4}
                 type="Desktop app"
-                techs={[TechIconType.Cpp]}
+                languages="C++"
                 screenshotPaths={[]}
                 imageName="spade.png"
                 link="https://youtu.be/ChWMxhsLzy8"
@@ -99,7 +82,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={5}
                 type="Library"
-                techs={[TechIconType.Cpp]}
+                languages="C++"
                 screenshotPaths={[]}
                 imageName="diamond.png"
                 link=""
@@ -111,7 +94,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={8}
                 type="Desktop app"
-                techs={[TechIconType.Cpp]}
+                languages="C++"
                 screenshotPaths={[]}
                 imageName="particle-simulations.png"
                 link="https://youtu.be/XhlcFXmRxI8"
@@ -123,7 +106,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={5}
                 type="Console app"
-                techs={[TechIconType.Python]}
+                languages="Python"
                 screenshotPaths={[]}
                 imageName="dropbot.png"
                 link=""
@@ -135,13 +118,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={6}
                 type="Web app"
-                techs={[
-                    TechIconType.React,
-                    TechIconType.TS,
-                    TechIconType.HTMLCss,
-                    TechIconType.CSharp,
-                    TechIconType.SQL
-                ]}
+                languages="ReactJS, CSS, Typescript, C#, SQL"
                 screenshotPaths={[]}
                 imageName="ideacloud.png"
                 link="https://ideacloud.site/"
@@ -153,7 +130,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={9}
                 type="Desktop app"
-                techs={[TechIconType.Cpp]}
+                languages="C++"
                 screenshotPaths={[]}
                 imageName="depths-of-power.png"
                 link="https://youtu.be/a-77SkG5YqQ"
@@ -165,11 +142,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={9}
                 type="Desktop app"
-                techs={[
-                    TechIconType.React,
-                    TechIconType.TS,
-                    TechIconType.HTMLCss
-                ]}
+                languages="ReactJS, CSS, Typescript"
                 screenshotPaths={[]}
                 imageName="game-manager.png"
                 link=""
@@ -181,12 +154,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={4}
                 type="Desktop app"
-                techs={[
-                    TechIconType.React,
-                    TechIconType.TS,
-                    TechIconType.HTMLCss,
-                    TechIconType.CSharp
-                ]}
+                languages="ReactJS, CSS, Typescript, SQL"
                 screenshotPaths={[]}
                 imageName="sql-dev.png"
                 link=""
@@ -198,7 +166,7 @@ const ProjectsPage = () => {
             <ProjectElement
                 circleCount={6}
                 type="Discord bot"
-                techs={[TechIconType.CSharp, TechIconType.SQL]}
+                languages="C#, SQL"
                 screenshotPaths={[]}
                 imageName="discord-bot.png"
                 link=""
@@ -208,6 +176,10 @@ const ProjectsPage = () => {
                 description="A discord bot I wrote to track user activity in my friend group's discord along with other cool features."
             />
         ];
+
+        for (let i = 3; i < elements.length; i += 4) {
+            elements.splice(i, 0, renderStarrySection(`starry${i}`));
+        }
 
         return elements;
     };
@@ -233,27 +205,43 @@ const ProjectsPage = () => {
                 {expanded && (
                     <Box
                         sx={{
+                            backgroundColor: "text.primary",
                             position: "absolute",
+                            left: 0,
                             width: "100vw",
-                            top: "100%"
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            top: "100%",
+                            paddingTop: "60px"
                         }}
                     >
-                        <StarrySection>
-                            <Box
-                                sx={{
-                                    width: "100%",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "1rem",
-                                    alignItems: "center"
-                                }}
-                            >
-                                {renderProjects()}
+                        <Grid
+                            container
+                            spacing={{ xs: 6, sm: 6, md: 4 }}
+                            columnSpacing={6}
+                            columns={12}
+                            sx={{ justifyContent: "center" }}
+                        >
+                            <ProjectElement
+                                fullWidth
+                                circleCount={10}
+                                type="Web app"
+                                languages="ReactJS, Typescript, CSS, C#, SQL, Azure"
+                                screenshotPaths={[]}
+                                imageName=""
+                                link=""
+                                github=""
+                                title="Echelon Dashboard"
+                                description="I was accepted for a professional internship with Echelon Consulting, where I focused on the full life cycle of application development for the cloud. One other intern and I built an application from the ground up, which tightly integrates with Echelon's commercial time and expense system. It allows Echelon's leadership team to view various aspects of their business in near-real time, including company utilization, individual utilization, individual project health, and client sales distribution. The application is in active use and continues to evolve."
+                            />
+                            {renderStarrySection()}
+                            {renderProjects()}
+                        </Grid>
 
-                                {/* Spacer */}
-                                <Box sx={{ height: "150px" }} />
-                            </Box>
-                        </StarrySection>
+                        {/* Spacer */}
+                        <Box sx={{ height: "150px" }} />
                     </Box>
                 )}
             </Box>

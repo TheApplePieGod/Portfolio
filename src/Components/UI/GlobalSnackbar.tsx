@@ -7,13 +7,17 @@ import { useAppDispatch, useAppSelector } from "../../Redux/Hooks";
 export const GlobalSnackbar = () => {
     const dispatch = useAppDispatch();
 
-    const [cachedStatus, setCachedStatus] = React.useState(SnackbarStatus.Closed);
+    const [cachedStatus, setCachedStatus] = React.useState(
+        SnackbarStatus.Closed
+    );
 
-    const { status, message, closeDelay } = useAppSelector(state => state.globalSnackbar);
+    const { status, message, closeDelay } = useAppSelector(
+        (state) => state.globalSnackbar
+    );
 
     const handleClose = () => {
         dispatch(closeGlobalSnackbar());
-    }
+    };
 
     let severity: any = "info";
     switch (cachedStatus) {
@@ -33,8 +37,7 @@ export const GlobalSnackbar = () => {
 
     // Cache the last non-closed status so that there are no visible artifacts when the snackbar is closing
     React.useEffect(() => {
-        if (status != SnackbarStatus.Closed)
-            setCachedStatus(status);
+        if (status != SnackbarStatus.Closed) setCachedStatus(status);
     }, [status]);
 
     return (
@@ -45,7 +48,9 @@ export const GlobalSnackbar = () => {
             }}
             open={status != SnackbarStatus.Closed}
             autoHideDuration={closeDelay}
-            onClose={(e, reason) => { if (reason != "clickaway") handleClose(); }}
+            onClose={(e, reason) => {
+                if (reason != "clickaway") handleClose();
+            }}
         >
             <Alert
                 onClose={handleClose}
@@ -57,4 +62,4 @@ export const GlobalSnackbar = () => {
             </Alert>
         </Snackbar>
     );
-}
+};

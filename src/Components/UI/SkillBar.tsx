@@ -1,13 +1,12 @@
 ﻿import * as React from "react";
-import { styled, Box, LinearProgress, Typography, Grid } from "@mui/material";
-import Image from "next/image";
+import { Box, LinearProgress, Typography, Grid } from "@mui/material";
+import { TechIcon, TechIconType } from "./TechIcon";
 
 interface Props {
     percentage: number;
     skillName: string;
     yearCount: number;
-    iconPath: string;
-    iconAlt: string;
+    iconType: TechIconType;
 }
 
 export const SkillBar: React.FunctionComponent<Props> = (props) => {
@@ -19,24 +18,11 @@ export const SkillBar: React.FunctionComponent<Props> = (props) => {
             sx={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center"
+                justifyContent: "center",
+                gap: "0.5rem"
             }}
         >
-            <Box
-                sx={{
-                    minWidth: { xs: 35, sm: 45, md: 55, lg: 65 },
-                    minHeight: { xs: 35, sm: 45, md: 55, lg: 65 },
-                    position: "relative",
-                    marginRight: "0.5rem"
-                }}
-            >
-                <Image
-                    src={props.iconPath}
-                    alt={props.iconAlt}
-                    fill
-                    sizes="70px"
-                />
-            </Box>
+            <TechIcon type={props.iconType} />
             <Box sx={{ width: "100%" }}>
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                     <Typography variant="h4" color="text.primaryDark">

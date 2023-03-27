@@ -11,6 +11,7 @@ import ComputerIcon from "@mui/icons-material/Computer";
 import CodeIcon from "@mui/icons-material/Code";
 import CategoryIcon from "@mui/icons-material/Category";
 import { SkillBar } from "../Components/UI/SkillBar";
+import { TechIconType } from "../Components/UI/TechIcon";
 
 const InterestBlock = (props: { text: string; icon: typeof SvgIcon }) => {
     return (
@@ -26,7 +27,7 @@ const InterestBlock = (props: { text: string; icon: typeof SvgIcon }) => {
 const AboutPage = () => {
     const expanded = useAppSelector((state) => state.pageExpanded);
     const description =
-        "I am an MIT student with a passion for computer science";
+        "ALIEN EMOJI I am an MIT student with a passion for computer science";
 
     return (
         <React.Fragment>
@@ -179,64 +180,56 @@ const AboutPage = () => {
                                 percentage={90}
                                 yearCount={4}
                                 skillName="ReactJS"
-                                iconPath="/images/react.png"
-                                iconAlt="React Logo"
+                                iconType={TechIconType.React}
                             />{" "}
                             {/* 2019 */}
                             <SkillBar
                                 percentage={90}
                                 yearCount={8}
                                 skillName="HTML/CSS"
-                                iconPath="/images/csshtml.svg"
-                                iconAlt="HTML/CSS Logo"
+                                iconType={TechIconType.HTMLCss}
                             />{" "}
                             {/* 2015 */}
                             <SkillBar
                                 percentage={90}
                                 yearCount={7}
                                 skillName="JS/TS"
-                                iconPath="/images/typescript.png"
-                                iconAlt="JS/TS Logo"
+                                iconType={TechIconType.TS}
                             />{" "}
                             {/* 2016 */}
                             <SkillBar
                                 percentage={90}
                                 yearCount={6}
                                 skillName="C++"
-                                iconPath="/images/cpp.svg"
-                                iconAlt="C++ Logo"
+                                iconType={TechIconType.Cpp}
                             />{" "}
                             {/* 2017 */}
                             <SkillBar
                                 percentage={80}
                                 yearCount={5}
                                 skillName="C#/DotNet"
-                                iconPath="/images/cs.svg"
-                                iconAlt="C#/DotNet Logo"
+                                iconType={TechIconType.CSharp}
                             />{" "}
                             {/* 2018 */}
                             <SkillBar
                                 percentage={80}
                                 yearCount={4}
                                 skillName="SQL"
-                                iconPath="/images/sql.png"
-                                iconAlt="SQL Logo"
+                                iconType={TechIconType.SQL}
                             />{" "}
                             {/* 2019 */}
                             <SkillBar
                                 percentage={70}
                                 yearCount={3}
                                 skillName="Python"
-                                iconPath="/images/python.png"
-                                iconAlt="Python Logo"
+                                iconType={TechIconType.Python}
                             />{" "}
                             {/* 2020 */}
                             <SkillBar
                                 percentage={50}
                                 yearCount={3}
                                 skillName="Azure"
-                                iconPath="/images/azure.png"
-                                iconAlt="Azure Logo"
+                                iconType={TechIconType.Azure}
                             />{" "}
                             {/* 2020 */}
                         </Grid>
