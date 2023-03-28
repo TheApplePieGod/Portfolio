@@ -259,23 +259,31 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                             sx={{
                                 width: "500px",
                                 minWidth: { xs: 0, lg: "500px" },
-                                maxWidth: "75vw"
+                                maxWidth: "75vw",
+                                display: { xs: "flex", lg: "block" },
+                                flexDirection: "column",
+                                alignItems: "center"
                             }}
                         >
-                            <PageTitle>{props.title}</PageTitle>
-                            <Typography
-                                variant="body1"
-                                color="textSecondary"
-                                sx={{
-                                    lineHeight: { xs: "30px", sm: "40px" },
-                                    fontSize: { xs: "1.2rem", sm: "1.5rem" },
-                                    wordBreak: "break-word",
-                                    whiteSpace: "pre-wrap",
-                                    marginBottom: "1rem"
-                                }}
-                            >
-                                {props.subtitle}
-                            </Typography>
+                            <Box>
+                                <PageTitle>{props.title}</PageTitle>
+                                <Typography
+                                    variant="body1"
+                                    color="textSecondary"
+                                    sx={{
+                                        lineHeight: { xs: "30px", sm: "40px" },
+                                        fontSize: {
+                                            xs: "1.2rem",
+                                            sm: "1.5rem"
+                                        },
+                                        wordBreak: "break-word",
+                                        whiteSpace: "pre-wrap",
+                                        marginBottom: "1rem"
+                                    }}
+                                >
+                                    {props.subtitle}
+                                </Typography>
+                            </Box>
                             {props.buttonText != "" && (
                                 <Transition
                                     in={expanded}
@@ -313,13 +321,21 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                                                     exited: { opacity: 1.0 },
                                                     unmounted: {}
                                                 }[expandedState],
-                                                pointerEvents: "all"
+                                                pointerEvents: "all",
+                                                marginTop: {
+                                                    xs: "1rem",
+                                                    lg: 0
+                                                },
+                                                padding: "0.5rem 1rem",
+                                                fontSize: {
+                                                    xs: "1rem",
+                                                    sm: "1.25rem"
+                                                }
                                             }}
                                             disabled={expanded}
                                             onClick={expandPage}
-                                            variant="contained"
+                                            variant="outlined"
                                             color="primary"
-                                            size="small"
                                         >
                                             {props.buttonText}
                                         </Button>
