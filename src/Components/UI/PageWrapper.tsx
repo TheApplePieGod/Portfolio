@@ -4,7 +4,11 @@ import { PageHeader } from "./PageHeader";
 import { Navbar } from "./Navbar";
 import { useAppSelector } from "../../Redux/Hooks";
 
-export const PageWrapper: React.FunctionComponent = (props) => {
+interface Props {
+    children?: React.ReactNode | React.ReactNode[];
+}
+
+export const PageWrapper: React.FunctionComponent = (props: Props) => {
     const theme = useTheme();
     const expanded = useAppSelector((state) => state.pageExpanded);
 

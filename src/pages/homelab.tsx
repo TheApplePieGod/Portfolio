@@ -35,7 +35,7 @@ const HomelabPage = () => {
                     title="Homelab"
                     subtitle="Take a journey through the datacenter style services I setup inside my own home"
                     buttonText="TOUR"
-                    imagePath="/images/homelab.png"
+                    imagePath="/images/homelab.webp"
                 />
                 {expanded && (
                     <Box
