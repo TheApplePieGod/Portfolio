@@ -8,7 +8,7 @@ interface Props {
     children?: React.ReactNode | React.ReactNode[];
 }
 
-export const PageWrapper: React.FunctionComponent = (props: Props) => {
+export const PageWrapper: React.FunctionComponent<Props> = (props) => {
     const theme = useTheme();
     const expanded = useAppSelector((state) => state.pageExpanded);
 
