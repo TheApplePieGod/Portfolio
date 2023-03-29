@@ -15,8 +15,21 @@ import { TechIconType } from "../Components/UI/TechIcon";
 
 const InterestBlock = (props: { text: string; icon: typeof SvgIcon }) => {
     return (
-        <Box sx={{ width: { xs: "90%", md: "35%" } }}>
-            <props.icon sx={{ width: "15vw", height: "15vw" }} />
+        <Box
+            sx={{
+                width: { xs: "90%", md: "35%" },
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+            }}
+        >
+            <props.icon
+                sx={{
+                    width: { xs: "30vw", md: "15vw" },
+                    height: "auto",
+                    marginBottom: "0.5rem"
+                }}
+            />
             <Typography variant="body1" color="textSecondary">
                 {props.text}
             </Typography>
@@ -27,7 +40,7 @@ const InterestBlock = (props: { text: string; icon: typeof SvgIcon }) => {
 const AboutPage = () => {
     const expanded = useAppSelector((state) => state.pageExpanded);
     const description =
-        "ALIEN EMOJI I am an MIT student with a passion for computer science";
+        "I am an MIT student with a passion for computer science";
 
     return (
         <React.Fragment>
@@ -44,7 +57,7 @@ const AboutPage = () => {
                     title="About Me"
                     subtitle={description}
                     buttonText="LEARN MORE"
-                    imagePath="/images/about.jpg"
+                    imagePath="/images/about.webp"
                 />
                 {expanded && (
                     <Box
@@ -73,29 +86,27 @@ const AboutPage = () => {
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                marginTop: "50px",
+                                marginTop: "1rem",
                                 flexDirection: { xs: "column", md: "row" }
                             }}
                         >
                             <Box
                                 sx={{
                                     width: {
-                                        xs: 200,
-                                        sm: 200,
-                                        md: 300,
-                                        lg: 400
+                                        xs: 150,
+                                        md: 200,
+                                        lg: 250
                                     },
                                     height: {
-                                        xs: 200,
-                                        sm: 200,
-                                        md: 300,
-                                        lg: 400
+                                        xs: 150,
+                                        md: 200,
+                                        lg: 250
                                     },
                                     position: "relative"
                                 }}
                             >
                                 <Image
-                                    src="/images/user.png"
+                                    src="/images/user.webp"
                                     alt="Generic User Image"
                                     sizes="25vw"
                                     fill
@@ -107,18 +118,17 @@ const AboutPage = () => {
                                 sx={{
                                     maxWidth: { xs: "90%", md: "50%" },
                                     marginLeft: { xs: 0, md: "75px" },
-                                    marginTop: { xs: "1rem", md: 0 },
-                                    lineHeight: "40px"
+                                    marginTop: { xs: "1rem", md: 0 }
                                 }}
                             >
-                                Born in the United States in 2003, I have spent
-                                most of my life traversing the world of computer
-                                science. I started programming at a very young
-                                age, and I have dabbled in some of the many
-                                different worlds of computer science. Game
-                                development, computer graphics, web development,
-                                and low-level programming are a few of them that
-                                I have experience in.
+                                Born in Chicago in 2003, I have spent most of my
+                                life traversing the world of computer science. I
+                                started programming at a young age, and I have
+                                dabbled in some of the many paradigms that
+                                computer science has to offer. Game development,
+                                computer graphics, web development, and
+                                low-level programming are a few of them that I
+                                am passionate about.
                             </Typography>
                         </Box>
                         <StarrySection>
@@ -130,32 +140,28 @@ const AboutPage = () => {
                                     flexDirection: { xs: "column", md: "row" },
                                     alignItems: "center",
                                     justifyContent: "center",
-                                    gap: "4rem",
+                                    gap: { xs: "3rem", md: "4rem" },
                                     textAlign: "center",
                                     padding: "0 3% 0 3%",
-                                    paddingTop: "50px",
-                                    marginBottom: "50px"
+                                    paddingTop: "1rem",
+                                    marginBottom: "1rem"
                                 }}
                             >
                                 <InterestBlock
-                                    text="Computers and technology are dominant in the modern world, and maintaining an understanding of how they work and operate is something I pride myself in"
+                                    text="Computers and technology are dominant in the modern world. Harnessing their power through visual feedback, whether that be through websites, games, or simulations, are primary drivers of my interest in computing."
                                     icon={ComputerIcon}
                                 />
                                 <InterestBlock
-                                    text="The programs that drive computers to complete tasks and display information has always fascinated me and is something I have dedicated a lot of my life to"
+                                    text="Programming at both a high and low level is essential to being an informed programmer and writing efficient software. I am passionate about my work in both levels and everything in between."
                                     icon={CodeIcon}
                                 />
                                 <InterestBlock
-                                    text="Designing systems and models is always a daunting task when presented, but I love doing it and have done it countless times. Graphical design is not my strong suit, but I am always improving"
+                                    text="Designing systems and models is can seem like a daunting task when presented, but I love creating and have done it countless times. Knowing how to iterate on and debug these system are critical skills that I am always using and improving."
                                     icon={CategoryIcon}
                                 />
                             </Box>
                         </StarrySection>
-                        <Typography
-                            variant="h3"
-                            color="text.primaryDark"
-                            sx={{ marginTop: "60px" }}
-                        >
+                        <Typography variant="h3" color="text.primaryDark">
                             Skills
                         </Typography>
                         <CircleLine count={5} />
@@ -177,21 +183,21 @@ const AboutPage = () => {
                             }}
                         >
                             <SkillBar
-                                percentage={90}
+                                percentage={95}
                                 yearCount={4}
                                 skillName="ReactJS"
                                 iconType={TechIconType.React}
                             />{" "}
                             {/* 2019 */}
                             <SkillBar
-                                percentage={90}
+                                percentage={95}
                                 yearCount={8}
                                 skillName="HTML/CSS"
                                 iconType={TechIconType.HTMLCss}
                             />{" "}
                             {/* 2015 */}
                             <SkillBar
-                                percentage={90}
+                                percentage={95}
                                 yearCount={7}
                                 skillName="JS/TS"
                                 iconType={TechIconType.TS}
@@ -204,6 +210,20 @@ const AboutPage = () => {
                                 iconType={TechIconType.Cpp}
                             />{" "}
                             {/* 2017 */}
+                            <SkillBar
+                                percentage={90}
+                                yearCount={3}
+                                skillName="Python"
+                                iconType={TechIconType.Python}
+                            />{" "}
+                            {/* 2020 */}
+                            <SkillBar
+                                percentage={80}
+                                yearCount={2}
+                                skillName="Vulkan"
+                                iconType={TechIconType.Vulkan}
+                            />{" "}
+                            {/* 2021 */}
                             <SkillBar
                                 percentage={80}
                                 yearCount={5}
@@ -218,20 +238,15 @@ const AboutPage = () => {
                                 iconType={TechIconType.SQL}
                             />{" "}
                             {/* 2019 */}
-                            <SkillBar
-                                percentage={70}
-                                yearCount={3}
-                                skillName="Python"
-                                iconType={TechIconType.Python}
-                            />{" "}
-                            {/* 2020 */}
-                            <SkillBar
-                                percentage={50}
-                                yearCount={3}
-                                skillName="Azure"
-                                iconType={TechIconType.Azure}
-                            />{" "}
-                            {/* 2020 */}
+                            {/*
+                                <SkillBar
+                                    percentage={50}
+                                    yearCount={3}
+                                    skillName="Azure"
+                                    iconType={TechIconType.Azure}
+                                />{" "}
+                                2020
+                            */}
                         </Grid>
 
                         {/* Spacer */}

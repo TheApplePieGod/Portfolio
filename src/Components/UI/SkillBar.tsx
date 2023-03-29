@@ -51,7 +51,7 @@ export const SkillBar: React.FunctionComponent<Props> = (props) => {
                     variant="determinate"
                     value={props.percentage}
                     sx={{
-                        height: "2vw",
+                        height: { xs: "4vw", md: "2vw" },
                         borderRadius: "1vw",
                         backgroundColor: "text.secondary",
                         "& .MuiLinearProgress-bar": {

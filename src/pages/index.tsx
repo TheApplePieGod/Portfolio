@@ -49,9 +49,15 @@ const HomePage = () => {
                     </Typography>
                     <PageTitle>Thompson</PageTitle>
                     <Typography
-                        variant="body1"
+                        variant="h5"
                         color="textSecondary"
-                        style={{ lineHeight: "40px", fontSize: "1.5rem" }}
+                        sx={{
+                            lineHeight: { xs: "30px", sm: "40px" },
+                            fontSize: {
+                                xs: "1.2rem",
+                                sm: "1.5rem"
+                            }
+                        }}
                     >
                         programmer
                         <br />

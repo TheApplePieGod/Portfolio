@@ -3,7 +3,7 @@ import { Box, Divider, Grid, Typography } from "@mui/material";
 import { NextSeo } from "next-seo";
 import { Section } from "../Components/UI/Section";
 import { useAppSelector } from "../Redux/Hooks";
-import { ProjectElement } from "../Components/UI/ProjectElement2";
+import { ProjectElement } from "../Components/UI/ProjectElement";
 import { StarrySection } from "../Components/UI/StarrySection";
 import { TechIconType } from "../Components/UI/TechIcon";
 
@@ -21,8 +21,6 @@ const ProjectsPage = () => {
     const renderProjects = () => {
         const elements: React.ReactNode[] = [
             <ProjectElement
-                circleCount={6}
-                type="Web app"
                 techs={[
                     TechIconType.React,
                     TechIconType.TS,
@@ -30,7 +28,6 @@ const ProjectsPage = () => {
                     TechIconType.CSharp,
                     TechIconType.SQL
                 ]}
-                screenshotPaths={[]}
                 imageName="word-arena.png"
                 link="https://wordarena.xyz/"
                 github=""
@@ -39,26 +36,29 @@ const ProjectsPage = () => {
                 description="An online multiplayer-enhanced version of the popular word game Wordle filled with other cool, interactive, and customizable features."
             />,
             <ProjectElement
-                circleCount={4}
-                type="Library / Desktop App"
                 techs={[TechIconType.Cpp]}
-                screenshotPaths={[]}
                 imageName="heart.png"
                 link=""
                 github="https://github.com/TheApplePieGod/Heart"
                 title="Heart"
                 key="Heart"
-                description="An open source, cross-platform, game engine and api-agnostic rendering library that currently supports both OpenGL and Vulkan."
+                description="An open source, cross-platform, game engine that uses Flourish under the hood to render and supports numerous features such as PBR rendering, C# scripting, physics, and more."
             />,
             <ProjectElement
-                circleCount={7}
-                type="Web app"
+                techs={[TechIconType.Cpp, TechIconType.Vulkan]}
+                imageName="flourish.jpg"
+                link=""
+                github="https://github.com/TheApplePieGod/Flourish"
+                title="Flourish"
+                key="Flourish"
+                description="An open source, cross-platform, rendering library that abstracts away the complexity of Vulkan and allows (coming soon) the option to switch to native Metal on MacOS devices."
+            />,
+            <ProjectElement
                 techs={[
                     TechIconType.React,
                     TechIconType.TS,
                     TechIconType.HTMLCss
                 ]}
-                screenshotPaths={[]}
                 imageName="bandersnatch.png"
                 link="https://bchess.site/"
                 github="https://github.com/TheApplePieGod/Bandersnatch"
@@ -67,8 +67,6 @@ const ProjectsPage = () => {
                 description="A chess playing engine built from scratch, powered by the browser for anyone to use and experiment with."
             />,
             <ProjectElement
-                circleCount={6}
-                type="Web app"
                 techs={[
                     TechIconType.React,
                     TechIconType.TS,
@@ -76,7 +74,6 @@ const ProjectsPage = () => {
                     TechIconType.CSharp,
                     TechIconType.SQL
                 ]}
-                screenshotPaths={[]}
                 imageName="codecorner.png"
                 link="https://codecorner.azurewebsites.net/"
                 github=""
@@ -85,10 +82,7 @@ const ProjectsPage = () => {
                 description="My friend and I collaborated to create a website where users can complete and collaborate on programming-oriented challenges."
             />,
             <ProjectElement
-                circleCount={4}
-                type="Desktop app"
                 techs={[TechIconType.Cpp]}
-                screenshotPaths={[]}
                 imageName="spade.png"
                 link="https://youtu.be/ChWMxhsLzy8"
                 github="https://github.com/TheApplePieGod/Spade"
@@ -97,10 +91,7 @@ const ProjectsPage = () => {
                 description="My second attempt at a 3D graphics engine. Built from scratch using DX11, I attempted to create a realistic planet which can be viewed from both space and on the surface in real time."
             />,
             <ProjectElement
-                circleCount={5}
-                type="Library"
-                techs={[TechIconType.Cpp]}
-                screenshotPaths={[]}
+                techs={[TechIconType.Cpp, TechIconType.Vulkan]}
                 imageName="diamond.png"
                 link=""
                 github="https://github.com/TheApplePieGod/Diamond"
@@ -109,10 +100,7 @@ const ProjectsPage = () => {
                 description="An open source, cross-platform, Vulkan-based 2D rendering/compute engine, which I hope to use in future projects and games."
             />,
             <ProjectElement
-                circleCount={8}
-                type="Desktop app"
                 techs={[TechIconType.Cpp]}
-                screenshotPaths={[]}
                 imageName="particle-simulations.png"
                 link="https://youtu.be/XhlcFXmRxI8"
                 github="https://github.com/TheApplePieGod/ParticleSimulations"
@@ -121,10 +109,7 @@ const ProjectsPage = () => {
                 description="A collection of various 2D particle simulations powered by the Diamond engine."
             />,
             <ProjectElement
-                circleCount={5}
-                type="Console app"
                 techs={[TechIconType.Python]}
-                screenshotPaths={[]}
                 imageName="dropbot.png"
                 link=""
                 github="https://github.com/TheApplePieGod/DropBot"
@@ -133,8 +118,6 @@ const ProjectsPage = () => {
                 description="A stock monitoring bot inspired by the boom of the graphics card market in late 2020."
             />,
             <ProjectElement
-                circleCount={6}
-                type="Web app"
                 techs={[
                     TechIconType.React,
                     TechIconType.TS,
@@ -142,7 +125,6 @@ const ProjectsPage = () => {
                     TechIconType.CSharp,
                     TechIconType.SQL
                 ]}
-                screenshotPaths={[]}
                 imageName="ideacloud.png"
                 link="https://ideacloud.site/"
                 github=""
@@ -151,10 +133,7 @@ const ProjectsPage = () => {
                 description="A lightweight application to quickly store and look back at ideas that you find important. This is also the first app which I manually setup all of the hosting on a DigitalOcean droplet."
             />,
             <ProjectElement
-                circleCount={9}
-                type="Desktop app"
                 techs={[TechIconType.Cpp]}
-                screenshotPaths={[]}
                 imageName="depths-of-power.png"
                 link="https://youtu.be/a-77SkG5YqQ"
                 github="https://github.com/TheApplePieGod/DepthsOfPower"
@@ -163,14 +142,11 @@ const ProjectsPage = () => {
                 description="A 2D game powered by Diamond. I have a vision for a automation focused 2D exploration game, and I have a basic prototype complete so far."
             />,
             <ProjectElement
-                circleCount={9}
-                type="Desktop app"
                 techs={[
                     TechIconType.React,
                     TechIconType.TS,
                     TechIconType.HTMLCss
                 ]}
-                screenshotPaths={[]}
                 imageName="game-manager.png"
                 link=""
                 github="https://github.com/TheApplePieGod/GameManager"
@@ -179,15 +155,12 @@ const ProjectsPage = () => {
                 description="An electron-powered app used to interface over the internet with minecraft servers running on the homelab in my house."
             />,
             <ProjectElement
-                circleCount={4}
-                type="Desktop app"
                 techs={[
                     TechIconType.React,
                     TechIconType.TS,
                     TechIconType.HTMLCss,
                     TechIconType.CSharp
                 ]}
-                screenshotPaths={[]}
                 imageName="sql-dev.png"
                 link=""
                 github="https://github.com/TheApplePieGod/SQLDev"
@@ -196,10 +169,7 @@ const ProjectsPage = () => {
                 description="An electron-powered app I created to assist the development process of writing SQL functions and integrating them with C#."
             />,
             <ProjectElement
-                circleCount={6}
-                type="Discord bot"
                 techs={[TechIconType.CSharp, TechIconType.SQL]}
-                screenshotPaths={[]}
                 imageName="discord-bot.png"
                 link=""
                 github="https://github.com/TheApplePieGod/BigMoBot"
@@ -228,7 +198,7 @@ const ProjectsPage = () => {
                     title="Projects"
                     subtitle="Take a look at some of the notable projects I have created and been involved with over the years"
                     buttonText="EXPLORE"
-                    imagePath="/images/projects.jpg"
+                    imagePath="/images/projects.webp"
                 />
                 {expanded && (
                     <Box

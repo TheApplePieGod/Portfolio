@@ -16,6 +16,7 @@ import { setPageExpanded } from "../../Redux/PageExpandedSlice";
 import { Transition } from "react-transition-group";
 
 interface Props {
+    children?: React.ReactNode | React.ReactNode[];
     title: string;
     subtitle: string;
     buttonText: string;
@@ -268,7 +269,7 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                             <Box>
                                 <PageTitle>{props.title}</PageTitle>
                                 <Typography
-                                    variant="body1"
+                                    variant="h5"
                                     color="textSecondary"
                                     sx={{
                                         lineHeight: { xs: "30px", sm: "40px" },
@@ -330,6 +331,14 @@ export const Section: React.FunctionComponent<Props> = (props) => {
                                                 fontSize: {
                                                     xs: "1rem",
                                                     sm: "1.25rem"
+                                                },
+                                                backgroundColor:
+                                                    "rgba(172, 14, 62, 0.04)",
+                                                border: "1px solid #AC0E3EF0",
+                                                "&:hover": {
+                                                    backgroundColor:
+                                                        "rgba(172, 14, 62, 0.2)",
+                                                    border: "1px solid #AC0E3EFF"
                                                 }
                                             }}
                                             disabled={expanded}

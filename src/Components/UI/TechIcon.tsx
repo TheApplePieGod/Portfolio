@@ -10,18 +10,20 @@ export enum TechIconType {
     HTMLCss,
     Cpp,
     SQL,
-    Azure
+    Azure,
+    Vulkan
 }
 
 const ICON_TYPE_DATA: Record<TechIconType, { url: string; alt: string }> = {
-    [TechIconType.React]: { url: "/images/react.png", alt: "React" },
-    [TechIconType.TS]: { url: "/images/typescript.png", alt: "Typescript" },
+    [TechIconType.React]: { url: "/images/react.webp", alt: "React" },
+    [TechIconType.TS]: { url: "/images/typescript.webp", alt: "Typescript" },
     [TechIconType.CSharp]: { url: "/images/cs.svg", alt: "C#" },
-    [TechIconType.Python]: { url: "/images/python.png", alt: "Python" },
+    [TechIconType.Python]: { url: "/images/python.webp", alt: "Python" },
     [TechIconType.HTMLCss]: { url: "/images/csshtml.svg", alt: "HTML/CSS" },
     [TechIconType.Cpp]: { url: "/images/cpp.svg", alt: "C++" },
-    [TechIconType.SQL]: { url: "/images/sql.png", alt: "SQL" },
-    [TechIconType.Azure]: { url: "/images/azure.png", alt: "Azure" }
+    [TechIconType.SQL]: { url: "/images/sql.webp", alt: "SQL" },
+    [TechIconType.Azure]: { url: "/images/azure.webp", alt: "Azure" },
+    [TechIconType.Vulkan]: { url: "/images/vulkan.webp", alt: "Vulkan" }
 };
 
 interface Props {

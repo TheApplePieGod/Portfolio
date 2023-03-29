@@ -1,6 +1,8 @@
-﻿import { styled, Typography } from "@mui/material";
+﻿import { styled, Typography, TypographyProps } from "@mui/material";
 
-export const PageTitle = styled((p) => <Typography {...p} variant="h1" />)(
+export const PageTitle = styled((p: TypographyProps) => (
+    <Typography {...p} variant="h1" />
+))(
     ({ theme }) => `
         border-bottom: 5px solid ${theme.palette.primary.main};
         margin-bottom: 1rem;

@@ -71,7 +71,7 @@ export const createAppTheme = memoizeOne(() => {
             h3: {
                 fontFamily: headerFontFamily.style.fontFamily,
                 "@media (max-width:600px)": {
-                    fontSize: "1.7rem"
+                    fontSize: "1.6rem"
                 },
                 fontSize: "2.25rem"
             },
@@ -83,20 +83,18 @@ export const createAppTheme = memoizeOne(() => {
                 fontSize: "1.5rem"
             },
             h5: {
-                "@media (min-width:0px)": {
-                    fontSize: "1.0rem"
+                "@media (max-width:600px)": {
+                    fontSize: "1.1rem"
                 },
-                "@media (min-width:200px)": {
-                    fontSize: "1.4rem"
-                }
+                fontSize: "1.3rem"
             },
             body1: {
                 "@media (max-width:600px)": {
                     fontSize: "0.9rem",
-                    lineHeight: "30px"
+                    lineHeight: "25px !important"
                 },
-                fontSize: "1.0rem",
-                lineHeight: "40px"
+                fontSize: "1.1rem",
+                lineHeight: "30px !important"
             }
         },
         components: {
