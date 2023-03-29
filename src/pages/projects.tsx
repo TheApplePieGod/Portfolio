@@ -70,12 +70,12 @@ const ProjectsPage = () => {
                     TechIconType.CSharp,
                     TechIconType.SQL
                 ]}
-                imageName="echelon-dashboard.webp"
-                link=""
+                imageName="echelon-website.png"
+                link="https://www.echelon.org/"
                 github=""
-                title="Echelon Dashboard"
-                key="Echelon Dashboard"
-                description="I was accepted for a professional internship with Echelon Consulting, where I focused on the full life cycle of application development for the cloud. One other intern and I built an application from the ground up, which tightly integrates with Echelon's commercial time and expense system. It allows Echelon's leadership team to view various aspects of their business in near-real time, including company utilization, individual utilization, individual project health, and client sales distribution. The application is in active use and continues to evolve."
+                title="Echelon Website"
+                key="Echelon Website"
+                description="During my internship with Echelon Consulting, one other intern and I converted the company website from a legacy Java codebase to a modern React frontend and DotNet backend. As part of this, we designed and implemented a custom content management system to allow easy modifications to the site going forwards. We kept the majority of the initial design but revamped some parts to feel more modern and mobile friendly."
             />,
             <ProjectElement
                 techs={[
@@ -85,12 +85,12 @@ const ProjectsPage = () => {
                     TechIconType.CSharp,
                     TechIconType.SQL
                 ]}
-                imageName="echelon-website.png"
-                link="https://www.echelon.org/"
+                imageName="echelon-dashboard.webp"
+                link=""
                 github=""
-                title="Echelon Website"
-                key="Echelon Website"
-                description="Website"
+                title="Echelon Dashboard"
+                key="Echelon Dashboard"
+                description="During my internship with Echelon Consulting, one other intern and I built an application from the ground up, which tightly integrates with Echelon's commercial time and expense system. It allows Echelon's leadership team to view various aspects of their business in near-real time, including company utilization, individual utilization, individual project health, and client sales distribution. The application is in active use and continues to evolve."
             />
         ];
 
