@@ -14,7 +14,7 @@ const config = {
         description: DESCRIPTION,
         images: [
             {
-                url: "https://i.ibb.co/PQxc91P/site-preview.png",
+                url: "https://evanthompson.site/site-preview.png",
                 width: 1200,
                 height: 600,
                 alt: "Portfolio background image",
