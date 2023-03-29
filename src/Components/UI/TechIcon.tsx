@@ -1,6 +1,7 @@
 import { Box, Tooltip } from "@mui/material";
 import Image from "next/image";
 import * as React from "react";
+import { StyledTooltip } from "./StyledTooltip";
 
 export enum TechIconType {
     React,
@@ -39,7 +40,10 @@ export const TechIcon = (props: Props) => {
     if (!data) return <></>;
 
     return (
-        <Tooltip title={props.tooltip ? data.alt : undefined} arrow>
+        <StyledTooltip
+            text={props.tooltip ? data.alt : undefined}
+            tooltip={{ arrow: true }}
+        >
             <Box
                 sx={{
                     minWidth: {
@@ -64,6 +68,6 @@ export const TechIcon = (props: Props) => {
                     sizes={`${Math.round(70 * sizeScalar)}px`}
                 />
             </Box>
-        </Tooltip>
+        </StyledTooltip>
     );
 };

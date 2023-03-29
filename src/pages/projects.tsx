@@ -1,14 +1,56 @@
 ﻿import * as React from "react";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import {
+    styled,
+    Box,
+    Divider,
+    Grid,
+    Typography,
+    TypographyProps,
+    useTheme,
+    IconButton,
+    Tooltip,
+    useMediaQuery
+} from "@mui/material";
 import { NextSeo } from "next-seo";
 import { Section } from "../Components/UI/Section";
 import { useAppSelector } from "../Redux/Hooks";
 import { ProjectElement } from "../Components/UI/ProjectElement";
 import { StarrySection } from "../Components/UI/StarrySection";
 import { TechIconType } from "../Components/UI/TechIcon";
+import { SwitchTransition, Transition } from "react-transition-group";
+import { Autorenew } from "@mui/icons-material";
+
+const TextSelected = (
+    props: TypographyProps & {
+        selected: boolean;
+    }
+) => (
+    <Typography
+        {...props}
+        color={props.selected ? "text.primary" : "text.secondaryDark"}
+        variant="h3"
+        sx={{
+            cursor: "pointer",
+            borderBottom: (theme) =>
+                `${props.selected ? 5 : 0}px solid ${
+                    theme.palette.primary.main
+                }`,
+            transition: (theme) =>
+                theme.transitions.create(["border", "color"], {
+                    easing: theme.transitions.easing.sharp,
+                    duration: theme.transitions.duration.standard
+                })
+        }}
+    >
+        {props.children}
+    </Typography>
+);
 
 const ProjectsPage = () => {
     const expanded = useAppSelector((state) => state.pageExpanded);
+    const theme = useTheme();
+    const condense = useMediaQuery(theme.breakpoints.down("md"));
+    const [personal, setPersonal] = React.useState(true);
 
     const renderStarrySection = (key?: string) => {
         return (
@@ -18,7 +60,44 @@ const ProjectsPage = () => {
         );
     };
 
-    const renderProjects = () => {
+    const renderProfessionalProjects = () => {
+        const elements: React.ReactNode[] = [
+            <ProjectElement
+                techs={[
+                    TechIconType.React,
+                    TechIconType.TS,
+                    TechIconType.HTMLCss,
+                    TechIconType.CSharp,
+                    TechIconType.SQL
+                ]}
+                imageName="echelon-dashboard.webp"
+                link=""
+                github=""
+                title="Echelon Dashboard"
+                key="Echelon Dashboard"
+                description="I was accepted for a professional internship with Echelon Consulting, where I focused on the full life cycle of application development for the cloud. One other intern and I built an application from the ground up, which tightly integrates with Echelon's commercial time and expense system. It allows Echelon's leadership team to view various aspects of their business in near-real time, including company utilization, individual utilization, individual project health, and client sales distribution. The application is in active use and continues to evolve."
+            />,
+            <ProjectElement
+                techs={[
+                    TechIconType.React,
+                    TechIconType.TS,
+                    TechIconType.HTMLCss,
+                    TechIconType.CSharp,
+                    TechIconType.SQL
+                ]}
+                imageName="echelon-website.png"
+                link="https://www.echelon.org/"
+                github=""
+                title="Echelon Website"
+                key="Echelon Website"
+                description="Website"
+            />
+        ];
+
+        return elements;
+    };
+
+    const renderHobbyProjects = () => {
         const elements: React.ReactNode[] = [
             <ProjectElement
                 techs={[
@@ -36,15 +115,6 @@ const ProjectsPage = () => {
                 description="An online multiplayer-enhanced version of the popular word game Wordle filled with other cool, interactive, and customizable features."
             />,
             <ProjectElement
-                techs={[TechIconType.Cpp]}
-                imageName="heart.png"
-                link=""
-                github="https://github.com/TheApplePieGod/Heart"
-                title="Heart"
-                key="Heart"
-                description="An open source, cross-platform, game engine that uses Flourish under the hood to render and supports numerous features such as PBR rendering, C# scripting, physics, and more."
-            />,
-            <ProjectElement
                 techs={[TechIconType.Cpp, TechIconType.Vulkan]}
                 imageName="flourish.jpg"
                 link=""
@@ -52,6 +122,15 @@ const ProjectsPage = () => {
                 title="Flourish"
                 key="Flourish"
                 description="An open source, cross-platform, rendering library that abstracts away the complexity of Vulkan and allows (coming soon) the option to switch to native Metal on MacOS devices."
+            />,
+            <ProjectElement
+                techs={[TechIconType.Cpp]}
+                imageName="heart.webp"
+                link=""
+                github="https://github.com/TheApplePieGod/Heart"
+                title="Heart"
+                key="Heart"
+                description="An open source, cross-platform, game engine that uses Flourish under the hood to render and supports numerous features such as PBR rendering, C# scripting, physics, and more."
             />,
             <ProjectElement
                 techs={[
@@ -212,14 +291,119 @@ const ProjectsPage = () => {
                         <StarrySection>
                             <Box
                                 sx={{
-                                    width: "100%",
                                     display: "flex",
                                     flexDirection: "column",
-                                    gap: "1rem",
-                                    alignItems: "center"
+                                    alignItems: "center",
+                                    gap: "1.5rem"
                                 }}
                             >
-                                {renderProjects()}
+                                {!condense && (
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: "0.5rem",
+                                            height: "50px"
+                                        }}
+                                    >
+                                        <TextSelected
+                                            selected={personal}
+                                            onClick={() => setPersonal(true)}
+                                        >
+                                            Personal
+                                        </TextSelected>
+                                        <Typography variant="h3">|</Typography>
+                                        <TextSelected
+                                            selected={!personal}
+                                            onClick={() => setPersonal(false)}
+                                        >
+                                            Professional
+                                        </TextSelected>
+                                    </Box>
+                                )}
+                                <SwitchTransition mode="out-in">
+                                    <Transition
+                                        key={personal ? "personal" : "pro"}
+                                        timeout={200}
+                                        mountOnEnter
+                                        unmountOnExit
+                                    >
+                                        {(transitionState) => (
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "center",
+                                                    gap: "0.5rem",
+                                                    transition: (theme) =>
+                                                        theme.transitions.create(
+                                                            ["opacity"],
+                                                            {
+                                                                easing: theme
+                                                                    .transitions
+                                                                    .easing
+                                                                    .sharp,
+                                                                duration: 400
+                                                            }
+                                                        ),
+                                                    opacity:
+                                                        transitionState ==
+                                                        "entered"
+                                                            ? 1
+                                                            : 0
+                                                }}
+                                            >
+                                                {condense && (
+                                                    <Box
+                                                        sx={{
+                                                            display: "flex",
+                                                            alignItems: "center"
+                                                        }}
+                                                    >
+                                                        <TextSelected
+                                                            selected={true}
+                                                            onClick={() =>
+                                                                setPersonal(
+                                                                    true
+                                                                )
+                                                            }
+                                                        >
+                                                            {personal
+                                                                ? "Personal"
+                                                                : "Professional"}
+                                                        </TextSelected>
+                                                        <Tooltip
+                                                            arrow
+                                                            title={`Switch to ${
+                                                                personal
+                                                                    ? "Professional"
+                                                                    : "Personal"
+                                                            } projects`}
+                                                        >
+                                                            <IconButton
+                                                                onClick={() =>
+                                                                    setPersonal(
+                                                                        !personal
+                                                                    )
+                                                                }
+                                                                size="large"
+                                                            >
+                                                                <Autorenew
+                                                                    sx={{
+                                                                        color: "text.primary"
+                                                                    }}
+                                                                />
+                                                            </IconButton>
+                                                        </Tooltip>
+                                                    </Box>
+                                                )}
+                                                {personal
+                                                    ? renderHobbyProjects()
+                                                    : renderProfessionalProjects()}
+                                            </Box>
+                                        )}
+                                    </Transition>
+                                </SwitchTransition>
 
                                 {/* Spacer */}
                                 <Box sx={{ height: "150px" }} />
