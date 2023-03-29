@@ -27,7 +27,10 @@ declare module "@mui/material/styles" {
     }
 }
 
-const headerFontFamily = Martian_Mono({ subsets: ["latin"] });
+const headerFontFamily = Martian_Mono({
+    subsets: ["latin"],
+    weight: ["400"]
+});
 const bodyFontFamily = Changa({
     subsets: ["latin"],
     weight: ["400"]
