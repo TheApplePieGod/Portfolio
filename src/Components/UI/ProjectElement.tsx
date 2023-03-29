@@ -48,7 +48,7 @@ const _ProjectElement: React.FunctionComponent<Props> = (props) => {
                     height: "max-content",
                     width: "90%",
                     borderRadius: "20px",
-                    padding: "1.25rem",
+                    padding: "1.5rem",
                     background:
                         "linear-gradient(90deg, rgba(44,42,48,0.95) 0%, rgba(66,63,73,0.95) 50%, rgba(44,42,48,0.95) 100%)",
                     border: (theme) =>
@@ -92,7 +92,7 @@ const _ProjectElement: React.FunctionComponent<Props> = (props) => {
                         sx={{
                             display: "flex",
                             alignItems: "center",
-                            marginBottom: "0.5rem",
+                            marginBottom: "0.75rem",
                             gap: "0.75rem"
                         }}
                     >

@@ -183,56 +183,56 @@ const AboutPage = () => {
                             }}
                         >
                             <SkillBar
-                                percentage={95}
+                                value={5}
                                 yearCount={4}
                                 skillName="ReactJS"
                                 iconType={TechIconType.React}
                             />{" "}
                             {/* 2019 */}
                             <SkillBar
-                                percentage={95}
+                                value={5}
                                 yearCount={8}
                                 skillName="HTML/CSS"
                                 iconType={TechIconType.HTMLCss}
                             />{" "}
                             {/* 2015 */}
                             <SkillBar
-                                percentage={95}
+                                value={5}
                                 yearCount={7}
                                 skillName="JS/TS"
                                 iconType={TechIconType.TS}
                             />{" "}
                             {/* 2016 */}
                             <SkillBar
-                                percentage={90}
+                                value={5}
                                 yearCount={6}
                                 skillName="C++"
                                 iconType={TechIconType.Cpp}
                             />{" "}
                             {/* 2017 */}
                             <SkillBar
-                                percentage={90}
+                                value={5}
                                 yearCount={3}
                                 skillName="Python"
                                 iconType={TechIconType.Python}
                             />{" "}
                             {/* 2020 */}
                             <SkillBar
-                                percentage={80}
+                                value={4}
                                 yearCount={2}
                                 skillName="Vulkan"
                                 iconType={TechIconType.Vulkan}
                             />{" "}
                             {/* 2021 */}
                             <SkillBar
-                                percentage={80}
+                                value={4}
                                 yearCount={5}
                                 skillName="C#/DotNet"
                                 iconType={TechIconType.CSharp}
                             />{" "}
                             {/* 2018 */}
                             <SkillBar
-                                percentage={80}
+                                value={4}
                                 yearCount={4}
                                 skillName="SQL"
                                 iconType={TechIconType.SQL}

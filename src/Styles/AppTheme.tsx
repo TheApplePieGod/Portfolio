@@ -1,18 +1,7 @@
 ﻿import { createTheme, responsiveFontSizes, Theme } from "@mui/material";
 import { amber, blueGrey, deepOrange } from "@mui/material/colors";
 import memoizeOne from "memoize-one";
-import {
-    Arvo,
-    Asap,
-    Asap_Condensed,
-    Bebas_Neue,
-    Changa,
-    Josefin_Sans,
-    Kanit,
-    Martian_Mono,
-    Space_Mono,
-    Zilla_Slab
-} from "next/font/google";
+import { Changa, Martian_Mono } from "next/font/google";
 
 declare module "@mui/material/styles" {
     interface TypeText {
@@ -70,6 +59,13 @@ export const createAppTheme = memoizeOne(() => {
                     fontSize: "2.5rem"
                 },
                 fontSize: "4.0rem"
+            },
+            h2: {
+                fontFamily: headerFontFamily.style.fontFamily,
+                "@media (max-width:600px)": {
+                    fontSize: "2.0rem"
+                },
+                fontSize: "3.0rem"
             },
             h3: {
                 fontFamily: headerFontFamily.style.fontFamily,

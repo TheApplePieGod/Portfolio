@@ -13,6 +13,8 @@ import InfoIcon from "@mui/icons-material/Info";
 import { useAppDispatch, useAppSelector } from "../../Redux/Hooks";
 import { setPageExpanded } from "../../Redux/PageExpandedSlice";
 import Image from "next/image";
+import { StyledTooltip } from "./StyledTooltip";
+import { Description } from "@mui/icons-material";
 
 export const PageHeader: React.FunctionComponent = (props) => {
     const theme = useTheme();
@@ -66,26 +68,45 @@ export const PageHeader: React.FunctionComponent = (props) => {
                     gap: "0.25rem"
                 }}
             >
-                <Tooltip
-                    enterTouchDelay={0}
-                    leaveTouchDelay={5000}
-                    arrow
-                    placement="bottom"
-                    title={
-                        <Typography variant="subtitle1">
-                            Built from scratch in React/Typescript on NextJS and
-                            deployed on Vercel
-                        </Typography>
-                    }
+                <StyledTooltip
+                    text="Download my Resume"
+                    tooltip={{
+                        arrow: true,
+                        placement: "bottom"
+                    }}
+                >
+                    <IconButton
+                        href="https://docs.google.com/document/d/1zdbwFxIaCQUuXHmoBpTn6jCCEeG8-5lV_tTDejP4sQs/export?format=pdf"
+                        target="_blank"
+                        sx={{
+                            padding: 0
+                        }}
+                    >
+                        <Description
+                            sx={{
+                                color: "text.primary",
+                                width: { xs: 30, sm: 35, md: 40, lg: 45 },
+                                height: { xs: 30, sm: 35, md: 40, lg: 45 }
+                            }}
+                        />
+                    </IconButton>
+                </StyledTooltip>
+                <StyledTooltip
+                    text="Built from scratch in React/Typescript on NextJS and deployed on Vercel"
+                    tooltip={{
+                        arrow: true,
+                        placement: "bottom"
+                    }}
                 >
                     <InfoIcon
                         sx={{
                             padding: 0,
+                            marginRight: "0.25rem",
                             width: { xs: 30, sm: 35, md: 40, lg: 45 },
                             height: { xs: 30, sm: 35, md: 40, lg: 45 }
                         }}
                     />
-                </Tooltip>
+                </StyledTooltip>
                 <IconButton
                     href="https://github.com/TheApplePieGod"
                     target="_blank"

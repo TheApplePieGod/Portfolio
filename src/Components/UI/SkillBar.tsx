@@ -3,7 +3,7 @@ import { Box, LinearProgress, Typography, Grid } from "@mui/material";
 import { TechIcon, TechIconType } from "./TechIcon";
 
 interface Props {
-    percentage: number;
+    value: number;
     skillName: string;
     yearCount: number;
     iconType: TechIconType;
@@ -44,12 +44,12 @@ export const SkillBar: React.FunctionComponent<Props> = (props) => {
                         <Typography
                             variant="h4"
                             color="text.primaryDark"
-                        >{`${props.percentage}%`}</Typography>
+                        >{`${props.value}/5`}</Typography>
                     </Box>
                 </Box>
                 <LinearProgress
                     variant="determinate"
-                    value={props.percentage}
+                    value={(props.value / 5) * 100}
                     sx={{
                         height: { xs: "4vw", md: "2vw" },
                         borderRadius: "1vw",
