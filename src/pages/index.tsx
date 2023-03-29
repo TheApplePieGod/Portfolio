@@ -25,28 +25,42 @@ const HomePage = () => {
                         position: "fixed",
                         top: "50vh",
                         width: "500px",
-                        ...(condense ? {
-                            left: "50vw",
-                            transform: "translate(-50%, -50%)",
-                            display: "flex",
-                            alignItems: "center",
-                            flexDirection: "column",
-                            textAlign: "center"
-                        } : {
-                            transform: "translateY(-50%)",
-                            left: "20vw"
-                        })
+                        ...(condense
+                            ? {
+                                  left: "50vw",
+                                  transform: "translate(-50%, -50%)",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  flexDirection: "column",
+                                  textAlign: "center"
+                              }
+                            : {
+                                  transform: "translateY(-50%)",
+                                  left: "20vw"
+                              })
                     }}
                 >
-                    <Typography variant="h1" color="textPrimary" sx={{ marginBottom: "0.25rem" }}>
+                    <Typography
+                        variant="h1"
+                        color="textPrimary"
+                        sx={{ marginBottom: "0.25rem" }}
+                    >
                         Evan
                     </Typography>
-                    <PageTitle>
-                        Thompson
-                    </PageTitle>
-                    <Typography variant="h5" color="textSecondary" sx={{ lineHeight: "40px" }}>
+                    <PageTitle>Thompson</PageTitle>
+                    <Typography
+                        variant="h5"
+                        color="textSecondary"
+                        sx={{
+                            lineHeight: { xs: "30px", sm: "40px" },
+                            fontSize: {
+                                xs: "1.2rem",
+                                sm: "1.5rem"
+                            }
+                        }}
+                    >
                         programmer
-                        <br/>
+                        <br />
                         web engineer
                         <br />
                         game dev
@@ -55,6 +69,6 @@ const HomePage = () => {
             </Fade>
         </React.Fragment>
     );
-}
+};
 
 export default HomePage;

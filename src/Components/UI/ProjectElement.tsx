@@ -1,14 +1,12 @@
-﻿import * as React from "react";
-import { styled, Box, Typography, Button, Dialog, DialogTitle, DialogContent, DialogActions, Grid, Link } from "@mui/material";
-import { CircleLine } from "./CircleLine";
+import * as React from "react";
+import { Box, IconButton, Link, Typography } from "@mui/material";
 import Image from "next/image";
+import LaunchIcon from "@mui/icons-material/Launch";
+import { TechIcon, TechIconType } from "./TechIcon";
+import { GitHub } from "@mui/icons-material";
 
 interface Props {
-    fullWidth?: boolean;
-    circleCount: number;
-    type: string;
-    languages: string;
-    screenshotPaths: string[];
+    techs: TechIconType[];
     link: string;
     github: string;
     title: string;
@@ -17,63 +15,122 @@ interface Props {
 }
 
 const _ProjectElement: React.FunctionComponent<Props> = (props) => {
-    const [open, setOpen] = React.useState(false);
+    const { techs } = props;
+
+    const renderTechs = () => {
+        if (techs.length == 0) return;
+
+        const elems: JSX.Element[] = [];
+
+        for (let i = 0; i < techs.length; i++) {
+            elems.push(
+                <React.Fragment key={i}>
+                    <TechIcon sizeScalar={0.75} type={techs[i]} tooltip />
+                    {i != techs.length - 1 && (
+                        <Typography variant="h3">·</Typography>
+                    )}
+                </React.Fragment>
+            );
+        }
+
+        return elems;
+    };
 
     return (
         <React.Fragment>
-            <Grid
-                item
-                xs={10}
-                md={props.fullWidth ? 10 : 5.4}
-                lg={props.fullWidth ? 10 : 3.6}
+            <Box
                 sx={{
-                    width: "100%",
                     display: "flex",
-                    flexDirection: "column",
                     alignItems: "center",
-                    textAlign: "center"
+                    flexDirection: { xs: "column", md: "row" },
+                    gap: "2rem",
+                    //height: { xs: "600px", md: "400px" },
+                    height: "max-content",
+                    width: "90%",
+                    borderRadius: "20px",
+                    padding: "1.25rem",
+                    background:
+                        "linear-gradient(90deg, rgba(44,42,48,0.95) 0%, rgba(66,63,73,0.95) 50%, rgba(44,42,48,0.95) 100%)",
+                    border: (theme) =>
+                        `5px solid ${theme.palette.text.primaryDark}`
                 }}
             >
-                <Typography variant="h4" color="text.primaryDark">{props.title}</Typography>
-                <CircleLine count={props.circleCount} />
-                {props.imageName != "" &&
+                <Box
+                    sx={{
+                        position: "relative",
+                        height: "100%",
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                        //flexShrink: 2
+                    }}
+                >
+                    <Image
+                        src={`/images/projects/${props.imageName}`}
+                        style={{
+                            borderRadius: "20px",
+                            height: "auto",
+                            maxWidth: "100%",
+                            maxHeight: "100%"
+                        }}
+                        alt={props.title}
+                        sizes={`
+                            (max-width: 900px) 80vw,
+                            40vw
+                        `}
+                        width={1000}
+                        height={500}
+                    />
+                </Box>
+                <Box
+                    sx={{
+                        width: "100%"
+                    }}
+                >
                     <Box
                         sx={{
-                            width: "100%",
-                            height: { xs: 150, sm: 250, md: 250, lg: 250 },
-                            position: "relative",
-                            marginTop: "10px",
-                            "& span:first-of-type": {
-                                borderRadius: "20px"
-                            }
+                            display: "flex",
+                            alignItems: "center",
+                            marginBottom: "0.5rem",
+                            gap: "0.75rem"
                         }}
                     >
-                        <Image src={`/images/projects/${props.imageName}`} alt={props.title} layout="fill" objectFit="cover" />
+                        <Typography variant="h3">{props.title}</Typography>
+                        {props.link && (
+                            <Link
+                                href={props.link}
+                                target="_blank"
+                                height={"24px"}
+                            >
+                                <LaunchIcon sx={{ color: "text.secondary" }} />
+                            </Link>
+                        )}
+                        {props.github && (
+                            <Link
+                                href={props.github}
+                                target="_blank"
+                                height={"24px"}
+                            >
+                                <GitHub sx={{ color: "text.secondary" }} />
+                            </Link>
+                        )}
                     </Box>
-                }
-                <Typography variant="body1" color="text.secondaryDark" sx={{ margin: "10px 0 10px 0" }}>{props.description}</Typography>
-                <Button onClick={() => setOpen(true)} variant="contained" color="primary" size="small">SEE MORE</Button>
-            </Grid>
-            <Dialog open={open} onClose={() => setOpen(false)} PaperProps={{ sx: { backgroundColor: "text.primary" } }}>
-                <DialogTitle color="text.primaryDark">{props.title}</DialogTitle>
-                <DialogContent>
-                    <Typography variant="body1" color="text.secondaryDark" sx={{ margin: "10px 0 10px 0" }}>
-                        {props.type != "" && <><b>Type:</b> {props.type} <br /></>}
-                        {props.languages != "" && <><b>Focuses:</b> {props.languages} <br /></>}
-                        {props.screenshotPaths.length > 0 && <><b>Screenshots:</b>  <br /></> }
-                        {props.link != "" && <><b>Link:</b> <Link href={props.link} target="_blank" underline="always">{props.link}</Link> <br /></>}
-                        {props.github != "" && <><b>Github:</b> <Link href={props.github} target="_blank" underline="always">{props.github}</Link> <br /></>}
-                    </Typography>
-                    {props.children}
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => setOpen(false)} color="primary">
-                        Close
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                    <Typography variant="body1">{props.description}</Typography>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            marginTop: "1rem"
+                        }}
+                    >
+                        {renderTechs()}
+                    </Box>
+                </Box>
+            </Box>
         </React.Fragment>
     );
-}
+};
 
 export const ProjectElement = React.memo(_ProjectElement);

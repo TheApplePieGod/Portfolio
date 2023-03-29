@@ -7,6 +7,7 @@ interface Props {
     route: string;
     variant?: Variant;
     sx?: SxProps<Theme>;
+    children?: React.ReactNode | React.ReactNode[];
 }
 
 export const RouteLink: React.FunctionComponent<Props> = (props) => {
@@ -25,4 +26,4 @@ export const RouteLink: React.FunctionComponent<Props> = (props) => {
             {props.children}
         </Link>
     );
-}
+};

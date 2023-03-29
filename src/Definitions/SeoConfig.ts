@@ -1,9 +1,10 @@
 ﻿const SITE_NAME = "Evan Thompson's Portfolio";
-const DESCRIPTION = "A miscellaneous computer science portfolio full of cool things that I've accomplished over the years";
+const DESCRIPTION =
+    "A miscellaneous computer science portfolio full of cool things that I've accomplished over the years";
 //const BASE_URL = "https://example.com";
 
 // https://github.com/garmeeh/next-seo#setup
-export default {
+const config = {
     title: SITE_NAME,
     description: DESCRIPTION,
     //canonical: BASE_URL,
@@ -17,8 +18,8 @@ export default {
                 width: 1200,
                 height: 600,
                 alt: "Portfolio background image",
-                type: "image/png",
-            },
+                type: "image/png"
+            }
         ],
         site_name: SITE_NAME
     },
@@ -26,3 +27,5 @@ export default {
         cardType: "summary_large_image"
     }
 };
+
+export default config;
