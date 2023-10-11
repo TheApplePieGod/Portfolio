@@ -9,7 +9,8 @@ import {
     useTheme,
     IconButton,
     Tooltip,
-    useMediaQuery
+    useMediaQuery,
+    Button
 } from "@mui/material";
 import { NextSeo } from "next-seo";
 import { Section } from "../Components/UI/Section";
@@ -31,12 +32,13 @@ const TextSelected = (
         variant="h3"
         sx={{
             cursor: "pointer",
+            opacity: props.selected ? 1.0 : 0.5,
             borderBottom: (theme) =>
                 `${props.selected ? 5 : 0}px solid ${
                     theme.palette.primary.main
                 }`,
             transition: (theme) =>
-                theme.transitions.create(["border", "color"], {
+                theme.transitions.create(["border", "color", "opacity"], {
                     easing: theme.transitions.easing.sharp,
                     duration: theme.transitions.duration.standard
                 })
@@ -51,14 +53,6 @@ const ProjectsPage = () => {
     const theme = useTheme();
     const condense = useMediaQuery(theme.breakpoints.down("md"));
     const [personal, setPersonal] = React.useState(true);
-
-    const renderStarrySection = (key?: string) => {
-        return (
-            <Grid item xs={12} key={key}>
-                <StarrySection />
-            </Grid>
-        );
-    };
 
     const renderProfessionalProjects = () => {
         const elements: React.ReactNode[] = [
@@ -124,7 +118,7 @@ const ProjectsPage = () => {
                 description="An open source, cross-platform, rendering library that abstracts away the complexity of Vulkan and allows (coming soon) the option to switch to native Metal on MacOS devices."
             />,
             <ProjectElement
-                techs={[TechIconType.Cpp]}
+                techs={[TechIconType.Cpp, TechIconType.CSharp]}
                 imageName="heart.webp"
                 link=""
                 github="https://github.com/TheApplePieGod/Heart"
@@ -136,14 +130,15 @@ const ProjectsPage = () => {
                 techs={[
                     TechIconType.React,
                     TechIconType.TS,
-                    TechIconType.HTMLCss
+                    TechIconType.HTMLCss,
+                    TechIconType.Rust
                 ]}
                 imageName="bandersnatch.png"
                 link="https://bchess.site/"
                 github="https://github.com/TheApplePieGod/Bandersnatch"
                 title="Bandersnatch"
                 key="Bandersnatch"
-                description="A chess playing engine built from scratch, powered by the browser for anyone to use and experiment with."
+                description="A chess playing engine built from scratch, powered by the browser for anyone to use and experiment with. The engine backend was written in both Typescript and Rust (WebAssembly) for comparison."
             />,
             <ProjectElement
                 techs={[
@@ -297,30 +292,58 @@ const ProjectsPage = () => {
                                     gap: "1.5rem"
                                 }}
                             >
-                                {!condense && (
-                                    <Box
-                                        sx={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            gap: "0.5rem",
-                                            height: "50px"
-                                        }}
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        position: "relative"
+                                    }}
+                                >
+                                    <TextSelected
+                                        selected={true}
+                                        onClick={() => setPersonal(true)}
                                     >
-                                        <TextSelected
-                                            selected={personal}
-                                            onClick={() => setPersonal(true)}
+                                        {personal ? "Personal" : "Professional"}
+                                    </TextSelected>
+                                    <Tooltip
+                                        arrow
+                                        title={`Switch to ${
+                                            personal
+                                                ? "Professional"
+                                                : "Personal"
+                                        } projects`}
+                                    >
+                                        <IconButton
+                                            onClick={() =>
+                                                setPersonal(!personal)
+                                            }
+                                            size="large"
                                         >
-                                            Personal
-                                        </TextSelected>
-                                        <Typography variant="h3">|</Typography>
-                                        <TextSelected
-                                            selected={!personal}
-                                            onClick={() => setPersonal(false)}
+                                            <Autorenew
+                                                sx={{
+                                                    color: "text.primary"
+                                                }}
+                                            />
+                                        </IconButton>
+                                    </Tooltip>
+                                    {!condense && (
+                                        <Typography
+                                            variant="h5"
+                                            color="text.primary"
+                                            sx={{
+                                                position: "absolute",
+                                                left: personal
+                                                    ? "300px"
+                                                    : "400px",
+                                                width: "max-content",
+                                                opacity: 0.6,
+                                                zIndex: -1
+                                            }}
                                         >
-                                            Professional
-                                        </TextSelected>
-                                    </Box>
-                                )}
+                                            ← Switch Me
+                                        </Typography>
+                                    )}
+                                </Box>
                                 <SwitchTransition mode="out-in">
                                     <Transition
                                         key={personal ? "personal" : "pro"}
@@ -353,50 +376,6 @@ const ProjectsPage = () => {
                                                             : 0
                                                 }}
                                             >
-                                                {condense && (
-                                                    <Box
-                                                        sx={{
-                                                            display: "flex",
-                                                            alignItems: "center"
-                                                        }}
-                                                    >
-                                                        <TextSelected
-                                                            selected={true}
-                                                            onClick={() =>
-                                                                setPersonal(
-                                                                    true
-                                                                )
-                                                            }
-                                                        >
-                                                            {personal
-                                                                ? "Personal"
-                                                                : "Professional"}
-                                                        </TextSelected>
-                                                        <Tooltip
-                                                            arrow
-                                                            title={`Switch to ${
-                                                                personal
-                                                                    ? "Professional"
-                                                                    : "Personal"
-                                                            } projects`}
-                                                        >
-                                                            <IconButton
-                                                                onClick={() =>
-                                                                    setPersonal(
-                                                                        !personal
-                                                                    )
-                                                                }
-                                                                size="large"
-                                                            >
-                                                                <Autorenew
-                                                                    sx={{
-                                                                        color: "text.primary"
-                                                                    }}
-                                                                />
-                                                            </IconButton>
-                                                        </Tooltip>
-                                                    </Box>
-                                                )}
                                                 {personal
                                                     ? renderHobbyProjects()
                                                     : renderProfessionalProjects()}
@@ -404,6 +383,25 @@ const ProjectsPage = () => {
                                         )}
                                     </Transition>
                                 </SwitchTransition>
+
+                                <Typography
+                                    sx={{
+                                        mt: "1rem",
+                                        maxWidth: "85vw",
+                                        textAlign: "center"
+                                    }}
+                                >{`Make sure to check out my ${
+                                    personal ? "Professional" : "Personal"
+                                } projects as well!`}</Typography>
+
+                                <Button
+                                    variant="contained"
+                                    onClick={() =>
+                                        window.scrollTo(0, window.innerHeight)
+                                    }
+                                >
+                                    Back to Top
+                                </Button>
 
                                 {/* Spacer */}
                                 <Box sx={{ height: "150px" }} />

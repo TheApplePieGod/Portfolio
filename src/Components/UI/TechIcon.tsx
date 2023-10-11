@@ -12,7 +12,8 @@ export enum TechIconType {
     Cpp,
     SQL,
     Azure,
-    Vulkan
+    Vulkan,
+    Rust
 }
 
 const ICON_TYPE_DATA: Record<TechIconType, { url: string; alt: string }> = {
@@ -24,7 +25,8 @@ const ICON_TYPE_DATA: Record<TechIconType, { url: string; alt: string }> = {
     [TechIconType.Cpp]: { url: "/images/cpp.svg", alt: "C++" },
     [TechIconType.SQL]: { url: "/images/sql.webp", alt: "SQL" },
     [TechIconType.Azure]: { url: "/images/azure.webp", alt: "Azure" },
-    [TechIconType.Vulkan]: { url: "/images/vulkan.webp", alt: "Vulkan" }
+    [TechIconType.Vulkan]: { url: "/images/vulkan.webp", alt: "Vulkan" },
+    [TechIconType.Rust]: { url: "/images/rust.webp", alt: "Rust" }
 };
 
 interface Props {
