@@ -183,6 +183,15 @@ const ProjectsPage = () => {
                 description="An early 3D graphics engine. Built from scratch using DX11, I aimed to create a realistic planet which can be viewed from both space and on the surface in real time."
             />,
             <ProjectElement
+                techs={[TechIconType.Python]}
+                imageName="minesweeper-ai.png"
+                link=""
+                github="https://github.com/TheApplePieGod/MinesweeperAI"
+                title="Minesweeper AI"
+                key="Minesweeper AI"
+                description="Various different TensorFlow models and algorithms that play Minesweeper (with different levels of success). My first introduction to ML models."
+            />,
+            <ProjectElement
                 techs={[TechIconType.Cpp, TechIconType.Vulkan]}
                 imageName="diamond.png"
                 link=""
