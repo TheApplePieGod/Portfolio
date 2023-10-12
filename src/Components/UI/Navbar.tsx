@@ -101,6 +101,13 @@ export const Navbar: React.FunctionComponent = (props) => {
         }
     }, [expanded, onScroll, scrollDisabled]);
 
+    React.useEffect(() => {
+        // Prefetch all routes so that images can preload
+        for (const route of NAV_ROUTES) {
+            router.prefetch(route.route);
+        }
+    }, [router]);
+
     return (
         <nav aria-label="main">
             <List
