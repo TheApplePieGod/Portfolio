@@ -31,11 +31,14 @@ const TextSelected = (
         color={props.selected ? "text.primary" : "text.secondaryDark"}
         variant="h3"
         sx={{
+            ...props.sx,
             cursor: "pointer",
             opacity: props.selected ? 1.0 : 0.5,
             borderBottom: (theme) =>
-                `${props.selected ? 5 : 0}px solid ${
-                    theme.palette.primary.main
+                `5px solid ${
+                    props.selected
+                        ? theme.palette.primary.main
+                        : theme.palette.text.secondaryDark
                 }`,
             transition: (theme) =>
                 theme.transitions.create(["border", "color", "opacity"], {
@@ -54,7 +57,7 @@ const ProjectsPage = () => {
     const condense = useMediaQuery(theme.breakpoints.down("md"));
     const [personal, setPersonal] = React.useState(true);
 
-    const renderProfessionalProjects = () => {
+    const getProProjects = () => {
         const elements: React.ReactNode[] = [
             <ProjectElement
                 techs={[
@@ -91,7 +94,7 @@ const ProjectsPage = () => {
         return elements;
     };
 
-    const renderHobbyProjects = () => {
+    const getPersonalProjects = () => {
         const elements: React.ReactNode[] = [
             <ProjectElement
                 techs={[
@@ -109,13 +112,28 @@ const ProjectsPage = () => {
                 description="An online multiplayer-enhanced version of the popular word game Wordle filled with other cool, interactive, and customizable features."
             />,
             <ProjectElement
+                techs={[
+                    TechIconType.React,
+                    TechIconType.TS,
+                    TechIconType.HTMLCss,
+                    TechIconType.SQL,
+                    TechIconType.Python
+                ]}
+                imageName="koi.png"
+                link="https://koi.fyi"
+                github=""
+                title="Koi"
+                key="Koi"
+                description="A startup I am actively co-founding with a friend. Koi is your trend-intelligent social media marketing agent."
+            />,
+            <ProjectElement
                 techs={[TechIconType.Cpp, TechIconType.Vulkan]}
                 imageName="flourish.jpg"
                 link=""
                 github="https://github.com/TheApplePieGod/Flourish"
                 title="Flourish"
                 key="Flourish"
-                description="An open source, cross-platform, rendering library that abstracts away the complexity of Vulkan and allows (coming soon) the option to switch to native Metal on MacOS devices."
+                description="An cross-platform rendering library that abstracts away the complexity of Vulkan and allows (coming soon) the option to switch to native Metal on MacOS devices."
             />,
             <ProjectElement
                 techs={[TechIconType.Cpp, TechIconType.CSharp]}
@@ -124,7 +142,7 @@ const ProjectsPage = () => {
                 github="https://github.com/TheApplePieGod/Heart"
                 title="Heart"
                 key="Heart"
-                description="An open source, cross-platform, game engine that uses Flourish under the hood to render and supports numerous features such as PBR rendering, C# scripting, physics, and more."
+                description="A cross-platform game engine that uses Flourish under the hood to render and supports numerous features such as PBR rendering, C# scripting, physics, and more."
             />,
             <ProjectElement
                 techs={[
@@ -162,7 +180,7 @@ const ProjectsPage = () => {
                 github="https://github.com/TheApplePieGod/Spade"
                 title="Spade"
                 key="Spade"
-                description="My second attempt at a 3D graphics engine. Built from scratch using DX11, I attempted to create a realistic planet which can be viewed from both space and on the surface in real time."
+                description="An early 3D graphics engine. Built from scratch using DX11, I aimed to create a realistic planet which can be viewed from both space and on the surface in real time."
             />,
             <ProjectElement
                 techs={[TechIconType.Cpp, TechIconType.Vulkan]}
@@ -171,7 +189,7 @@ const ProjectsPage = () => {
                 github="https://github.com/TheApplePieGod/Diamond"
                 title="Diamond"
                 key="Diamond"
-                description="An open source, cross-platform, Vulkan-based 2D rendering/compute engine, which I hope to use in future projects and games."
+                description="A Vulkan-based 2D rendering/compute engine which was my introduction to the Vulkan API"
             />,
             <ProjectElement
                 techs={[TechIconType.Cpp]}
@@ -191,21 +209,23 @@ const ProjectsPage = () => {
                 key="DropBot"
                 description="A stock monitoring bot inspired by the boom of the graphics card market in late 2020."
             />,
-            <ProjectElement
-                techs={[
-                    TechIconType.React,
-                    TechIconType.TS,
-                    TechIconType.HTMLCss,
-                    TechIconType.CSharp,
-                    TechIconType.SQL
-                ]}
-                imageName="ideacloud.png"
-                link="https://ideacloud.site/"
-                github=""
-                title="Idea Cloud"
-                key="Idea Cloud"
-                description="A lightweight application to quickly store and look back at ideas that you find important. This is also the first app which I manually setup all of the hosting on a DigitalOcean droplet."
-            />,
+            /*  RIP. Gone but not forgotten
+                <ProjectElement
+                    techs={[
+                        TechIconType.React,
+                        TechIconType.TS,
+                        TechIconType.HTMLCss,
+                        TechIconType.CSharp,
+                        TechIconType.SQL
+                    ]}
+                    imageName="ideacloud.png"
+                    link="https://ideacloud.site/"
+                    github=""
+                    title="Idea Cloud"
+                    key="Idea Cloud"
+                    description="A lightweight application to quickly store and look back at ideas that you find important. This is also the first app which I manually setup all of the hosting on a DigitalOcean droplet."
+                />,
+            */
             <ProjectElement
                 techs={[TechIconType.Cpp]}
                 imageName="depths-of-power.png"
@@ -256,6 +276,36 @@ const ProjectsPage = () => {
         return elements;
     };
 
+    const renderProjectsSection = (isPersonal: boolean) => (
+        <SwitchTransition mode="out-in">
+            <Transition
+                key={isPersonal ? "personal" : "pro"}
+                timeout={200}
+                mountOnEnter
+                unmountOnExit
+            >
+                {(transitionState) => (
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            gap: "0.5rem",
+                            transition: (theme) =>
+                                theme.transitions.create(["opacity"], {
+                                    easing: theme.transitions.easing.sharp,
+                                    duration: 400
+                                }),
+                            opacity: transitionState == "entered" ? 1 : 0
+                        }}
+                    >
+                        {isPersonal ? getPersonalProjects() : getProProjects()}
+                    </Box>
+                )}
+            </Transition>
+        </SwitchTransition>
+    );
+
     return (
         <React.Fragment>
             <NextSeo
@@ -292,107 +342,68 @@ const ProjectsPage = () => {
                                     gap: "1.5rem"
                                 }}
                             >
-                                <Box
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        position: "relative"
-                                    }}
-                                >
-                                    <TextSelected
-                                        selected={true}
-                                        onClick={() => setPersonal(true)}
-                                    >
-                                        {personal ? "Personal" : "Professional"}
+                                {condense ? (
+                                    <TextSelected selected={true}>
+                                        Personal
                                     </TextSelected>
-                                    <Tooltip
-                                        arrow
-                                        title={`Switch to ${
-                                            personal
-                                                ? "Professional"
-                                                : "Personal"
-                                        } projects`}
+                                ) : (
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            alignItems: "stretch",
+                                            gap: "1rem",
+                                            position: "relative",
+                                            padding: "1rem 1.5rem",
+                                            border: (theme) =>
+                                                `2px solid ${theme.palette.text.primary}`,
+                                            borderRadius: "25px"
+                                        }}
                                     >
-                                        <IconButton
-                                            onClick={() =>
-                                                setPersonal(!personal)
-                                            }
-                                            size="large"
+                                        <TextSelected
+                                            selected={personal}
+                                            onClick={() => setPersonal(true)}
                                         >
-                                            <Autorenew
-                                                sx={{
-                                                    color: "text.primary"
-                                                }}
-                                            />
-                                        </IconButton>
-                                    </Tooltip>
-                                    {!condense && (
-                                        <Typography
-                                            variant="h5"
-                                            color="text.primary"
+                                            Personal
+                                        </TextSelected>
+                                        <Box
                                             sx={{
-                                                position: "absolute",
-                                                left: personal
-                                                    ? "300px"
-                                                    : "400px",
-                                                width: "max-content",
-                                                opacity: 0.6,
-                                                zIndex: -1
+                                                width: "2px",
+                                                backgroundColor: (theme) =>
+                                                    theme.palette.text.primary
                                             }}
+                                        />
+                                        <TextSelected
+                                            selected={!personal}
+                                            onClick={() => setPersonal(false)}
                                         >
-                                            ← Switch Me
-                                        </Typography>
-                                    )}
-                                </Box>
-                                <SwitchTransition mode="out-in">
-                                    <Transition
-                                        key={personal ? "personal" : "pro"}
-                                        timeout={200}
-                                        mountOnEnter
-                                        unmountOnExit
-                                    >
-                                        {(transitionState) => (
-                                            <Box
-                                                sx={{
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                    alignItems: "center",
-                                                    gap: "0.5rem",
-                                                    transition: (theme) =>
-                                                        theme.transitions.create(
-                                                            ["opacity"],
-                                                            {
-                                                                easing: theme
-                                                                    .transitions
-                                                                    .easing
-                                                                    .sharp,
-                                                                duration: 400
-                                                            }
-                                                        ),
-                                                    opacity:
-                                                        transitionState ==
-                                                        "entered"
-                                                            ? 1
-                                                            : 0
-                                                }}
-                                            >
-                                                {personal
-                                                    ? renderHobbyProjects()
-                                                    : renderProfessionalProjects()}
-                                            </Box>
-                                        )}
-                                    </Transition>
-                                </SwitchTransition>
+                                            Professional
+                                        </TextSelected>
+                                    </Box>
+                                )}
 
-                                <Typography
-                                    sx={{
-                                        mt: "1rem",
-                                        maxWidth: "85vw",
-                                        textAlign: "center"
-                                    }}
-                                >{`Make sure to check out my ${
-                                    personal ? "Professional" : "Personal"
-                                } projects as well!`}</Typography>
+                                {renderProjectsSection(personal)}
+
+                                {condense ? (
+                                    <>
+                                        <TextSelected
+                                            selected={true}
+                                            sx={{ mt: "1.5rem" }}
+                                        >
+                                            Professional
+                                        </TextSelected>
+                                        {renderProjectsSection(false)}
+                                    </>
+                                ) : (
+                                    <Typography
+                                        sx={{
+                                            mt: "1rem",
+                                            maxWidth: "85vw",
+                                            textAlign: "center"
+                                        }}
+                                    >{`Make sure to check out my ${
+                                        personal ? "Professional" : "Personal"
+                                    } projects as well!`}</Typography>
+                                )}
 
                                 <Button
                                     variant="contained"

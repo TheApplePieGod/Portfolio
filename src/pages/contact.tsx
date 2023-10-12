@@ -5,6 +5,7 @@ import { Section } from "../Components/UI/Section";
 import { useAppSelector } from "../Redux/Hooks";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const ContactPage = () => {
     const expanded = useAppSelector((state) => state.pageExpanded);
@@ -40,6 +41,18 @@ const ContactPage = () => {
                             sx={{ padding: 0 }}
                         >
                             <MailOutlineIcon
+                                sx={{
+                                    fontSize: "40px",
+                                    color: (theme) => theme.palette.text.primary
+                                }}
+                            />
+                        </IconButton>
+                        <IconButton
+                            href="https://www.linkedin.com/in/evan-thompson-2255a8231"
+                            target="_blank"
+                            sx={{ padding: 0 }}
+                        >
+                            <LinkedInIcon
                                 sx={{
                                     fontSize: "40px",
                                     color: (theme) => theme.palette.text.primary
