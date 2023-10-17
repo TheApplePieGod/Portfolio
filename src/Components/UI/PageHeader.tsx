@@ -69,29 +69,6 @@ export const PageHeader: React.FunctionComponent = (props) => {
                 }}
             >
                 <StyledTooltip
-                    text="Download my Resume"
-                    tooltip={{
-                        arrow: true,
-                        placement: "bottom"
-                    }}
-                >
-                    <IconButton
-                        href="https://docs.google.com/document/d/1zdbwFxIaCQUuXHmoBpTn6jCCEeG8-5lV_tTDejP4sQs/export?format=pdf"
-                        target="_blank"
-                        sx={{
-                            padding: 0
-                        }}
-                    >
-                        <Description
-                            sx={{
-                                color: "text.primary",
-                                width: { xs: 30, sm: 35, md: 40, lg: 45 },
-                                height: { xs: 30, sm: 35, md: 40, lg: 45 }
-                            }}
-                        />
-                    </IconButton>
-                </StyledTooltip>
-                <StyledTooltip
                     text="Built from scratch in React/Typescript on NextJS and deployed on Vercel"
                     tooltip={{
                         arrow: true,
