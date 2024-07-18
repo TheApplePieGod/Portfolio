@@ -112,21 +112,6 @@ const ProjectsPage = () => {
                 description="An online multiplayer-enhanced version of the popular word game Wordle filled with other cool, interactive, and customizable features."
             />,
             <ProjectElement
-                techs={[
-                    TechIconType.React,
-                    TechIconType.TS,
-                    TechIconType.HTMLCss,
-                    TechIconType.SQL,
-                    TechIconType.Python
-                ]}
-                imageName="koi.png"
-                link="https://koi.fyi"
-                github=""
-                title="Koi"
-                key="Koi"
-                description="A startup I am actively co-founding with a friend. Koi is your trend-intelligent social media marketing agent."
-            />,
-            <ProjectElement
                 techs={[TechIconType.Cpp, TechIconType.Vulkan]}
                 imageName="flourish.jpg"
                 link=""
@@ -143,6 +128,15 @@ const ProjectsPage = () => {
                 title="Heart"
                 key="Heart"
                 description="A cross-platform game engine that uses Flourish under the hood to render and supports numerous features such as PBR rendering, C# scripting, physics, and more."
+            />,
+            <ProjectElement
+                techs={[TechIconType.Rust]}
+                imageName="cel.webp"
+                link=""
+                github="https://github.com/TheApplePieGod/cel"
+                title="cel_"
+                key="cel"
+                description="A multimodal rust-based terminal emulator for the modern world. Cel features per-command contextual widgets, and supports many emulator features and complex ANSI applications like htop and Neovim."
             />,
             <ProjectElement
                 techs={[
@@ -163,6 +157,22 @@ const ProjectsPage = () => {
                     TechIconType.React,
                     TechIconType.TS,
                     TechIconType.HTMLCss,
+                    TechIconType.SQL,
+                    TechIconType.Python
+                ]}
+                imageName="koi.png"
+                link="https://koi.fyi"
+                github=""
+                title="Koi"
+                key="Koi"
+                description="A startup I co-founded with a friend. Koi is your trend-intelligent social media marketing agent."
+            />,
+            /*  RIP. Gone but not forgotten
+            <ProjectElement
+                techs={[
+                    TechIconType.React,
+                    TechIconType.TS,
+                    TechIconType.HTMLCss,
                     TechIconType.CSharp,
                     TechIconType.SQL
                 ]}
@@ -173,6 +183,7 @@ const ProjectsPage = () => {
                 key="Code Corner"
                 description="My friend and I collaborated to create a website where users can complete and collaborate on programming-oriented challenges."
             />,
+            */
             <ProjectElement
                 techs={[TechIconType.Cpp]}
                 imageName="spade.png"
@@ -189,7 +200,7 @@ const ProjectsPage = () => {
                 github="https://github.com/TheApplePieGod/MinesweeperAI"
                 title="Minesweeper AI"
                 key="Minesweeper AI"
-                description="Various different TensorFlow models and algorithms that play Minesweeper (with different levels of success). My first introduction to ML models."
+                description="Various different TensorFlow models and algorithms that play Minesweeper (with varying levels of success), ranging from CNNs to RL to Transformers."
             />,
             <ProjectElement
                 techs={[TechIconType.Cpp, TechIconType.Vulkan]}
@@ -319,17 +330,17 @@ const ProjectsPage = () => {
         <React.Fragment>
             <NextSeo
                 title="Projects | Evan Thompson's Portfolio"
-                description="Some notable projects that I have created and been involved with over the years"
+                description="A (mostly) comprehensive list iterating many of the projects I have worked on over the years"
                 openGraph={{
                     title: "Projects",
                     description:
-                        "Some notable projects that I have created and been involved with over the years"
+                        "A (mostly) comprehensive list iterating many of the projects I have worked on over the years"
                 }}
             />
             <Box>
                 <Section
                     title="Projects"
-                    subtitle="Take a look at some of the notable projects I have created and been involved with over the years"
+                    subtitle="A (mostly) comprehensive list iterating many of the projects I have worked on over the years"
                     buttonText="EXPLORE"
                     imagePath="/images/projects.webp"
                 />
