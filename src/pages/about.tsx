@@ -57,7 +57,7 @@ const AboutPage = () => {
                     title="About Me"
                     subtitle={description}
                     buttonText="LEARN MORE"
-                    imagePath="/images/about.webp"
+                    imagePath="/images/me.webp"
                 />
                 {expanded && (
                     <Box
