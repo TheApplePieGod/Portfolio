@@ -2,7 +2,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Renderer } from '../components/Renderer';
 
 interface Props {
-  targetScale?: number;
+  centerScale: number;
+  backdropScale: number;
   moveRate?: number;
 }
 
@@ -17,40 +18,24 @@ const FRAG_SHADER = `
 
 #define PI 3.14159
 
-#define hashi(x)   triple32(x) 
-#define hash(x)  ( float( hashi(x) ) / float( 0xffffffffU ) )
-#define hashf(x)   hash(uint(x)) 
-
-// https://www.shadertoy.com/view/WttXWX
-uint triple32(uint x)
-{
-    x ^= x >> 17;
-    x *= 0xed5ad4bbU;
-    x ^= x >> 11;
-    x *= 0xac4c1b51U;
-    x ^= x >> 15;
-    x *= 0x31848babU;
-    x ^= x >> 14;
-    return x;
+float hashf(float n){
+    return fract(sin(n)*43758.5453);
 }
 
 // https://www.shadertoy.com/view/ld3SDl
-float noise(in vec3 x) {
-    vec3 p = floor(x);
-    vec3 f = fract(x);
+float noise(in vec2 x) {
+    vec2 p = floor(x);
+    vec2 f = fract(x);
 
     f = f*f*(3.0-2.0*f);
-    float n = p.x + p.y*57.0 + 113.0*p.z;
-    return mix(mix(mix( hashf(n+  0.0), hashf(n+  1.0),f.x),
-                   mix( hashf(n+ 57.0), hashf(n+ 58.0),f.x),f.y),
-               mix(mix( hashf(n+113.0), hashf(n+114.0),f.x),
-                   mix( hashf(n+170.0), hashf(n+171.0),f.x),f.y),f.z);
+    float n = p.x + p.y*57.0;
+    return mix(mix( hashf(n +  0.0), hashf(n +  1.0), f.x),
+               mix( hashf(n + 57.0), hashf(n + 58.0), f.x), f.y);
 }
 
-vec3 noise3(vec3 x) {
-	return vec3( noise(x+vec3(123.456,.567,.37)),
-				 noise(x+vec3(.11,47.43,19.17)),
-				 noise(x) );
+
+vec3 noise2(vec2 x) {
+	return vec3(noise(x+vec2(123.456,.567)), 0.0, noise(x));
 }
 
 // https://stackoverflow.com/questions/15095909/from-rgb-to-hsv-in-opengl-glsl
@@ -72,42 +57,38 @@ vec3 repeated(vec3 p, float s)
     return m;
 }
 
-float sdSphere(vec3 pos, float rad)
+float sdSphere(vec3 pos, float rad, vec3 n)
 {
-    vec3 n = vec3(sin(iDate.w * 0.5), sin(iDate.w * 0.3), cos(iDate.w * 0.2));
-    vec3 noise = (noise3(pos + n) - 0.5) * 0.4;
+    vec3 noise = (noise2((pos + n).xz) - 0.5) * 0.4;
     return length(pos + noise) - rad;
 }
 
-float sdCutHollowSphere(vec3 p, float r, float h, float t)
+float sdCutHollowSphere(vec3 p, float r, float h, float t, vec3 n)
 {
     r *= centerScale;
     h *= centerScale;
     float w = sqrt(r*r-h*h);
-    vec3 n = vec3(sin(iDate.w * 0.5), sin(iDate.w * 0.3), cos(iDate.w * 0.2));
-    vec3 noise = (noise3(p + n) - 0.5) * 0.2;
+    vec3 noise = (noise2((p + n).xz) - 0.5) * 0.2;
     vec2 q = vec2( length(p.xz + noise.xy), p.y );
     float d = ((h*q.x<w*q.y) ? length(q-vec2(w,h)) : 
                               abs(length(q)-r) ) - t;
     return d;
 }
 
-float sdStars(vec3 p, float s)
+float sdStars(vec3 p, float s, vec3 n)
 {
-    p += mod(iTime, 100.0);
+    p += mod(iTime, 500.0);
     float r = 0.25;
     vec3 id = round(p/s);
-    float h = hash(uint(abs(id.x)) + hashi(uint(abs(id.z))) + hashi(hashi(uint(abs(id.y)))));
+    float h = hashf(abs(id.x) + hashf(abs(id.z)) + hashf(hashf(abs(id.y))));
     if (h < 0.97) // Random visibility
         return s * 0.5;
-    return sdSphere(repeated(p, s), r);
+    return sdSphere(repeated(p, s), r, n);
 }
 
-float sdRoundBox( vec3 p, vec3 b, float r )
+float sdRoundBox(vec3 p, vec3 b, float r, vec3 n)
 {
-    b *= centerScale;
-    vec3 n = vec3(sin(iDate.w * 0.5), sin(iDate.w * 0.3), cos(iDate.w * 0.2));
-    vec3 noise = (noise3(p + n) - 0.5) * 0.05;
+    vec3 noise = (noise2((p + n).xz) - 0.5) * 0.05;
     vec3 q = abs(p + noise) - b + r;
     return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0) - r;
 }
@@ -118,28 +99,40 @@ vec2 takeClosest(vec2 og, vec2 new)
     return new.x < og.x ? new : og;
 }
 
-vec2 computeScene(vec3 pos)
+vec2 computeScene(vec3 pos, vec3 n)
 {
     vec2 res = vec2(FAR_PLANE, 0.0);
   
     // Stars
-    res = takeClosest(res, vec2(sdStars(pos - vec3(0.0), 4.0), 1.0));
+    res = takeClosest(res, vec2(sdStars(pos - vec3(0.0), 4.0, n), 1.0));
 
     float posLen = length(pos);
     if (posLen < 3.0) // Early intersection test
     {
         // Center
-        res = takeClosest(res, vec2(sdCutHollowSphere(pos - vec3(0.0), 1.0, -0.52, 0.05), CENTER_HSV.r));
+        res = takeClosest(res, vec2(sdCutHollowSphere(pos - vec3(0.0, 0.0, -0.09), 1.0, -0.52, 0.05, n), CENTER_HSV.r));
 
         // Buttons
-        if (posLen > 0.75)
+        if (posLen > 0.6)
         {
             float y = -0.6;
             vec3 extent = vec3(0.25, 0.02, 0.15);
-            res = takeClosest(res, vec2(sdRoundBox(pos - vec3(-1.5, y, 0.4), extent, 0.02), 2.0));
-            res = takeClosest(res, vec2(sdRoundBox(pos - vec3(1.5, y, 0.4), extent, 0.02), 2.0));
-            res = takeClosest(res, vec2(sdRoundBox(pos - vec3(-1.5, y, -0.4), extent, 0.02), 2.0));
-            res = takeClosest(res, vec2(sdRoundBox(pos - vec3(1.5, y, -0.4), extent, 0.02), 2.0));
+
+            if (backdropScale > 0.0)
+            {
+                res = takeClosest(res, vec2(
+                    sdRoundBox(pos - vec3(0.0, -1.25, 0.0), vec3(7.0, 1.0, 5.0) * backdropScale, 0.02, n), 3.0
+                ));
+            }
+
+            if (centerScale > 0.0)
+            {
+                extent *= centerScale;
+                res = takeClosest(res, vec2(sdRoundBox(pos - vec3(-1.5, y, 0.4), extent, 0.02, n), 2.0));
+                res = takeClosest(res, vec2(sdRoundBox(pos - vec3(1.5, y, 0.4), extent, 0.02, n), 2.0));
+                res = takeClosest(res, vec2(sdRoundBox(pos - vec3(-1.5, y, -0.4), extent, 0.02, n), 2.0));
+                res = takeClosest(res, vec2(sdRoundBox(pos - vec3(1.5, y, -0.4), extent, 0.02, n), 2.0));
+            }
         }
     }
     
@@ -155,16 +148,16 @@ mat3 makeCameraMatrix(vec3 lookDir)
 }
 
 // https://iquilezles.org/articles/normalsSDF
-vec3 calcNormal( in vec3 pos )
+vec3 calcNormal(in vec3 pos, vec3 n)
 {
     vec2 e = vec2(1.0,-1.0)*0.5773*0.0005;
-    return normalize( e.xyy*computeScene( pos + e.xyy ).x + 
-					  e.yyx*computeScene( pos + e.yyx ).x + 
-					  e.yxy*computeScene( pos + e.yxy ).x + 
-					  e.xxx*computeScene( pos + e.xxx ).x );
+    return normalize( e.xyy*computeScene(pos + e.xyy, n).x + 
+					  e.yyx*computeScene(pos + e.yyx, n).x + 
+					  e.yxy*computeScene(pos + e.yxy, n).x + 
+					  e.xxx*computeScene(pos + e.xxx, n).x );
 }
 
-vec2 raymarch(vec3 rayOrigin, vec3 rayDir, float maxT)
+vec2 raymarch(vec3 rayOrigin, vec3 rayDir, float maxT, vec3 n)
 {    
     vec2 intersect = vec2(-1.0);
     float t = 0.0;
@@ -172,8 +165,8 @@ vec2 raymarch(vec3 rayOrigin, vec3 rayDir, float maxT)
     int MAX_STEPS = RAY_STEPS;
     for (int i = 0; i < MAX_STEPS && t < maxT; i++)
     {
-        vec2 scene = computeScene(rayOrigin + rayDir * t);
-        if(abs(scene.x) < 0.0001)
+        vec2 scene = computeScene(rayOrigin + rayDir * t, n);
+        if(abs(scene.x) < 0.0001 * t)
         { 
             intersect = vec2(t, scene.y); 
             break;
@@ -267,12 +260,15 @@ vec3 ComputeBRDF(vec3 diffuse, float roughness, float NdotL, vec3 F0, vec3 N, ve
 vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
 {
     vec3 finalColor = vec3(0.0980, 0.0941, 0.1137);
+
+    // Noise seed
+    vec3 n = vec3(sin(iDate.w * 0.5), sin(iDate.w * 0.2), cos(iDate.w * 0.3));
     
     bool trace = true;
     int depth = 0;
     while (depth < 2 && trace)
     {
-        vec2 intersect = raymarch(rayOrigin, rayDir, FAR_PLANE);
+        vec2 intersect = raymarch(rayOrigin, rayDir, FAR_PLANE, n);
         
         if (intersect.y <= -0.5)
         {
@@ -281,7 +277,7 @@ vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
         }
     
         vec3 P = rayOrigin + rayDir * intersect.x;
-        vec3 N = calcNormal(P);
+        vec3 N = calcNormal(P, n);
         vec3 V = -rayDir;
         vec3 R = reflect(rayDir, N);
         vec3 Peps = P + N * 0.001;
@@ -301,6 +297,15 @@ vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
         }
         else if (intersect.y == 2.0) // Buttons
         {
+            //albedo = vec3(0.474, 0.055, 0.143);
+            albedo = vec3(0.321, 0.078, 0.149);
+            roughness = 1.0;
+            metalness = 0.1;
+            trace = false;
+        }
+        else if (intersect.y == 3.0) // Backdrop
+        {
+            albedo = hsv2rgb(vec3(-0.0 + P.x * 0.02 + P.z * 0.02, CENTER_HSV.g, CENTER_HSV.b));
             roughness = 1.0;
             metalness = 0.1;
             trace = false;
@@ -323,9 +328,9 @@ vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
         
         // Point light
         {
-            vec2 mo = (iMouse.xy/iResolution.xy * 2.0 - 1.0) * 0.6;
+            vec2 mo = (iMouse.xy/iResolution.xy * 2.0 - 1.0) * 0.8;
             vec3 pos = vec3(-mo.x, 1.5, mo.y);
-            float intensity = 1.8;
+            float intensity = 1.5;
             
             vec3 L = -normalize(Peps - pos);
             vec3 H = normalize(V + L);
@@ -334,7 +339,7 @@ vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
             float dist = length(Peps - pos);
             vec3 BRDF = ComputeBRDF(diffuse, roughness, NdotL, F0, N, V, H);
             vec3 color = NdotL * BRDF * intensity;
-            float attenuation = 1.0/pow(dist/4.0, 2.0);
+            float attenuation = 1.0/pow(dist * 0.25, 2.0);
             localColor += color * attenuation;
         }
         
@@ -356,7 +361,7 @@ vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
             localColor += kD * diffuse + specular;
         }
 
-        finalColor += localColor * 1.0/exp(float(depth));
+        finalColor += localColor * 1.0/exp(float(depth)) * 2.0;
         rayOrigin = Peps;
         rayDir = R;
         depth++;
@@ -367,6 +372,13 @@ vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
+    int factor = 3;
+    if (int(fragCoord.x) % (factor * 2) < 2 || int(fragCoord.y) % (factor * 2) < 2)
+    {
+        fragColor = vec4(0.0);
+        return;
+    }
+
     // Normalized pixel coordinates (from -1 to 1)
     vec2 uv = fragCoord / iResolution.xy * 2.0 - 1.0;
     
@@ -391,32 +403,59 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
 export const SpaceAnimation = (props: Props) => {
   const requestRef = useRef<number>(0);
 
-  const [curScale, setCurScale] = useState(1.0);
+  const [scales, setScales] = useState({
+    center: 1.0,
+    backdrop: 0.0
+  });
+
+  // TODO: incorporate framerate
 
   const moveRate = props.moveRate ?? 0.005;
-  const targetScale = props.targetScale ?? 1.0;
 
   const animate = useCallback(() => {
-    if (targetScale !== curScale) {
-      const sign = Math.sign(targetScale - curScale);
-      setCurScale(Math.max(Math.min(curScale + moveRate * sign, 1.0), 0.0));
+    if (props.centerScale !== scales.center) {
+      const sign = Math.sign(props.centerScale - scales.center);
+      setScales((p) => ({
+        ...p,
+        center: Math.max(Math.min(p.center + moveRate * sign, 1.0), 0.0)
+      }));
+    }
+
+    if (props.backdropScale !== scales.backdrop) {
+      const sign = Math.sign(props.backdropScale - scales.backdrop);
+      setScales((p) => ({
+        ...p,
+        backdrop: Math.max(
+          Math.min(p.backdrop + moveRate * sign * 0.75, 1.0),
+          0.0
+        )
+      }));
     }
 
     requestRef.current = requestAnimationFrame(animate);
-  }, [targetScale, moveRate, curScale]);
+  }, [props.backdropScale, props.centerScale, moveRate, scales]);
 
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
   }, [animate]);
 
-  const uniforms = useMemo(() => [{ name: 'centerScale', type: 'float' }], []);
+  const uniforms = useMemo(
+    () => [
+      { name: 'centerScale', type: 'float' },
+      { name: 'backdropScale', type: 'float' }
+    ],
+    []
+  );
   return (
     <div className="w-full h-full">
       <Renderer
         fragShader={FRAG_SHADER}
         uniforms={uniforms}
-        uniformValues={{ centerScale: curScale }}
+        uniformValues={{
+          centerScale: scales.center,
+          backdropScale: scales.backdrop
+        }}
       />
     </div>
   );

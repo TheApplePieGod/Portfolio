@@ -105,7 +105,7 @@ const Quad = (props: Props) => {
       today.getFullYear(),
       today.getMonth(),
       today.getDay(),
-      today.getMilliseconds() / 1000 + today.getSeconds()
+      (today.getTime() / 1000) % 86400 // Seconds elapsed since the start of the day
     );
 
     // Texture uniforms

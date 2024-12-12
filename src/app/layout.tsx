@@ -1,8 +1,22 @@
 import type { Metadata } from 'next';
-import { Martian_Mono } from 'next/font/google';
+import {
+  Changa,
+  Martian_Mono,
+  Jersey_15,
+  Monoton,
+  Rubik_Moonrocks,
+  Dela_Gothic_One,
+  Micro_5,
+  Jockey_One,
+  DotGothic16,
+  Press_Start_2P,
+  VT323,
+  Orbitron,
+  IBM_Plex_Mono
+} from 'next/font/google';
 import './globals.css';
 
-const inter = Martian_Mono({ subsets: ['latin'] });
+const inter = Orbitron({ weight: '600' });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
