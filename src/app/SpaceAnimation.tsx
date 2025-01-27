@@ -8,8 +8,8 @@ interface Props {
 }
 
 const FRAG_SHADER = `
-#define FAR_PLANE 150.0
-#define RAY_STEPS 85
+#define FAR_PLANE 20.0
+#define RAY_STEPS 20
 #define CAM_DIST 2.0
 #define CENTER_HSV vec3(0.97, 0.85, 0.36) // Red
 //#define CENTER_HSV vec3(0.6, 1.0, 0.75) // Blue
@@ -29,12 +29,16 @@ float noise(in vec2 x) {
 
     f = f*f*(3.0-2.0*f);
     float n = p.x + p.y*57.0;
-    return mix(mix( hashf(n +  0.0), hashf(n +  1.0), f.x),
-               mix( hashf(n + 57.0), hashf(n + 58.0), f.x), f.y);
+    return mix(mix( hashf(n +  0.0), hashf(n +  1.0), f.x), mix( hashf(n + 57.0), hashf(n + 58.0), f.x), f.y);
 }
 
 
 vec3 noise2(vec2 x) {
+	//return vec3(noise(x+vec2(123.456,.567)), 0.0, noise(x));
+    return vec3(x.x, 0.0, x.y);
+}
+
+vec3 noise3(vec2 x) {
 	return vec3(noise(x+vec2(123.456,.567)), 0.0, noise(x));
 }
 
@@ -61,6 +65,7 @@ float sdSphere(vec3 pos, float rad, vec3 n)
 {
     vec3 noise = (noise2((pos + n).xz) - 0.5) * 0.4;
     return length(pos + noise) - rad;
+    //return length(pos) - rad;
 }
 
 float sdCutHollowSphere(vec3 p, float r, float h, float t, vec3 n)
@@ -81,14 +86,14 @@ float sdStars(vec3 p, float s, vec3 n)
     float r = 0.25;
     vec3 id = round(p/s);
     float h = hashf(abs(id.x) + hashf(abs(id.z)) + hashf(hashf(abs(id.y))));
-    if (h < 0.97) // Random visibility
+    if (h < 0.2) // Random visibility
         return s * 0.5;
     return sdSphere(repeated(p, s), r, n);
 }
 
 float sdRoundBox(vec3 p, vec3 b, float r, vec3 n)
 {
-    vec3 noise = (noise2((p + n).xz) - 0.5) * 0.05;
+    vec3 noise = vec3(0.f);//(noise2((p + n).xz) - 0.5) * 0.05;
     vec3 q = abs(p + noise) - b + r;
     return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0) - r;
 }
@@ -104,7 +109,7 @@ vec2 computeScene(vec3 pos, vec3 n)
     vec2 res = vec2(FAR_PLANE, 0.0);
   
     // Stars
-    res = takeClosest(res, vec2(sdStars(pos - vec3(0.0), 4.0, n), 1.0));
+    res = takeClosest(res, vec2(sdStars(pos - vec3(0.0, 0.0, 0.0), 4.0, n), 1.0));
 
     float posLen = length(pos);
     if (posLen < 3.0) // Early intersection test
@@ -121,10 +126,11 @@ vec2 computeScene(vec3 pos, vec3 n)
             if (backdropScale > 0.0)
             {
                 res = takeClosest(res, vec2(
-                    sdRoundBox(pos - vec3(0.0, -1.25, 0.0), vec3(7.0, 1.0, 5.0) * backdropScale, 0.02, n), 3.0
+                    sdRoundBox(pos - vec3(0.0, -1.25, 0.0), vec3(15.0, 1.0, 5.0) * backdropScale, 0.02, n), 3.0
                 ));
             }
 
+/*
             if (centerScale > 0.0)
             {
                 extent *= centerScale;
@@ -133,6 +139,7 @@ vec2 computeScene(vec3 pos, vec3 n)
                 res = takeClosest(res, vec2(sdRoundBox(pos - vec3(-1.5, y, -0.4), extent, 0.02, n), 2.0));
                 res = takeClosest(res, vec2(sdRoundBox(pos - vec3(1.5, y, -0.4), extent, 0.02, n), 2.0));
             }
+*/
         }
     }
     
@@ -263,10 +270,13 @@ vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
 
     // Noise seed
     vec3 n = vec3(sin(iDate.w * 0.5), sin(iDate.w * 0.2), cos(iDate.w * 0.3));
+
+    // Mouse
+    vec2 mo = (iMouse.xy/iResolution.xy * 2.0 - 1.0) * 0.8;
     
     bool trace = true;
     int depth = 0;
-    while (depth < 2 && trace)
+    while (depth < 1 && trace)
     {
         vec2 intersect = raymarch(rayOrigin, rayDir, FAR_PLANE, n);
         
@@ -322,15 +332,14 @@ vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
         // Directional light
         {
             vec3 L = -normalize(vec3(-1.25, -1.2, 1));
-            vec3 color = max(dot(N, L), 0.0) * diffuse;
+            vec3 color = max(dot(N, L), 0.0) * diffuse * 5.f;
             localColor += color;
         }
         
         // Point light
         {
-            vec2 mo = (iMouse.xy/iResolution.xy * 2.0 - 1.0) * 0.8;
-            vec3 pos = vec3(-mo.x, 1.5, mo.y);
-            float intensity = 1.5;
+            vec3 pos = vec3(-mo.x * 3.f, 1.5, mo.y * 3.f);
+            float intensity = 2.f;
             
             vec3 L = -normalize(Peps - pos);
             vec3 H = normalize(V + L);
@@ -343,25 +352,8 @@ vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
             localColor += color * attenuation;
         }
         
-        // Indirect lighting
-        {
-            vec3 F = FresnelSchlickRoughness(max(dot(N, V), 0.0), F0, roughness);
 
-            vec3 kS = F;
-            vec3 kD = 1.0 - kS;
-            kD *= 1.0 - metalness;
-
-            vec3 irradiance = vec3(0.015);
-            vec3 prefilteredColor = texture(iChannel0, rayDir.xz).rgb;
-
-            vec3 diffuse = irradiance * albedo;
-            vec2 brdf = PrefilteredDFG_Karis(roughness, max(dot(N, V), 0.0));
-            vec3 specular = prefilteredColor * (F * brdf.x + brdf.y);
-    
-            localColor += kD * diffuse + specular;
-        }
-
-        finalColor += localColor * 1.0/exp(float(depth)) * 2.0;
+        finalColor += localColor * 1.0/exp(float(depth));
         rayOrigin = Peps;
         rayDir = R;
         depth++;
@@ -370,14 +362,20 @@ vec3 calcLighting(vec3 rayOrigin, vec3 rayDir)
     return finalColor;
 }
 
-void mainImage(out vec4 fragColor, in vec2 fragCoord)
+void mainImage(out vec4 fragColor, in vec2 _fragCoord)
 {
+    //vec2 fragCoord = floor(_fragCoord / 2.0) * 2.0;
+    vec2 fragCoord = _fragCoord;
+
     int factor = 3;
     if (int(fragCoord.x) % (factor * 2) < 2 || int(fragCoord.y) % (factor * 2) < 2)
     {
         fragColor = vec4(0.0);
         return;
     }
+
+    if (int(fragCoord.x) % 6 > 4 || int(fragCoord.y) % 6 > 4)
+        discard;
 
     // Normalized pixel coordinates (from -1 to 1)
     vec2 uv = fragCoord / iResolution.xy * 2.0 - 1.0;
@@ -392,7 +390,16 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     //vec3 camPos = vec3(dist*cos(7.0*mo.x), (1.0 - mo.y) * 2.0, dist*sin(7.0*mo.x));
     mat3 camMat = makeCameraMatrix(-normalize(camPos));
     vec3 rayOrigin = camPos;
-    vec3 rayDir = camMat * normalize(vec3(uvRatio, 2));
+
+    vec3 noise = noise3(fragCoord * 0.075);
+    noise.x -= 0.5f;
+    //noise.y -= 0.2f;
+    noise.z -= 0.9f;
+    //vec3 rayDir = camMat * normalize(vec3(uvRatio, 2));
+    //vec3 rayDir = camMat * normalize(vec3(uvRatio, 2) + noise);
+    //vec3 rayDir = camMat * (normalize(vec3(uvRatio, 2)) + noise);
+    //vec3 rayDir = camMat * normalize(vec3(uvRatio, 3) + noise);
+    vec3 rayDir = camMat * normalize(vec3(uvRatio, 3)) + noise;
 
     vec3 finalColor = calcLighting(rayOrigin, rayDir);
 

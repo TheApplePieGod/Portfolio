@@ -16,7 +16,8 @@ import {
 } from 'next/font/google';
 import './globals.css';
 
-const inter = Orbitron({ weight: '600' });
+//const font = Orbitron({ weight: '600' });
+const font = Martian_Mono({ weight: '600' });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -30,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} w-full h-full`}>{children}</body>
+      <body className={`${font.className} w-full h-full`}>{children}</body>
     </html>
   );
 }

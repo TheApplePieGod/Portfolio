@@ -39,6 +39,7 @@ export default function Home() {
           moveRate={0.02}
         />
       </div>
+      {/*
       <Button
         onClick={() => {
           setOpen(true);
@@ -69,19 +70,94 @@ export default function Home() {
       >
         projects
       </Button>
+      */}
       <div
-        className="fixed left-[50%] top-[50%] text-8xl leading-tight text-center pointer-events-none transition-transform duration-500"
+        className="fixed left-[50%] top-[50%] flex flex-col items-center w-max"
         style={{
-          transform: `translate(-50%, -50%) scale(${open ? '0%' : '100%'})`,
-          //textShadow:
-          //'#19181D 0px 0 20px, #19181D 0px 0 30px, #19181D 0px 0px 10px'
-          textShadow:
-            '#AC0E3E 0px 0 20px, #AC0E3E 0px 0 30px, purple 0px 0px 10px'
-          //'#780b2c 0px 0 20px, #780b2c 0px 0 30px, purple 0px 0px 10px'
+          transform: `translate(-50%, -50%)`
         }}
       >
-        Evan <br />
-        Thompson
+        <div className="flex items-center gap-[100px]">
+          <div className="flex flex-col gap-[100px] w-[150px] items-center">
+            <Button
+              onClick={() => {
+                setOpen(true);
+                setOpenPage('about');
+              }}
+              className="text-2xl"
+              style={{
+                textShadow:
+                  'black 0px 0 20px, black 0px 0 30px, black 0px 0px 10px'
+              }}
+            >
+              about
+            </Button>
+            <Button
+              onClick={() => {
+                setOpen(true);
+                setOpenPage('asd');
+              }}
+              className="text-2xl"
+              style={{
+                textShadow:
+                  'black 0px 0 20px, black 0px 0 30px, black 0px 0px 10px'
+              }}
+            >
+              projects
+            </Button>
+          </div>
+          <img
+            alt=""
+            src="/img/me3.gif"
+            style={{
+              height: '48vh',
+              width: '48vh',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              boxShadow:
+                '#AC0E3E 0px 0 20px, #AC0E3E 0px 0 30px, purple 0px 0px 10px'
+            }}
+          />
+          <div className="flex flex-col gap-[100px] w-[150px] items-center">
+            <Button
+              onClick={() => {
+                setOpen(true);
+                setOpenPage('asd');
+              }}
+              className="text-2xl"
+              style={{
+                textShadow:
+                  'black 0px 0 20px, black 0px 0 30px, black 0px 0px 10px'
+              }}
+            >
+              blog
+            </Button>
+            <Button
+              onClick={() => {
+                setOpen(true);
+                setOpenPage('asd');
+              }}
+              className="text-2xl"
+              style={{
+                textShadow:
+                  'black 0px 0 20px, black 0px 0 30px, black 0px 0px 10px'
+              }}
+            >
+              music
+            </Button>
+          </div>
+        </div>
+        <div
+          className="mt-8 text-6xl leading-tight text-center pointer-events-none"
+          style={{
+            textShadow:
+              '#AC0E3E 0px 0 20px, #AC0E3E 0px 0 30px, purple 0px 0px 10px'
+          }}
+        >
+          Evan
+          <br />
+          Thompson
+        </div>
       </div>
       <div
         className="fixed left-[50%] top-[50%] text-8xl pointer-events-none transition-transform duration-500"
@@ -90,18 +166,7 @@ export default function Home() {
             openPage === 'about' ? '100%' : '0%'
           })`
         }}
-      >
-        <img
-          alt=""
-          src="/img/me3.gif"
-          style={{
-            height: '48vh',
-            width: '48vh',
-            borderRadius: '50%',
-            objectFit: 'cover'
-          }}
-        />
-      </div>
+      ></div>
       <Modal open={open && openPage !== 'about'} onClose={handleClose}>
         <div>test</div>
       </Modal>
