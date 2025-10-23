@@ -161,7 +161,7 @@ const ProjectsPage = () => {
                     TechIconType.Python
                 ]}
                 imageName="koi.png"
-                link="https://koi.fyi"
+                link=""
                 github=""
                 title="Koi"
                 key="Koi"

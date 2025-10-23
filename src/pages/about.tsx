@@ -161,6 +161,7 @@ const AboutPage = () => {
                                 />
                             </Box>
                         </StarrySection>
+            {/*
                         <Typography variant="h3" color="text.primaryDark">
                             Skills
                         </Typography>
@@ -188,69 +189,60 @@ const AboutPage = () => {
                                 skillName="ReactJS"
                                 iconType={TechIconType.React}
                             />{" "}
-                            {/* 2019 */}
+                            {// 2019 }
                             <SkillBar
                                 value={5}
                                 yearCount={8}
                                 skillName="HTML/CSS"
                                 iconType={TechIconType.HTMLCss}
                             />{" "}
-                            {/* 2015 */}
+                            {// 2015 }
                             <SkillBar
                                 value={5}
                                 yearCount={7}
                                 skillName="JS/TS"
                                 iconType={TechIconType.TS}
                             />{" "}
-                            {/* 2016 */}
+                            {// 2016 }
                             <SkillBar
                                 value={5}
                                 yearCount={6}
                                 skillName="C++"
                                 iconType={TechIconType.Cpp}
                             />{" "}
-                            {/* 2017 */}
+                            {// 2017 }
                             <SkillBar
                                 value={5}
                                 yearCount={3}
                                 skillName="Python"
                                 iconType={TechIconType.Python}
                             />{" "}
-                            {/* 2020 */}
+                            {// 2020 }
                             <SkillBar
                                 value={4}
                                 yearCount={2}
                                 skillName="Vulkan"
                                 iconType={TechIconType.Vulkan}
                             />{" "}
-                            {/* 2021 */}
+                            {// 2021 }
                             <SkillBar
                                 value={4}
                                 yearCount={5}
                                 skillName="C#/DotNet"
                                 iconType={TechIconType.CSharp}
                             />{" "}
-                            {/* 2018 */}
+                            {// 2018 }
                             <SkillBar
                                 value={4}
                                 yearCount={4}
                                 skillName="SQL"
                                 iconType={TechIconType.SQL}
                             />{" "}
-                            {/* 2019 */}
-                            {/*
-                                <SkillBar
-                                    percentage={50}
-                                    yearCount={3}
-                                    skillName="Azure"
-                                    iconType={TechIconType.Azure}
-                                />{" "}
-                                2020
-                            */}
                         </Grid>
+*/}
 
                         {/* Spacer */}
-                        <Box sx={{ height: "150px" }} />
+                        <Box sx={{ height: "0px" }} />
                     </Box>
                 )}
             </Box>
